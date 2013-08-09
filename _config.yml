@@ -1,0 +1,10 @@
+me: "Dorvak"
+description: "Dorvak*s blog"
+
+url: "dorvak.github.io"
+
+paginate: 10
+
+markdown: rdiscount
+permalink: pretty
+pygments: true
