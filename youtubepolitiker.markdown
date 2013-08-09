@@ -2,5 +2,7 @@ YouTube-Kanäle von deutschen Parteien
 --------------------------------------
 
 
-Hier eine Bild
-![Alt text](https://raw.github.com/dorvak/dorvak.github.io/master/_static/cducsu.svg?raw=True)
+
+[-] hier der Kanaler der CDU/CSU-Fraktion im Bundestag:
+    ![Kanal der CDU/CSU-Fraktion im Bundestag](http://dorvak.github.io/cducsu.svg)
+
