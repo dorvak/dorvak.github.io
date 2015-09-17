@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="utf-8">
         <base href="reveal.js/">
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Till Keyling</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Till Keylings Homepage">
+		<meta name="author" content="Till Keyling">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -44,57 +44,28 @@
 <section>
     <h1> Blog </h1>
 </section>
-<section data-markdown>
-    <script type="text/template">
-    User-Agents and URL-Resolvers
-==============================
+    <section>
+<h1>User-Agents and URL-Resolvers</h1>
+<p>While resolving the (usually shortened) URL's from Tweets, I noticed some errors using Python <a href="&quot;http://docs.python-requests.org/en/latest/&quot;">Requests</a>. Actually, it's not a Requests &quot;Error&quot;, but a 403 (&quot;Forbidden&quot;)-Response from some Webservers, who don't like user-agents like Apache or the standard Requests-User-Agent.</p>
+<p>Consider the follwing example:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">import</span> requests <span class="im">as</span> rq
 
-While resolving the (usually shortened) URL's from Tweets, I noticed some
-errors using Python [Requests]("http://docs.python-requests.org/en/latest/").
-Actually, it's not a Requests "Error", but a 403 ("Forbidden")-Response from
-some Webservers, who don't like user-agents like Apache or the standard
-Requests-User-Agent.
+url<span class="op">=</span><span class="st">&quot;user_agent = {&#39;User-agent&#39;: &#39;Mozilla/5.0&#39;}&quot;</span> <span class="co">#This URL has some redirects,</span>
+<span class="op">and</span> doesn<span class="st">&#39;t like some User-Agents.</span>
 
-Consider the follwing example:
+<span class="st">#Lets try a simple head-request (which is recommended resolving the url due to</span>
+<span class="st">a drastically #lower network-load, especially when resolving thousands of urls</span>
+<span class="st">at once)</span>
 
-```python
-
-import requests as rq
-
-url="user_agent = {'User-agent': 'Mozilla/5.0'}" #This URL has some redirects,
-and doesn't like some User-Agents.
-
-#Lets try a simple head-request (which is recommended resolving the url due to
-a drastically #lower network-load, especially when resolving thousands of urls
-at once)
-
-exmpl = rq.head(url) 
-```
-
-This example will result in an 403-Response code, mainly because of the
-standard-headers that Requests is delivering:
-
-```python 
-'User-Agent': 'python-requests/1.2.3 CPython/2.7.3 Linux/3.2.0-23-generic'}
-```
-
-Other
-[Response-Codes]("http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html") may
-be thrown, f.e. 405 when a head-Request is forbidden. This may be handled via
-Exceptions, or using Curl ord PyCurl directly (which isn't under active
-development any more). 
-
-As a workaround, which "fakes" the user-agent of the request and should work
-for the most webservers or endpoints of an request, one could & should simply
-pass another user-agent (f.e. user_agent = {'User-agent': 'Mozilla/5.0'}). This
-methods allows to resolve most of the shortened URL's posted on Twitter.
-
-To reduce the number of redirects when consuming Tweets from the Streaming API,
-one should use the "expanded_url"-Value of the delivered JSON. Beware of the
-fact that these "expansion" is not complete: Redirects, shortened Short-URL's
-and alike are not expanded by that method!
-    </script>
+<span class="st">exmpl = rq.head(url) </span></code></pre></div>
+<p>This example will result in an 403-Response code, mainly because of the standard-headers that Requests is delivering:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co">&#39;User-Agent&#39;</span>: <span class="st">&#39;python-requests/1.2.3 CPython/2.7.3 Linux/3.2.0-23-generic&#39;</span>}</code></pre></div>
+<p>Other <a href="&quot;http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html&quot;">Response-Codes</a> may be thrown, f.e. 405 when a head-Request is forbidden. This may be handled via Exceptions, or using Curl ord PyCurl directly (which isn't under active development any more).</p>
+<p>As a workaround, which &quot;fakes&quot; the user-agent of the request and should work for the most webservers or endpoints of an request, one could &amp; should simply pass another user-agent (f.e. user_agent = {'User-agent': 'Mozilla/5.0'}). This methods allows to resolve most of the shortened URL's posted on Twitter.</p>
+<p>To reduce the number of redirects when consuming Tweets from the Streaming API, one should use the &quot;expanded_url&quot;-Value of the delivered JSON. Beware of the fact that these &quot;expansion&quot; is not complete: Redirects, shortened Short-URL's and alike are not expanded by that method!</p>
 </section>
+
     
 </div>
 
