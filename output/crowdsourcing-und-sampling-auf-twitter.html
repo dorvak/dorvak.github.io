@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+<meta name="author" content="Till Keyling" />
+<meta name="description" content="Sampling on YouTube via Twitter" />
+<meta name="keywords" content="YouTube, Twitter, Bots">
+<meta property="og:site_name" content="Till Keyling's Homepage"/>
+<meta property="og:title" content="Crowdsourcing und Sampling auf Twitter"/>
+<meta property="og:description" content="Sampling on YouTube via Twitter"/>
+<meta property="og:locale" content="de_DE"/>
+<meta property="og:url" content="/crowdsourcing-und-sampling-auf-twitter.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-07-23 00:00:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/author/till-keyling.html">
+<meta property="article:section" content="Blog"/>
+<meta property="article:tag" content="YouTube"/>
+<meta property="article:tag" content="Twitter"/>
+<meta property="article:tag" content="Bots"/>
+<meta property="og:image" content="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg">  <title>Till Keyling's Homepage &ndash; Crowdsourcing und Sampling auf Twitter</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="">
+        <img src="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg" alt="Till Keyling" title="Till Keyling">
+      </a>
+      <h1><a href="">Till Keyling</a></h1>
+      <p>Random Thoughts & Information</p>
+      <nav>
+        <ul class="list">
+          <li><a href="/pages/about.html#about">About</a></li>
+          <li><a href="http://www.ls1.ifkw.uni-muenchen.de/personen/wiss_ma/keyling_till/index.html" target="_blank">My academic website</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="https://twitter.com/tkeyling" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/dorvak" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-stack-overflow" href="http://stackoverflow.com/users/872535/dorvak" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+
+<article>
+  <header>
+    <h1 id="crowdsourcing-und-sampling-auf-twitter">Crowdsourcing und Sampling auf Twitter</h1>
+    <p>Posted on Mon 23 July 2012 in <a href="/category/blog.html">Blog</a></p>
+  </header>
+  <div>
+    <p>Im Rahmen unseres Forschungsprojekts “Politische Kommunikation auf
+Videoplattformen” erfassen wir auch Videos zur Bundestagswahl 2013.
+Nicht jetzt erst merken wir, dass die Stichprobenbildung auf
+“Folksonomy”-strukturierten Angeboten wie YouTube ein zentrales Problem
+bleibt, vermutlich sogar eine DER methodischen Herausforderungen im
+Bereich der <a href="http://www.univie.ac.at/digitalmethods/">digital methods</a>
+bleiben wird, weil die Content-Anbieter zwar Zugänge via API anbieten,
+aber oft <a href="https://code.google.com/p/gdata-issues/issues/detail?id=4113">keine
+Zufallsstichproben</a>
+erlauben (etc. pp.).</p>
+<p>Zunächst einmal gibt es ganz offensichtliche und systematische Zugänge
+der Stichprobenbildung im politischen Bereich, wobei gerade die
+thematische Zentrierung auf die Bundestagswahlen noch einen Glücksfall
+darstellen:</p>
+<ol>
+<li>Akteurs- oder Channel-basiertes Sampling: In diesem Fall erfassen
+    wir die öffentlichen YouTube-Kanäle der aktuellen Mitglieder des
+    Bundestages und der großen Volksparteien, die vorher manuell erfasst
+    wurden.</li>
+<li>Keyword-basiertes Sampling, indem nach Stichworten über die
+    YouTube-Suche Videos zum Thema Bundestagswahlen erfasst werden.
+    Zudem können Tweets erfasst werden, die bestimmte Stichworte in
+    Kombination mit Video-Links enthalten, also ein Sampling über die
+    Beobachtung von Anschlusskommunikation auf anderen Netzwerken,
+    gerade weil diese “cross-pollination”, d.h. die Diffusion von
+    Informationen über SNS-Grenzen hinweg immer wichtiger wird, gerade
+    für Content-Plattformen wie YouTube (das werte ich unter anderem in
+    meiner Dissertation aus).</li>
+</ol>
+<p>Heute ist mir aber noch eine andere Idee gekommen, Stichproben bilden zu
+lassen, und zwar per crowd-sourcing, aber im Wortsinn: Nutzer liefern
+gezielt Informationen in eine Datenbank oder konstituieren eine
+Stichprobe, wobei die Auswahl nach den Relevanzkriterien der Nutzer
+erfolgt - damit aber auch bewusstem Missbrauch etc. Tür und Tor geöffnet
+werden:</p>
+<p>Unter <a href="http://twitter.com/btwtube" title="BTW Tube">@btwtube</a> habe ich einen
+Bot-Account eingerichtet, an den Nutzer Vorschläge für relevante
+YouTube-Videos liefern können, die den aktuellen Status der
+Bundestagswahl kommentieren. Setzt jemand einen Tweet an @btwtube oder
+mit dem hashtag #btwtube ab, werden die im Tweet enthaltenen URL´s
+geparsed und der Stichprobe hinzugefügt, so sie YouTube-Videos
+darstellen. Artig bedankt sich das Programm für die eingereichten
+Videos, auch wenn das Dummerchen (noch) nicht zwischen relevanten und
+irrelevanten Videoclips differenzieren kann (mit jedem eingehenden Video
+wird allerdings ein Stromstoß an einen Hiwi abgesetzt, der diese dann zu
+katalogisieren hat).</p>
+<p><a class="twitter-timeline" href="https://twitter.com/btwtube" data-widget-id="646244807480901632">Tweets by @btwtube</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+<p>Soweit zur Logik. Natürlich ist das ganze hochgradig experimentell,
+davon abhängig, dass Nutzer aktiv werden und Videos vorschlagen, um so
+die Stichprobe zu erweitern. Mir schweben da noch einige
+Anwendungsbereiche vor, in denen sich eine solche Art der
+Stichprobenbildung sinnvoller einsetzen lässt, um jegliche Anmerkungen
+bin ich aber auch dankbar. Im übrigen werden ich die Ergebnisse und die
+aktuellen Trends zur Bundestagswahl auf YouTube auch möglichst zeitnah
+auf einer Live-Website zur Verfügung stellen, wenn dafür noch Zeit ist.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/tag/youtube.html">YouTube</a>
+      <a href="/tag/twitter.html">Twitter</a>
+      <a href="/tag/bots.html">Bots</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+      <p>&copy; Till Keyling 2015</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Crowdsourcing und Sampling auf Twitter",
+  "headline": "Crowdsourcing und Sampling auf Twitter",
+  "datePublished": "2012-07-23 00:00:00+02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Till Keyling",
+    "url": "/author/till-keyling.html"
+  },
+  "image": "https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg",
+  "url": "/crowdsourcing-und-sampling-auf-twitter.html",
+  "description": "Sampling on YouTube via Twitter"
+}
+</script></body>
+</html>

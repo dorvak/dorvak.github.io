@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Till Keyling</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2015-06-01T00:00:00+02:00</updated><entry><title>Facepager and the YouTube API v3 - a quick tutorial</title><link href="/facepager-and-the-youtube-api-v3-a-quick-tutorial.html" rel="alternate"></link><updated>2015-06-01T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:,2015-06-01:facepager-and-the-youtube-api-v3-a-quick-tutorial.html</id><summary type="html">&lt;p&gt;Almost two years ago, I collected lots of information from the YouTube-API (+scraping Referrer-Data) for my PhD-Thesis (basically mapping the view-dynamic for political videos on YouTube on an individual basis over time). While the scale and design of this data-collection was beyond Facapagers capability, the tools itself is well suited for generic API-requests, such as to the YouTube-API (or reddit, f.e.). 
+In the meantime, the YouTube-API underwent significant changes: Besides a necessary "upgrade" to JSON-based response bodies (instead of a somewhat obscure XML-Format in v2), there is now a precise quota-system and error-handling as well. Although some endpoints have been closed, the API and it's documentation improved a lot when compared to it preceding versions. &lt;/p&gt;
+&lt;p&gt;Recently, Bernhard Rieder developed the &lt;a href="http://thepoliticsofsystems.net/2015/05/exploring-youtube/"&gt;YouTube Data Tools&lt;/a&gt;, a great approach and furthermore open sourced/public available (although I strongly disagree that YouTube is understudied; this might be the case in the social science due to the preference for textual rather than visual entities (see &lt;a href="http://firstmonday.org/ojs/index.php/fm/article/view/4878/3755"&gt;Vis, 2013&lt;/a&gt;), but there is a long research tradition in the information systems and alike when it comes to YouTube). Bernhard’s new tool reminded me to update the YouTube-Presets for the Facepager, enabling it to communicate with the most recent API-version. While Bernhard’s YTDT focusses on some specific analysis task and is easier to use, the approach of the Facepager is more “low-level”, yet probably more generic (I’ll explain the “low-level”-philosophy of our tools in a follow-up post).&lt;/p&gt;
+&lt;p&gt;Because there is no generic OAuth-Dialog in the Facepager yet (it's on the to-do list), some steps are necessary before you can start fetching data from the API:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Obtain an API-Key: The v3-API is OAuth-based, by default. OAuth is a secure, yet &lt;a href="http://img.izifunny.com/pics/2013/20130211/original/izifunny-gifdump-feb-12-2013-25-gifs_3.gif"&gt;difficult&lt;/a&gt; authentication procedure that involves multiple "question-and-answer"-steps, basically to prove the existence and credibility of a user (or an app etc.). As long as you don't need to access private API-endpoints (i.e. your own YouTube-account or an account on behalf of others) and only want to obtain public available information, you should stick to the public API access key that Google provides to every developer). &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To get such a key, you must register as a &lt;a href="https://developers.google.com/"&gt;Google Developer&lt;/a&gt; and create an app/project that uses the YouTube-API. See the &lt;a href="https://console.developers.google.com/"&gt;Developer Console&lt;/a&gt; for more information about how to create an project, it's simple and straightforward. &lt;em&gt;Note&lt;/em&gt;: You need to activate/enable the YouTube-API before you generate a browser key (a server key would work as well and is more apropriate, leave referrers/allowed IP-adresses blank)
+&lt;img alt="Enable YouTube-API" src="http://dorvak.github.io/enable_youtube_api.PNG" /&gt; 
+&lt;img alt="Generate Server/Browser Key" src="https://dorvak.github.io/create_key.PNG" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once you created an app and activated the YouTube-API for that app, you have to obtain the public API-access key to authenticate your requests with the Facepager (as you would do if you login with your Facebook or Twitter-credentials). The key is located in the "credentials"-section:
+&lt;img alt="API Key location" src="http://dorvak.github.io/api" title="key.jpg" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Copy the public API access key&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Load the "YouTube API v3" presets in the Facepager &amp;amp; paste the key in the parameter field (as you might guess, as a value of the "key"-parameter, "XY" by default). See the screenshot below, esp. the critical "paramters"-scetion in the lower left part of the tool.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You're now ready to start gathering data using the YouTube-API. The current preset collects information about a video clip (&lt;a href="https://developers.google.com/youtube/v3/docs/videos/list"&gt;"list"-method&lt;/a&gt;), namely it's title, author etc. ("snippet"-part) and the typical usage-statistics ("statistics"-part). The only information you need to provide is the ID of a YouTube-Video ("https://www.youtube.com?v=HEREISTHEID" ; paste it as a new node using the"Add Node"-Button, you may copy multiples ID's in here as well).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Note that each request and each part withdraw "units" from your API-quota (there is a handy &lt;a href="https://developers.google.com/youtube/v3/determine_quota_cost"&gt;quota-calculator&lt;/a&gt;), in this case 5 units from your daily free-account of 50.000.000 units. You might check your quotas in the aforementioned Developer Console, it will decrease for every additional request you make. &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;There is much more information available via the API - check out either the &lt;a href="https://developers.google.com/apis-explorer/#p/youtube/v3/"&gt;API-Explorer&lt;/a&gt; or the Reference-Guide in the documentation of the v3-API. For example, you could retrieve comments via the "commentThreads"-endpoint (in this case, specify a "videoId"-parameter!). 
+&lt;img alt="Statistics and Comments" src="http://dorvak.github.io/comments" title="youtube.PNG" /&gt;. &lt;/p&gt;
+&lt;p&gt;The API provides really interesting information, f.e. one might map the location of a video (or the recording, usually tagged via GPS). Although such metadata is only available for a small share of YouTube-clips, it provides additional insights on how users use YouTube - f.e. clips uploaded in the german "news &amp;amp; politics"-section of the platform deal with the conflicts in the middle east quite often, which can be seen not only by analyzing the clips itself, but also by mapping their geolocation. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Geolocation YouTube" src="http://dorvak.github.io/geolocation_germany.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Have fun playing with the API!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DOWNLOAD&lt;/strong&gt; &lt;a href="https://raw.githubusercontent.com/dorvak/dorvak.github.io/master/YouTube_API_v3_Get_Video_Statistics-3_4.json"&gt;YouTube API v3 Preset&lt;/a&gt; (see Help-Section 5 for more information about the presets)&lt;/p&gt;</summary></entry><entry><title>User-Agents and URL-Resolvers</title><link href="/user-agents-and-url-resolvers.html" rel="alternate"></link><updated>2013-12-03T00:00:00+01:00</updated><author><name>Till Keyling</name></author><id>tag:,2013-12-03:user-agents-and-url-resolvers.html</id><summary type="html">&lt;p&gt;While resolving the (usually shortened) URL's from Tweets, I noticed some
+errors using Python &lt;a href="" title="http://docs.python-requests.org/en/latest/"&gt;Requests&lt;/a&gt;.
+Actually, it's not a Requests "Error", but a 403 ("Forbidden")-Response from
+some Webservers, who don't like user-agents like Apache or the standard
+Requests-User-Agent.&lt;/p&gt;
+&lt;p&gt;Consider the follwing example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;rq&lt;/span&gt;
+
+&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;user_agent = {&amp;#39;User-agent&amp;#39;: &amp;#39;Mozilla/5.0&amp;#39;}&amp;quot;&lt;/span&gt; &lt;span class="c"&gt;#This URL has some redirects,&lt;/span&gt;
+&lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;doesn&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;t like some User-Agents.&lt;/span&gt;
+
+&lt;span class="c"&gt;#Lets try a simple head-request (which is recommended resolving the url due to&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;drastically&lt;/span&gt; &lt;span class="c"&gt;#lower network-load, especially when resolving thousands of urls&lt;/span&gt;
+&lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="n"&gt;once&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;exmpl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rq&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This example will result in an 403-Response code, mainly because of the
+standard-headers that Requests is delivering:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="s"&gt;&amp;#39;User-Agent&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;python-requests/1.2.3 CPython/2.7.3 Linux/3.2.0-23-generic&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Other
+&lt;a href="" title="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"&gt;Response-Codes&lt;/a&gt; may
+be thrown, f.e. 405 when a head-Request is forbidden. This may be handled via
+Exceptions, or using Curl ord PyCurl directly (which isn't under active
+development any more). &lt;/p&gt;
+&lt;p&gt;As a workaround, which "fakes" the user-agent of the request and should work
+for the most webservers or endpoints of an request, one could &amp;amp; should simply
+pass another user-agent (f.e. user_agent = {'User-agent': 'Mozilla/5.0'}). This
+methods allows to resolve most of the shortened URL's posted on Twitter.&lt;/p&gt;
+&lt;p&gt;To reduce the number of redirects when consuming Tweets from the Streaming API,
+one should use the "expanded_url"-Value of the delivered JSON. Beware of the
+fact that these "expansion" is not complete: Redirects, shortened Short-URL's
+and alike are not expanded by that method!&lt;/p&gt;</summary></entry></feed>

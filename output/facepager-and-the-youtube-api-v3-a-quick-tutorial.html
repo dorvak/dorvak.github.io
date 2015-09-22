@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+<meta name="author" content="Till Keyling" />
+<meta name="description" content="Quick tutorial for the YouTube APIv3 using Facepager" />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="Till Keyling's Homepage"/>
+<meta property="og:title" content="Facepager and the YouTube API v3 - a quick tutorial"/>
+<meta property="og:description" content="Quick tutorial for the YouTube APIv3 using Facepager"/>
+<meta property="og:locale" content="de_DE"/>
+<meta property="og:url" content="/facepager-and-the-youtube-api-v3-a-quick-tutorial.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-06-01 00:00:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/author/till-keyling.html">
+<meta property="article:section" content="Blog"/>
+<meta property="og:image" content="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg">  <title>Till Keyling's Homepage &ndash; Facepager and the YouTube API v3 - a quick tutorial</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="">
+        <img src="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg" alt="Till Keyling" title="Till Keyling">
+      </a>
+      <h1><a href="">Till Keyling</a></h1>
+      <p>Random Thoughts & Information</p>
+      <nav>
+        <ul class="list">
+          <li><a href="/pages/about.html#about">About</a></li>
+          <li><a href="http://www.ls1.ifkw.uni-muenchen.de/personen/wiss_ma/keyling_till/index.html" target="_blank">My academic website</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="https://twitter.com/tkeyling" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/dorvak" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-stack-overflow" href="http://stackoverflow.com/users/872535/dorvak" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+
+<article>
+  <header>
+    <h1 id="facepager-and-the-youtube-api-v3-a-quick-tutorial">Facepager and the YouTube API v3 - a quick tutorial</h1>
+    <p>Posted on Mon 01 June 2015 in <a href="/category/blog.html">Blog</a></p>
+  </header>
+  <div>
+    <p>Almost two years ago, I collected lots of information from the YouTube-API (+scraping Referrer-Data) for my PhD-Thesis (basically mapping the view-dynamic for political videos on YouTube on an individual basis over time). While the scale and design of this data-collection was beyond Facapagers capability, the tools itself is well suited for generic API-requests, such as to the YouTube-API (or reddit, f.e.). 
+In the meantime, the YouTube-API underwent significant changes: Besides a necessary "upgrade" to JSON-based response bodies (instead of a somewhat obscure XML-Format in v2), there is now a precise quota-system and error-handling as well. Although some endpoints have been closed, the API and it's documentation improved a lot when compared to it preceding versions. </p>
+<p>Recently, Bernhard Rieder developed the <a href="http://thepoliticsofsystems.net/2015/05/exploring-youtube/">YouTube Data Tools</a>, a great approach and furthermore open sourced/public available (although I strongly disagree that YouTube is understudied; this might be the case in the social science due to the preference for textual rather than visual entities (see <a href="http://firstmonday.org/ojs/index.php/fm/article/view/4878/3755">Vis, 2013</a>), but there is a long research tradition in the information systems and alike when it comes to YouTube). Bernhard’s new tool reminded me to update the YouTube-Presets for the Facepager, enabling it to communicate with the most recent API-version. While Bernhard’s YTDT focusses on some specific analysis task and is easier to use, the approach of the Facepager is more “low-level”, yet probably more generic (I’ll explain the “low-level”-philosophy of our tools in a follow-up post).</p>
+<p>Because there is no generic OAuth-Dialog in the Facepager yet (it's on the to-do list), some steps are necessary before you can start fetching data from the API:</p>
+<ol>
+<li>
+<p>Obtain an API-Key: The v3-API is OAuth-based, by default. OAuth is a secure, yet <a href="http://img.izifunny.com/pics/2013/20130211/original/izifunny-gifdump-feb-12-2013-25-gifs_3.gif">difficult</a> authentication procedure that involves multiple "question-and-answer"-steps, basically to prove the existence and credibility of a user (or an app etc.). As long as you don't need to access private API-endpoints (i.e. your own YouTube-account or an account on behalf of others) and only want to obtain public available information, you should stick to the public API access key that Google provides to every developer). </p>
+</li>
+<li>
+<p>To get such a key, you must register as a <a href="https://developers.google.com/">Google Developer</a> and create an app/project that uses the YouTube-API. See the <a href="https://console.developers.google.com/">Developer Console</a> for more information about how to create an project, it's simple and straightforward. <em>Note</em>: You need to activate/enable the YouTube-API before you generate a browser key (a server key would work as well and is more apropriate, leave referrers/allowed IP-adresses blank)
+<img alt="Enable YouTube-API" src="http://dorvak.github.io/enable_youtube_api.PNG" /> 
+<img alt="Generate Server/Browser Key" src="https://dorvak.github.io/create_key.PNG" /></p>
+</li>
+<li>
+<p>Once you created an app and activated the YouTube-API for that app, you have to obtain the public API-access key to authenticate your requests with the Facepager (as you would do if you login with your Facebook or Twitter-credentials). The key is located in the "credentials"-section:
+<img alt="API Key location" src="http://dorvak.github.io/api" title="key.jpg" /></p>
+</li>
+<li>
+<p>Copy the public API access key</p>
+</li>
+<li>
+<p>Load the "YouTube API v3" presets in the Facepager &amp; paste the key in the parameter field (as you might guess, as a value of the "key"-parameter, "XY" by default). See the screenshot below, esp. the critical "paramters"-scetion in the lower left part of the tool.</p>
+</li>
+<li>
+<p>You're now ready to start gathering data using the YouTube-API. The current preset collects information about a video clip (<a href="https://developers.google.com/youtube/v3/docs/videos/list">"list"-method</a>), namely it's title, author etc. ("snippet"-part) and the typical usage-statistics ("statistics"-part). The only information you need to provide is the ID of a YouTube-Video ("https://www.youtube.com?v=HEREISTHEID" ; paste it as a new node using the"Add Node"-Button, you may copy multiples ID's in here as well).</p>
+</li>
+<li>
+<p>Note that each request and each part withdraw "units" from your API-quota (there is a handy <a href="https://developers.google.com/youtube/v3/determine_quota_cost">quota-calculator</a>), in this case 5 units from your daily free-account of 50.000.000 units. You might check your quotas in the aforementioned Developer Console, it will decrease for every additional request you make. </p>
+</li>
+</ol>
+<p>There is much more information available via the API - check out either the <a href="https://developers.google.com/apis-explorer/#p/youtube/v3/">API-Explorer</a> or the Reference-Guide in the documentation of the v3-API. For example, you could retrieve comments via the "commentThreads"-endpoint (in this case, specify a "videoId"-parameter!). 
+<img alt="Statistics and Comments" src="http://dorvak.github.io/comments" title="youtube.PNG" />. </p>
+<p>The API provides really interesting information, f.e. one might map the location of a video (or the recording, usually tagged via GPS). Although such metadata is only available for a small share of YouTube-clips, it provides additional insights on how users use YouTube - f.e. clips uploaded in the german "news &amp; politics"-section of the platform deal with the conflicts in the middle east quite often, which can be seen not only by analyzing the clips itself, but also by mapping their geolocation. </p>
+<p><img alt="Geolocation YouTube" src="http://dorvak.github.io/geolocation_germany.jpg" /></p>
+<p>Have fun playing with the API!</p>
+<p><strong>DOWNLOAD</strong> <a href="https://raw.githubusercontent.com/dorvak/dorvak.github.io/master/YouTube_API_v3_Get_Video_Statistics-3_4.json">YouTube API v3 Preset</a> (see Help-Section 5 for more information about the presets)</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+      <p>&copy; Till Keyling 2015</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Facepager and the YouTube API v3 - a quick tutorial",
+  "headline": "Facepager and the YouTube API v3 - a quick tutorial",
+  "datePublished": "2015-06-01 00:00:00+02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Till Keyling",
+    "url": "/author/till-keyling.html"
+  },
+  "image": "https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg",
+  "url": "/facepager-and-the-youtube-api-v3-a-quick-tutorial.html",
+  "description": "Quick tutorial for the YouTube APIv3 using Facepager"
+}
+</script></body>
+</html>
