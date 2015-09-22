@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Till Keyling'
 SITENAME = u"Till Keyling's Homepage"
-SITEURL = ''
+SITEURL = 'http://dorvak.github.io'
 
 PATH = 'content'
 
@@ -35,6 +35,7 @@ DEFAULT_PAGINATION = False
 
 
 #FLEX THEME Specific Stuff
+MENU_ITEMS=(("Home","http://dorvak.github.io"),)
 SITETITLE = "Till Keyling"
 OG_LOCALE = "de_DE"
 SITELOGO = "https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg"
