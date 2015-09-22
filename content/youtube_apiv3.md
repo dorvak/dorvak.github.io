@@ -15,7 +15,7 @@ Because there is no generic OAuth-Dialog in the Facepager yet (it's on the to-do
 
 2. To get such a key, you must register as a [Google Developer](https://developers.google.com/) and create an app/project that uses the YouTube-API. See the [Developer Console](https://console.developers.google.com/) for more information about how to create an project, it's simple and straightforward. *Note*: You need to activate/enable the YouTube-API before you generate a browser key (a server key would work as well and is more appropriate, leave referrers/allowed IP-adresses blank)
 ![Enable YouTube-API]({filename}/images/enable_youtube_api.PNG) 
-![Generate Server/Browser Key](https://dorvak.github.io/create_key.PNG)
+![Generate Server/Browser Key]({filename}/images/create_key.PNG)
 
 3. Once you created an app and activated the YouTube-API for that app, you have to obtain the public API-access key to authenticate your requests with the Facepager (as you would do if you login with your Facebook or Twitter-credentials). The key is located in the "credentials"-section:
 ![API Key location]({filename}/images/api_key.jpg)
