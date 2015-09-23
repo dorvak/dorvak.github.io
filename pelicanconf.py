@@ -23,7 +23,7 @@ AUTHOR_FEED_RSS = None
 LINKS = (('Me @LMU München','http://www.ls1.ifkw.uni-muenchen.de/personen/wiss_ma/keyling_till/index.html'),)
 
 #Theme
-THEME = '/usr/local/lib/python2.7/site-packages/pelican/themes/Flex'
+THEME = 'Flex'
 # Social widget
 SOCIAL = (('twitter','https://twitter.com/tkeyling'),
           ('github','https://github.com/dorvak'),("stack-overflow","http://stackoverflow.com/users/872535/dorvak"))
