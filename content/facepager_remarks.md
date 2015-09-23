@@ -1,4 +1,4 @@
-Title:Facepager - What it is, what it's not?
+Title:Facepager - What it is, what it's not
 Author: Till Keyling
 Date: 2015-09-01
 Category: Blog
