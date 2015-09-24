@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Till Keyling'
 SITENAME = u"Till Keyling's Homepage"
-SITEURL = 'http://dorvak.github.io'
+SITEURL = 'http://tillkeyling.com'
 
 PATH = 'content'
 
@@ -13,6 +13,7 @@ TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
+FEED_ALL_RSS = 'feeds/all.rss'
 FEED_ALL_ATOM = 'feeds/all.xml'
 CATEGORY_FEED_ATOM = None
 GOOGLE_ANALYTICS = 'UA-32588729-2'
