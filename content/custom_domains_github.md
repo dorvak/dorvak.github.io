@@ -14,8 +14,7 @@ Based on some helpfull [SO-Threads](http://stackoverflow.com/questions/9082499/c
 
 As checkdomain.de doesn't really follow the usual terms and labels in their user-interface, creating the respective A-records (in case you use an apex domain like tillkeyling.com!) wasn't that obvious. Thus, here is a screenshot of the configuration for checkdomain.de:
 
-![Checkdomain.de Configuration]({filename}/images/checkdomain_config.PNG)
-
+## Checkdomain.de-Setup
 There are basically three steps involved to use a custom (apex) domain for your GitHub User-Page:
 
 1. Create a CNAME file in the Master-Branch of your GitHub-Repository. This file should contain your custom domain, without the scheme (*http://*) and will cause GitHub to serve your content to that domain (at least as I understood it, having no or just a very basic background in Hosting/DNS-related stuff).
@@ -24,7 +23,9 @@ There are basically three steps involved to use a custom (apex) domain for your 
     *192.30.252.153*
     *192.30.252.154*
 
-^Note: I only used a single A-Record via "Allgemeine Einstellungen". Entering the other IP in the DNS-Table below as an A-Record seems to create a another redirect. The settings in the checkdomain user-interface are quite confusing here, f.e. no root-apex (@) can be specified. There is no further description available.  
+![Checkdomain.de Configuration]({filename}/images/checkdomain_config.PNG)
+
+        *Note: I only used a single A-Record via "Allgemeine Einstellungen". Entering the other IP in the DNS-Table below as an A-Record seems to create another redirect. The settings in the checkdomain user-interface are quite confusing here, f.e. no root-apex (@) can be specified. There is no further description available.*
 
 3. Enter a CNAME-Record at checkdomain for the "www"-subdomain. The target should be *username*.github.io. (note the trailing slash!)
 
