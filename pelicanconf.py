@@ -24,6 +24,8 @@ AUTHOR_FEED_RSS = None
 # Blogroll
 LINKS = (('Me @LMU München','http://www.ls1.ifkw.uni-muenchen.de/personen/wiss_ma/keyling_till/index.html'),)
 
+FAVICON = SITEURL+"/images/favicon.ico"
+
 #Theme
 THEME = 'Flex'
 # Social widget

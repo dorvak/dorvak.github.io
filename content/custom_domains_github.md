@@ -6,9 +6,9 @@ Date: 2015-09-21
 Slug: customdomains
 Summary: Hosting GitHub-Pages and custom-domains using checkdomain.de
 
-Recently, I rebuild my homepage using the great [Pelican](https://github.com/getpelican/pelican)-Framework together with GitHubs Page Hosting capabilites.
+Recently, I rebuilt my homepage using the great [Pelican](https://github.com/getpelican/pelican)-Framework together with GitHub's Page Hosting capabilities.
 
-While building and hosting a website as a GitHub User-Page is pretty straightforward, I struggled with the steup of a custom-domain using my my domain-provider [checkdomain.de](http://www.checkdomain.de). 
+While building and hosting a website as a GitHub User-Page is pretty straightforward, I struggled with the setup of a custom-domain using my my domain-provider [checkdomain.de](http://www.checkdomain.de). 
 
 Based on some helpfull [SO-Threads](http://stackoverflow.com/questions/9082499/custom-domain-for-github-project-pages/22374542#22374542), I finally managed to set up a custom-domain for the blog.
 
@@ -19,9 +19,6 @@ There are basically three steps involved to use a custom (apex) domain for your 
 
 
 1. Create a CNAME file in the Master-Branch of your GitHub-Repository. This file should contain your custom domain, without the scheme (*http://*) and will cause GitHub to serve your content to that domain (at least as I understood it, having no or just a very basic background in Hosting/DNS-related stuff).
-
-    #!shell
-    cat "yourdomain.com" > CNAME
 
 2. In the checkdomain user-interface, adjust the IPv4-Adress to GitHub's current [IP-Address](https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/), in this case:
     *192.30.252.153*
