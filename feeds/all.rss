@@ -40,18 +40,7 @@ If you are done collecting results, use the second bookmarklet. This one will op
 &lt;/ol&gt;
 &lt;p&gt;&lt;em&gt;8. Alternative:&lt;/em&gt;&lt;br /&gt;
 If you want to retrieve many Tweets at once, steps 5-7 might result in an API-error due to the massive amount of requests generated. However, there is a method to collect multiple (up to 100) Tweets at once: Copy the ID's from step 4, but use this bookmarklet:&lt;br /&gt;
- &amp;lt;a class="bml"href="javascript: function chunk (arr, len) {&lt;/p&gt;
-&lt;p&gt;var chunks = [],
-      i = 0,
-      n = arr.length;&lt;/p&gt;
-&lt;p&gt;while (i &amp;lt; n) {
-    chunks.push(arr.slice(i, i += len));
-  }&lt;/p&gt;
-&lt;p&gt;return chunks;
-};&lt;/p&gt;
-&lt;p&gt;var data = $.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); });
-var chunked = chunk(data,100);
-window.open("data:data:attachment/csv," + encodeURIComponent(chunked.join("\n")),"neu.csv");"&amp;gt; Chunked Twitter ID &lt;/a&gt;  &lt;/p&gt;
+ &lt;a class="bml" href='javascript: function chunk (arr, len) { var chunks = [],i = 0,n = arr.length; while (i &lt; n) {chunks.push(arr.slice(i, i += len));} return chunks;};var data = $.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); });var chunked = chunk(data,100);window.open("data:data:attachment/csv," + encodeURIComponent(chunked.join("\n")),"neu.csv");'&gt; Chunked Twitter ID &lt;/a&gt; &lt;/p&gt;
 &lt;p&gt;&lt;em&gt;8.1&lt;/em&gt; This will produce a comma-separated list of the ID in blocks of 100 (the maximum limit for the following steps).  &lt;/p&gt;
 &lt;p&gt;&lt;em&gt;8.2&lt;/em&gt; Create a new node in Facepager with an arbitrary name, for example "block1" for the first 100 Tweets that you will collect.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;8.3&lt;/em&gt; Copy the first 100 comma-separated ID's and paste the into the "id"-field (highlighted yellow). Be sure to use the other settings depicted here ("lookup etc").&lt;br /&gt;
