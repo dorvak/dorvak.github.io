@@ -16,7 +16,7 @@ There might be some Scraper out there (see &lt;a href="http://idatassist.com/20-
 , but the easiest way to combine the power of the Websearch and well-defined data-structure of the API is the following:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. Define your Websearch.&lt;/strong&gt; &lt;br /&gt;
     I'd suggest using the "Advanced" Option.  &lt;/p&gt;
-&lt;p&gt;&lt;img alt="Advanced Search Twitter" src="[{filename}]/images/AdvSearch.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Advanced Search Twitter" src="/images/AdvSearch.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. Restrict:&lt;/strong&gt;&lt;br /&gt;
 Select "Live" or restrict the Search-Output to Tweets, assuming that you're only interested in Tweets (and not Accounts or Photos etc.)  &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;3. Paginate:&lt;/strong&gt;&lt;br /&gt;
