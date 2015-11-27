@@ -23,7 +23,7 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (('Me @LMU München','http://www.ls1.ifkw.uni-muenchen.de/personen/wiss_ma/keyling_till/index.html'),)
-
+EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
 FAVICON = SITEURL+"/images/favicon.ico"
 
 #Theme
