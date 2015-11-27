@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+  <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Till Keyling's Homepage Atom">
+  <link href="/feeds/all.rss" type="application/rss+xml" rel="alternate" title="Till Keyling's Homepage RSS">
+  <link rel="shortcut icon" href="http://tillkeyling.com/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="http://tillkeyling.com/images/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+<meta name="author" content="Till Keyling" />
+<meta name="description" content="Hosting GitHub-Pages and custom-domains using checkdomain.de" />
+<meta name="keywords" content="GitHub, Hosting">
+<meta property="og:site_name" content="Till Keyling's Homepage"/>
+<meta property="og:title" content="Custom-Domains and GitHub-Pages: Configuration for checkdomain.de"/>
+<meta property="og:description" content="Hosting GitHub-Pages and custom-domains using checkdomain.de"/>
+<meta property="og:locale" content="de_DE"/>
+<meta property="og:url" content="/customdomains.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-09-21 00:00:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/author/till-keyling.html">
+<meta property="article:section" content="Blog"/>
+<meta property="article:tag" content="GitHub"/>
+<meta property="article:tag" content="Hosting"/>
+<meta property="og:image" content="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg">  <title>Till Keyling's Homepage &ndash; Custom-Domains and GitHub-Pages: Configuration for checkdomain.de</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="">
+        <img src="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg" alt="Till Keyling" title="Till Keyling">
+      </a>
+      <h1><a href="">Till Keyling</a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="/pages/about.html#about">About</a></li>
+          <li><a href="http://www.ls1.ifkw.uni-muenchen.de/personen/wiss_ma/keyling_till/index.html" target="_blank">Me @LMU München</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="https://twitter.com/tkeyling" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/dorvak" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-stack-overflow" href="http://stackoverflow.com/users/872535/dorvak" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="">Home</a>
+      <a href="/feeds/all.atom.xml">Atom</a>
+      <a href="/feeds/all.rss">RSS</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="customdomains">Custom-Domains and GitHub-Pages: Configuration for checkdomain.de</h1>
+    <p>Posted on Mo 21 September 2015 in <a href="/category/blog.html">Blog</a></p>
+  </header>
+  <div>
+    <p>Recently, I rebuilt my homepage using the great <a href="https://github.com/getpelican/pelican">Pelican</a>-Framework together with GitHub's Page Hosting capabilities.</p>
+<p>While building and hosting a website as a GitHub User-Page is pretty straightforward, I struggled with the setup of a custom-domain using my my domain-provider <a href="http://www.checkdomain.de">checkdomain.de</a>. </p>
+<p>Based on some helpfull <a href="http://stackoverflow.com/questions/9082499/custom-domain-for-github-project-pages/22374542#22374542">SO-Threads</a>, I finally managed to set up a custom-domain for the blog.</p>
+<p>As checkdomain.de doesn't really follow the usual terms and labels in their user-interface, creating the respective A-records (in case you use an apex domain like tillkeyling.com!) wasn't that obvious. Thus, here is a screenshot of the configuration for checkdomain.de:</p>
+<h2>Checkdomain.de-Setup</h2>
+<p>There are basically three steps involved to use a custom (apex) domain for your GitHub User-Page:</p>
+<ol>
+<li>
+<p>Create a CNAME file in the Master-Branch of your GitHub-Repository. This file should contain your custom domain, without the scheme (<em>http://</em>) and will cause GitHub to serve your content to that domain (at least as I understood it, having no or just a very basic background in Hosting/DNS-related stuff).</p>
+</li>
+<li>
+<p>In the checkdomain user-interface, adjust the IPv4-Adress to GitHub's current <a href="https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/">IP-Address</a>, in this case:
+    <em>192.30.252.153</em>
+    <em>192.30.252.154</em></p>
+</li>
+</ol>
+<p><img alt="Checkdomain.de Configuration" src="/images/checkdomain_config.PNG" />
+<br>
+<em>Note: I only used a single A-Record via "Allgemeine Einstellungen". Entering the other IP in the DNS-Table below as an A-Record seems to create another redirect. The settings in the checkdomain user-interface are quite confusing here, f.e. no root-apex (@) can be specified. There is no further description available.</em></p>
+<ol>
+<li>Enter a CNAME-Record at checkdomain for the "www"-subdomain. The target should be <em>username</em>.github.io. (note the trailing slash!)</li>
+</ol>
+<p>You might check the redirects and DNS settings via the <em>dig</em>-command, or use this <a href="http://www.digwebinterface.com/?hostnames=tillkeyling.com%0D%0Awww.tillkeyling.com&amp;type=&amp;useresolver=8.8.4.4&amp;ns=all&amp;nameservers=">online-tool</a> to test the correct settings. Updating the records may take a while, and be sure to reset Chrome's DNS and Website-Cache to test your settings.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/tag/github.html">GitHub</a>
+      <a href="/tag/hosting.html">Hosting</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+      <p>&copy; Till Keyling 2015</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-32588729-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Custom-Domains and GitHub-Pages: Configuration for checkdomain.de",
+  "headline": "Custom-Domains and GitHub-Pages: Configuration for checkdomain.de",
+  "datePublished": "2015-09-21 00:00:00+02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Till Keyling",
+    "url": "/author/till-keyling.html"
+  },
+  "image": "https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg",
+  "url": "/customdomains.html",
+  "description": "Hosting GitHub-Pages and custom-domains using checkdomain.de"
+}
+</script></body>
+</html>

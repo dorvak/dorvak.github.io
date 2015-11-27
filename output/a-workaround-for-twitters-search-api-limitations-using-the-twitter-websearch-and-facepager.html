@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+  <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Till Keyling's Homepage Atom">
+  <link href="/feeds/all.rss" type="application/rss+xml" rel="alternate" title="Till Keyling's Homepage RSS">
+  <link rel="shortcut icon" href="http://tillkeyling.com/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="http://tillkeyling.com/images/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+<meta name="author" content="Till Keyling" />
+<meta name="description" content="Twitter Websearch and Facepager" />
+<meta name="keywords" content="Facepager, Twitter, JavaScript">
+<meta property="og:site_name" content="Till Keyling's Homepage"/>
+<meta property="og:title" content="A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager"/>
+<meta property="og:description" content="Twitter Websearch and Facepager"/>
+<meta property="og:locale" content="de_DE"/>
+<meta property="og:url" content="/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-11-27 00:00:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/author/till-keyling.html">
+<meta property="article:section" content="misc"/>
+<meta property="article:tag" content="Facepager"/>
+<meta property="article:tag" content="Twitter"/>
+<meta property="article:tag" content="JavaScript"/>
+<meta property="og:image" content="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg">  <title>Till Keyling's Homepage &ndash; A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="">
+        <img src="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg" alt="Till Keyling" title="Till Keyling">
+      </a>
+      <h1><a href="">Till Keyling</a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="/pages/about.html#about">About</a></li>
+          <li><a href="http://www.ls1.ifkw.uni-muenchen.de/personen/wiss_ma/keyling_till/index.html" target="_blank">Me @LMU München</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="https://twitter.com/tkeyling" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/dorvak" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-stack-overflow" href="http://stackoverflow.com/users/872535/dorvak" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="">Home</a>
+      <a href="/feeds/all.atom.xml">Atom</a>
+      <a href="/feeds/all.rss">RSS</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager">A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager</h1>
+    <p>Posted on Fr 27 November 2015 in <a href="/category/misc.html">misc</a></p>
+  </header>
+  <div>
+    <p>While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
+well), these structured and well-defined data access-points have some drawbacks. One of them is the access to 'historical' data, that might be 
+restricted, as in the case of the Twitter restful Search-API. The <a href="https://dev.twitter.com/rest/public/search">documentation</a> states: </p>
+<p><em>"Also note that the search results at twitter.com may return historical results while the Search API usually only serves tweets from 
+the past week."</em></p>
+<p>Thus, most sample-strategies that rest upon hash tag-querries are restricted (assuming no other (paid) data provider like GNIP etc. is used) 
+to contemporary Tweets no older than ~1 week. Especially student's research projects without any  financial resources at hand might fail due to these restrictions, 
+because these projects do often rely on historical hash tags analysis (wildly inferred from the incoming questions regarding the Facpager-Tool).</p>
+<p>There is, however, a simple method to access Tweets older than 1 Week (Note: this limitation concerns only the #-Search via the REST-API!):
+The <a href="https://twitter.com/search-advanced">Twitter-Websearch</a> does not underlie these restriction and provides access to older/historical Tweets.
+Especially the "Advanced-Search" has some nice options to specify the time-frame etc., so that it's a really helpfull interface for (scientific) analyses.
+While there are lesser restrictions upon the Websearch, it lacks the option to save the Tweet-data in a structured form like the API-variant (using Facepager or whatever tool) provides.
+Due to the fact that the target audience for the Facepager has little or no programming knowledge, programming a WebScraper is usually not an option. 
+There might be some Scraper out there (see <a href="http://idatassist.com/20-minutes-to-scraping-twitter-for-building-target-lists-no-coding/">1</a>,<a href="http://sysnucleus-blog.com/2014/07/15/how-to-scrape-tweets-twitter-data-scraping-using-webharvy/">2</a>,<a href="http://sysnucleus-blog.com/2014/07/15/how-to-scrape-tweets-twitter-data-scraping-using-webharvy/">3</a>)
+, but the easiest way to combine the power of the Websearch and well-defined data-structure of the API is the following:</p>
+<p><strong>1. Define your Websearch.</strong> <br />
+    I'd suggest using the "Advanced" Option.  </p>
+<div class="highlight"><pre>![Advanced Search Twitter](./images/AdvSearch.png)
+</pre></div>
+
+
+<p><strong>2. Restrict:</strong><br />
+Select "Live" or restrict the Search-Output to Tweets, assuming that you're only interested in Tweets (and not Accounts or Photos etc.)  </p>
+<p><strong>3. Paginate:</strong><br />
+You can scroll through these results. Depending on the amount of Tweets, new ones will load once you reach the end of the page.  </p>
+<p>To facilitate the tedious task of scrolling through the result, use this bookmarklet (drag &amp; drop to your bookmark-bar, click on it while on the
+   results-page and repeat the process)  </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class='bml' href='javascript: $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });')> Paginate Results Bookmarklet</a></p>
+<p><strong>4. Collect ID's:</strong> <br />
+If you are done collecting results, use the second bookmarklet. This one will open a new window (be sure to enable pop-ups!) that contains the ID of the Tweets.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class 'bml' href='javascript: window.open("data:data:attachment/csv," + encodeURIComponent($.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); }).join("\n")),"neu.csv");'> Extract Tweets </a></p>
+<p>Copy &amp; paste these ID's. </p>
+<p><strong>5. Facepager:</strong><br />
+   In this step, add the ID's by clicking the "Add nodes"-button and paste the ID's into the window.
+   You should see the ID's as new nodes in the main window of the Facepager. 
+   Up to this point, no Tweet data (except the ID's itself, of course) has been collected.</p>
+<p><strong>6. Collect data:</strong> <br />
+   Use a Facepager-Setup to collect Tweets. It's quite likely that you want to use the following settings:</p>
+<p><img alt="Facepager Settings" src="../images/Facepager_Settings.png" /></p>
+<ol>
+<li>Collect the data (you can select multiple or all ID's at once)</li>
+</ol>
+<p><em>Some notes and further details:</em></p>
+<ul>
+<li>This is tested in Chrome (46.0.2490.8), but it should work in Firefox as well</li>
+<li>Yes, one can automate the pagination process without clicking the Bookmarklet a couple of times. I do not consider this a good practice</li>
+<li>This type of data collection (the Websearch-Scraping part in steps 1-3) might not be supported/intended by Twitter.
+  Be sure to reduce your results using the search features and do not simply collect a vast amount of data.</li>
+<li>This is a quick&amp;dirty solution to the problem - feel free to improve it!</li>
+</ul>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/tag/facepager.html">Facepager</a>
+      <a href="/tag/twitter.html">Twitter</a>
+      <a href="/tag/javascript.html">JavaScript</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+      <p>&copy; Till Keyling 2015</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-32588729-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager",
+  "headline": "A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager",
+  "datePublished": "2015-11-27 00:00:00+01:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Till Keyling",
+    "url": "/author/till-keyling.html"
+  },
+  "image": "https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg",
+  "url": "/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html",
+  "description": "Twitter Websearch and Facepager"
+}
+</script></body>
+</html>

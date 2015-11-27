@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+  <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Till Keyling's Homepage Atom">
+  <link href="/feeds/all.rss" type="application/rss+xml" rel="alternate" title="Till Keyling's Homepage RSS">
+  <link rel="shortcut icon" href="http://tillkeyling.com/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="http://tillkeyling.com/images/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+<meta name="author" content="Till Keyling" />
+<meta name="description" content="Language detection on YouTube by video-titles & summaries" />
+<meta name="keywords" content="YouTube, R, Python">
+<meta property="og:site_name" content="Till Keyling's Homepage"/>
+<meta property="og:title" content="YouTube Language-Detection"/>
+<meta property="og:description" content="Language detection on YouTube by video-titles & summaries"/>
+<meta property="og:locale" content="de_DE"/>
+<meta property="og:url" content="/youtube-language-detection.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-11-27 00:00:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/author/till-keyling.html">
+<meta property="article:section" content="Blog"/>
+<meta property="article:tag" content="YouTube"/>
+<meta property="article:tag" content="R"/>
+<meta property="article:tag" content="Python"/>
+<meta property="og:image" content="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg">  <title>Till Keyling's Homepage &ndash; YouTube Language-Detection</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="">
+        <img src="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg" alt="Till Keyling" title="Till Keyling">
+      </a>
+      <h1><a href="">Till Keyling</a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="/pages/about.html#about">About</a></li>
+          <li><a href="http://www.ls1.ifkw.uni-muenchen.de/personen/wiss_ma/keyling_till/index.html" target="_blank">Me @LMU München</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="https://twitter.com/tkeyling" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/dorvak" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-stack-overflow" href="http://stackoverflow.com/users/872535/dorvak" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="">Home</a>
+      <a href="/feeds/all.atom.xml">Atom</a>
+      <a href="/feeds/all.rss">RSS</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="youtube-language-detection">YouTube Language-Detection</h1>
+    <p>Posted on Di 27 November 2012 in <a href="/category/blog.html">Blog</a></p>
+  </header>
+  <div>
+    <p>Due to the lack of a language-tag in the YouTube-API, which would be
+extremely helpful determining the language of a videoclip (precisely:
+the language of the title and description; language detection in
+audiovisual content requires much more effort and cpu-power), i ran a
+quick test with python´s <a href="https://bitbucket.org/spirit/guess_language/">guess-language</a> module
+I think it´s a simple but pretty reliable algorithm for language
+detection tasks, based on a trigram detection and the enchant-library
+for over 60 languages.</p>
+<p>In our project about political communication on <a href="http://www.fgpk.de/en/teilprojekte/#Teilprojekt1">YouTube</a>
+we stumbled upon a large amount of non-german videoclips (sampling from
+the feed for the most-viewed videos in the “news &amp; politics” - category
+in germany). To get an overview of the linguistic diversity on the
+german version on YouTube, I conducted a language-detection test on a
+small subsample of our data (350 videoclips).</p>
+<p><a href="https://dl.dropbox.com/u/20490817/lang_barplot.png"><img alt="image" src="https://dl.dropbox.com/u/20490817/lang_barplot.png" /></a></p>
+<p>First of all, just about 50% of the recent videos (“top viewed in
+news..”) have a german description (30 of them have a title in another
+language; a detection solely based on the (usually short) titles seems
+to be unreliable), followed by clips with an english-speaking
+description. The amount of an unsuccessful classification task
+(“UNKNOWN”) is noteworthy, but may be reduced by a combination with the
+title-classification. In line with the results of our manual-coding
+approach, a significant amount of descriptions and titles are in an
+arabic language. Furthermore, the results of the automatic
+language-detection could be combined with videoclip-metadata.
+<a href="https://dl.dropbox.com/u/20490817/lang_jitter.png"><img alt="image" src="https://dl.dropbox.com/u/20490817/lang_jitter.png" /></a>
+For example, videoclips with a german description are obviously less
+successful than those with an arabic or english description. At the
+moment, i´m validating the classification results with a manual coding
+of the titles and descriptions, but this approach might be a starting
+point to reduce/filter the sample-size of audiovisual material, esp. in
+preparation of a manual content analysis or simply to get an overview of
+a huge amount of user-generated-content).</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/tag/youtube.html">YouTube</a>
+      <a href="/tag/r.html">R</a>
+      <a href="/tag/python.html">Python</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+      <p>&copy; Till Keyling 2015</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-32588729-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "YouTube Language-Detection",
+  "headline": "YouTube Language-Detection",
+  "datePublished": "2012-11-27 00:00:00+01:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Till Keyling",
+    "url": "/author/till-keyling.html"
+  },
+  "image": "https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg",
+  "url": "/youtube-language-detection.html",
+  "description": "Language detection on YouTube by video-titles & summaries"
+}
+</script></body>
+</html>
