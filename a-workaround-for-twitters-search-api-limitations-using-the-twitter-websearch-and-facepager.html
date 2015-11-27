@@ -104,8 +104,9 @@ If you are done collecting results, use the second bookmarklet. This one will op
 <ol>
 <li>Collect the data (you can select multiple or all ID's at once)</li>
 </ol>
-<p><em>8. Alternative:</em><br />
-If you want to retrieve many Tweets at once, steps 5-7 might result in an API-error due to the massive amount of requests generated. However, there is a method to collect multiple (up to 100) Tweets at once: Copy the ID's from step 4, but use this bookmarklet:<br />
+<hr />
+<h3>Alternative Approach</h3>
+<p>If you want to retrieve many Tweets at once, steps 5-7 might result in an API-error due to the massive amount of requests generated. However, there is a method to collect multiple (up to 100) Tweets at once: Copy the ID's from step 4, but use this bookmarklet:<br />
  <a class="bml" href='javascript: function chunk (arr, len) { var chunks = [],i = 0,n = arr.length; while (i < n) {chunks.push(arr.slice(i, i += len));} return chunks;};var data = $.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); });var chunked = chunk(data,100);window.open("data:data:attachment/csv," + encodeURIComponent(chunked.join("\n")),"neu.csv");'> Chunked Twitter ID </a> </p>
 <p><em>8.1</em> This will produce a comma-separated list of the ID in blocks of 100 (the maximum limit for the following steps).  </p>
 <p><em>8.2</em> Create a new node in Facepager with an arbitrary name, for example "block1" for the first 100 Tweets that you will collect.</p>
