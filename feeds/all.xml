@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Till Keyling's Homepage</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2015-11-27T00:00:00+01:00</updated><entry><title>A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager</title><link href="/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html" rel="alternate"></link><updated>2015-11-27T00:00:00+01:00</updated><author><name>Till Keyling</name></author><id>tag:,2015-11-27:a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html</id><summary type="html">&lt;p&gt;While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Till Keyling's Homepage</title><link href="http://tillkeyling.com/" rel="alternate"></link><link href="http://tillkeyling.com/feeds/all.xml" rel="self"></link><id>http://tillkeyling.com/</id><updated>2015-11-27T00:00:00+01:00</updated><entry><title>A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager</title><link href="http://tillkeyling.com/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html" rel="alternate"></link><updated>2015-11-27T00:00:00+01:00</updated><author><name>Till Keyling</name></author><id>tag:tillkeyling.com,2015-11-27:a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html</id><summary type="html">&lt;p&gt;While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
 well), these structured and well-defined data access-points have some drawbacks. One of them is the access to 'historical' data, that might be 
 restricted, as in the case of the Twitter restful Search-API. The &lt;a href="https://dev.twitter.com/rest/public/search"&gt;documentation&lt;/a&gt; states: &lt;/p&gt;
 &lt;p&gt;&lt;em&gt;"Also note that the search results at twitter.com may return historical results while the Search API usually only serves tweets from 
@@ -45,7 +45,7 @@ If you are done collecting results, use the second bookmarklet. This one will op
 &lt;li&gt;This type of data collection (the Websearch-Scraping part in steps 1-3) might not be supported/intended by Twitter.
   Be sure to reduce your results using the search features and do not simply collect a vast amount of data.&lt;/li&gt;
 &lt;li&gt;This is a quick&amp;amp;dirty solution to the problem - feel free to improve it!&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Facepager"></category><category term="Twitter"></category><category term="JavaScript"></category></entry><entry><title>Custom-Domains and GitHub-Pages: Configuration for checkdomain.de</title><link href="/customdomains.html" rel="alternate"></link><updated>2015-09-21T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:,2015-09-21:customdomains.html</id><summary type="html">&lt;p&gt;Recently, I rebuilt my homepage using the great &lt;a href="https://github.com/getpelican/pelican"&gt;Pelican&lt;/a&gt;-Framework together with GitHub's Page Hosting capabilities.&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="Facepager"></category><category term="Twitter"></category><category term="JavaScript"></category></entry><entry><title>Custom-Domains and GitHub-Pages: Configuration for checkdomain.de</title><link href="http://tillkeyling.com/customdomains.html" rel="alternate"></link><updated>2015-09-21T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:tillkeyling.com,2015-09-21:customdomains.html</id><summary type="html">&lt;p&gt;Recently, I rebuilt my homepage using the great &lt;a href="https://github.com/getpelican/pelican"&gt;Pelican&lt;/a&gt;-Framework together with GitHub's Page Hosting capabilities.&lt;/p&gt;
 &lt;p&gt;While building and hosting a website as a GitHub User-Page is pretty straightforward, I struggled with the setup of a custom-domain using my my domain-provider &lt;a href="http://www.checkdomain.de"&gt;checkdomain.de&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;Based on some helpfull &lt;a href="http://stackoverflow.com/questions/9082499/custom-domain-for-github-project-pages/22374542#22374542"&gt;SO-Threads&lt;/a&gt;, I finally managed to set up a custom-domain for the blog.&lt;/p&gt;
 &lt;p&gt;As checkdomain.de doesn't really follow the usual terms and labels in their user-interface, creating the respective A-records (in case you use an apex domain like tillkeyling.com!) wasn't that obvious. Thus, here is a screenshot of the configuration for checkdomain.de:&lt;/p&gt;
@@ -61,13 +61,13 @@ If you are done collecting results, use the second bookmarklet. This one will op
     &lt;em&gt;192.30.252.154&lt;/em&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img alt="Checkdomain.de Configuration" src="/images/checkdomain_config.PNG" /&gt;
+&lt;p&gt;&lt;img alt="Checkdomain.de Configuration" src="http://tillkeyling.com/images/checkdomain_config.PNG" /&gt;
 &lt;br&gt;
 &lt;em&gt;Note: I only used a single A-Record via "Allgemeine Einstellungen". Entering the other IP in the DNS-Table below as an A-Record seems to create another redirect. The settings in the checkdomain user-interface are quite confusing here, f.e. no root-apex (@) can be specified. There is no further description available.&lt;/em&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Enter a CNAME-Record at checkdomain for the "www"-subdomain. The target should be &lt;em&gt;username&lt;/em&gt;.github.io. (note the trailing slash!)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;You might check the redirects and DNS settings via the &lt;em&gt;dig&lt;/em&gt;-command, or use this &lt;a href="http://www.digwebinterface.com/?hostnames=tillkeyling.com%0D%0Awww.tillkeyling.com&amp;amp;type=&amp;amp;useresolver=8.8.4.4&amp;amp;ns=all&amp;amp;nameservers="&gt;online-tool&lt;/a&gt; to test the correct settings. Updating the records may take a while, and be sure to reset Chrome's DNS and Website-Cache to test your settings.&lt;/p&gt;</summary><category term="GitHub"></category><category term="Hosting"></category></entry><entry><title>Facepager - What it is, what it's not</title><link href="/facepager-what-it-is-what-its-not.html" rel="alternate"></link><updated>2015-09-01T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:,2015-09-01:facepager-what-it-is-what-its-not.html</id><summary type="html">&lt;p&gt;To our delight ("we", that is Jakob Jünger and Till Keyling), Facepager became a quite popular tool for the collection of data from API's (and some basic Web-Scraping capabilities) - albeit it's name (which is based on a very early version I coded for a student of mine) for any kind of API, although most people may use it to gather data from Facebook and Twitter.
+&lt;p&gt;You might check the redirects and DNS settings via the &lt;em&gt;dig&lt;/em&gt;-command, or use this &lt;a href="http://www.digwebinterface.com/?hostnames=tillkeyling.com%0D%0Awww.tillkeyling.com&amp;amp;type=&amp;amp;useresolver=8.8.4.4&amp;amp;ns=all&amp;amp;nameservers="&gt;online-tool&lt;/a&gt; to test the correct settings. Updating the records may take a while, and be sure to reset Chrome's DNS and Website-Cache to test your settings.&lt;/p&gt;</summary><category term="GitHub"></category><category term="Hosting"></category></entry><entry><title>Facepager - What it is, what it's not</title><link href="http://tillkeyling.com/facepager-what-it-is-what-its-not.html" rel="alternate"></link><updated>2015-09-01T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:tillkeyling.com,2015-09-01:facepager-what-it-is-what-its-not.html</id><summary type="html">&lt;p&gt;To our delight ("we", that is Jakob Jünger and Till Keyling), Facepager became a quite popular tool for the collection of data from API's (and some basic Web-Scraping capabilities) - albeit it's name (which is based on a very early version I coded for a student of mine) for any kind of API, although most people may use it to gather data from Facebook and Twitter.
 Besides providing the executable and the source-code itself, users may ask for help on a Facebook-Page and/or the GitHub-Repo. These two feedback-mechanism are used quite regularly, while the most user prefer to contact us via E-Mail.
 The constantly increasing user-base and thus the increasing number of questions/appeals for help, however, become more and more time-consuming, i.e. a large proportion of my time spent for the tool is allocated answering questions instead of developing/improving the tool itself. While some questions, hints and discussion are really fruitful to increase the usability and capability of the Facepager, a quite significant share is not. IMO, this is caused by a somewhat "fuzzy" scope of the tool, i.e. users are unclear whether the tool is or is not appropriate for their specific task. Thus, here is a quick overview from our perspective regarding the scope, area of use of our software and the intentions behind the development of the Facepager - in short: What it is and what it's not.  &lt;/p&gt;
 &lt;p&gt;What it is:&lt;/p&gt;
@@ -89,7 +89,7 @@ The constantly increasing user-base and thus the increasing number of questions/
 &lt;li&gt;Read the internal help - it covers some basic, exemplary cases&lt;/li&gt;
 &lt;li&gt;If you ask for help, PLEASE specify your version of the Facepager (f.e. 3.6), your operating system ,provide a quick overview of your task and settings (f.e. a screenshot) and the log-files (via PM, do not share the log-files in public, as they may contain personal information. Delete tokens from the log-files!)&lt;/li&gt;
 &lt;li&gt;Use forums like stackoverflow.com --&amp;gt; There are tons of API-related questions that can be easily transfered to the Facepager&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Facepager"></category></entry><entry><title>Facepager and the YouTube API v3 - a quick tutorial</title><link href="/facepager-and-the-youtube-api-v3-a-quick-tutorial.html" rel="alternate"></link><updated>2015-06-01T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:,2015-06-01:facepager-and-the-youtube-api-v3-a-quick-tutorial.html</id><summary type="html">&lt;p&gt;Almost two years ago, I collected lots of information from the YouTube-API (+scraping Referrer-Data) for my PhD-Thesis (basically mapping the view-dynamic for political videos on YouTube on an individual basis over time). While the scale and design of this data-collection was beyond Facapagers capability, the tools itself is well suited for generic API-requests, such as to the YouTube-API (or reddit, f.e.). 
+&lt;/ul&gt;</summary><category term="Facepager"></category></entry><entry><title>Facepager and the YouTube API v3 - a quick tutorial</title><link href="http://tillkeyling.com/facepager-and-the-youtube-api-v3-a-quick-tutorial.html" rel="alternate"></link><updated>2015-06-01T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:tillkeyling.com,2015-06-01:facepager-and-the-youtube-api-v3-a-quick-tutorial.html</id><summary type="html">&lt;p&gt;Almost two years ago, I collected lots of information from the YouTube-API (+scraping Referrer-Data) for my PhD-Thesis (basically mapping the view-dynamic for political videos on YouTube on an individual basis over time). While the scale and design of this data-collection was beyond Facapagers capability, the tools itself is well suited for generic API-requests, such as to the YouTube-API (or reddit, f.e.). 
 In the meantime, the YouTube-API underwent significant changes: Besides a necessary "upgrade" to JSON-based response bodies (instead of a somewhat obscure XML-Format in v2), there is now a precise quota-system and error-handling as well. Although some endpoints have been closed, the API and it's documentation improved a lot when compared to it preceding versions. &lt;/p&gt;
 &lt;p&gt;Recently, Bernhard Rieder developed the &lt;a href="http://thepoliticsofsystems.net/2015/05/exploring-youtube/"&gt;YouTube Data Tools&lt;/a&gt;, a great approach and furthermore open sourced/public available (although I strongly disagree that YouTube is understudied; this might be the case in the social science due to the preference for textual rather than visual entities (see &lt;a href="http://firstmonday.org/ojs/index.php/fm/article/view/4878/3755"&gt;Vis, 2013&lt;/a&gt;), but there is a long research tradition in the information systems and alike when it comes to YouTube). Bernhard’s new tool reminded me to update the YouTube-Presets for the Facepager, enabling it to communicate with the most recent API-version. While Bernhard’s YTDT focusses on some specific analysis task and is easier to use, the approach of the Facepager is more “low-level”, yet probably more generic (I’ll explain the “low-level”-philosophy of our tools in a follow-up post).&lt;/p&gt;
 &lt;p&gt;Because there is no generic OAuth-Dialog in the Facepager yet (it's on the to-do list), some steps are necessary before you can start fetching data from the API:&lt;/p&gt;
@@ -99,12 +99,12 @@ In the meantime, the YouTube-API underwent significant changes: Besides a necess
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;To get such a key, you must register as a &lt;a href="https://developers.google.com/"&gt;Google Developer&lt;/a&gt; and create an app/project that uses the YouTube-API. See the &lt;a href="https://console.developers.google.com/"&gt;Developer Console&lt;/a&gt; for more information about how to create an project, it's simple and straightforward. &lt;em&gt;Note&lt;/em&gt;: You need to activate/enable the YouTube-API before you generate a browser key (a server key would work as well and is more appropriate, leave referrers/allowed IP-adresses blank)
-&lt;img alt="Enable YouTube-API" src="/images/enable_youtube_api.PNG" /&gt; 
-&lt;img alt="Generate Server/Browser Key" src="/images/create_key.PNG" /&gt;&lt;/p&gt;
+&lt;img alt="Enable YouTube-API" src="http://tillkeyling.com/images/enable_youtube_api.PNG" /&gt; 
+&lt;img alt="Generate Server/Browser Key" src="http://tillkeyling.com/images/create_key.PNG" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Once you created an app and activated the YouTube-API for that app, you have to obtain the public API-access key to authenticate your requests with the Facepager (as you would do if you login with your Facebook or Twitter-credentials). The key is located in the "credentials"-section:
-&lt;img alt="API Key location" src="/images/api_key.jpg" /&gt;&lt;/p&gt;
+&lt;img alt="API Key location" src="http://tillkeyling.com/images/api_key.jpg" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Copy the public API access key&lt;/p&gt;
@@ -120,11 +120,11 @@ In the meantime, the YouTube-API underwent significant changes: Besides a necess
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;There is much more information available via the API - check out either the &lt;a href="https://developers.google.com/apis-explorer/#p/youtube/v3/"&gt;API-Explorer&lt;/a&gt; or the Reference-Guide in the documentation of the v3-API. For example, you could retrieve comments via the "commentThreads"-endpoint (in this case, specify a "videoId"-parameter!). 
-&lt;img alt="Statistics and Comments" src="/images/comments_youtube.PNG" /&gt;. &lt;/p&gt;
+&lt;img alt="Statistics and Comments" src="http://tillkeyling.com/images/comments_youtube.PNG" /&gt;. &lt;/p&gt;
 &lt;p&gt;The API provides really interesting information, f.e. one might map the location of a video (or the recording, usually tagged via GPS). Although such metadata is only available for a small share of YouTube-clips, it provides additional insights on how users use YouTube - f.e. clips uploaded in the german "news &amp;amp; politics"-section of the platform deal with the conflicts in the middle east quite often, which can be seen not only by analyzing the clips itself, but also by mapping their geolocation. &lt;/p&gt;
-&lt;p&gt;&lt;img alt="Geolocation YouTube" src="/images/geolocation_germany.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Geolocation YouTube" src="http://tillkeyling.com/images/geolocation_germany.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;Have fun playing with the API!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;DOWNLOAD&lt;/strong&gt; &lt;a href="https://gist.githubusercontent.com/dorvak/fb5b54296084512684f6/raw/d78bc5bb75f86a4867459e135d33b7466e710681/YouTube_API_v3_Get_Video_Statistics-3_4"&gt;YouTube API v3 Preset&lt;/a&gt; (see Help-Section 5 for more information about the presets)&lt;/p&gt;</summary></entry><entry><title>Closures in R and Python</title><link href="/closures-in-r-and-python.html" rel="alternate"></link><updated>2015-04-05T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:,2015-04-05:closures-in-r-and-python.html</id><summary type="html">&lt;p&gt;Seems like my "intermediate" Python knowledge benefits from (re-)learning R again with this &lt;a href="https://www.coursera.org/course/compdata"&gt;Coursera-MOOC&lt;/a&gt;. Stumbling over closures from Wes McKinney's &lt;a href="http://shop.oreilly.com/product/0636920023784.do"&gt;"Python for Data Analysis"&lt;/a&gt;-Book, here is a short comparison of closures in R and Python, respectively:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DOWNLOAD&lt;/strong&gt; &lt;a href="https://gist.githubusercontent.com/dorvak/fb5b54296084512684f6/raw/d78bc5bb75f86a4867459e135d33b7466e710681/YouTube_API_v3_Get_Video_Statistics-3_4"&gt;YouTube API v3 Preset&lt;/a&gt; (see Help-Section 5 for more information about the presets)&lt;/p&gt;</summary></entry><entry><title>Closures in R and Python</title><link href="http://tillkeyling.com/closures-in-r-and-python.html" rel="alternate"></link><updated>2015-04-05T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:tillkeyling.com,2015-04-05:closures-in-r-and-python.html</id><summary type="html">&lt;p&gt;Seems like my "intermediate" Python knowledge benefits from (re-)learning R again with this &lt;a href="https://www.coursera.org/course/compdata"&gt;Coursera-MOOC&lt;/a&gt;. Stumbling over closures from Wes McKinney's &lt;a href="http://shop.oreilly.com/product/0636920023784.do"&gt;"Python for Data Analysis"&lt;/a&gt;-Book, here is a short comparison of closures in R and Python, respectively:&lt;/p&gt;
 &lt;h1&gt;Closures in Python&lt;/h1&gt;
 &lt;p&gt;In Python, closures are function that return function (dynamically), while preserving/accessing the namespace of the "caller"-function and having access to this "outer" function enviroment (&lt;a href="http://en.wikipedia.org/wiki/Closure_(computer_science)"&gt;"referencing enviroment"&lt;/a&gt;)&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
@@ -214,7 +214,7 @@ f&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;&lt;spa
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;p&gt;This &lt;strong&gt;lexical-scoping&lt;/strong&gt; is used by python as well (maybe it's not pure lexical scoping, but others should argue wether Python is call-by-reference or whatever, has scoping &lt;em&gt;xy&lt;/em&gt; and so on; &lt;a href="https://www.inkling.com/read/learning-python-mark-lutz-4th/chapter-17/python-scope-basics"&gt;this&lt;/a&gt; is a handy &amp;amp; short explanation of Python scoping rules; and &lt;a href="http://adv-r.had.co.nz/"&gt;that&lt;/a&gt; might be worth reading as well.&lt;/p&gt;</summary><category term="Python"></category><category term="R"></category><category term="Programming"></category></entry><entry><title>Twitter "Diversity" Dataset and Python's Pandas Time Series Introduction</title><link href="/twitter-diversity-dataset-and-pythons-pandas-time-series-introduction.html" rel="alternate"></link><updated>2014-05-06T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:,2014-05-06:twitter-diversity-dataset-and-pythons-pandas-time-series-introduction.html</id><summary type="html">&lt;p&gt;This is just a short introduction/how-to to time-series analysis with open-data. The &lt;em&gt;twitter-diversity&lt;/em&gt; dataset is available  &lt;a href="https://github.com/trifle/twitter-diversity"&gt;here&lt;/a&gt;. Clone it into your folder, &lt;code&gt;cd&lt;/code&gt; into it and start this IPython notebook. Pytho's Pandas-Module, Matplotlib and NumPy are necessary imports. &lt;/p&gt;
+&lt;p&gt;This &lt;strong&gt;lexical-scoping&lt;/strong&gt; is used by python as well (maybe it's not pure lexical scoping, but others should argue wether Python is call-by-reference or whatever, has scoping &lt;em&gt;xy&lt;/em&gt; and so on; &lt;a href="https://www.inkling.com/read/learning-python-mark-lutz-4th/chapter-17/python-scope-basics"&gt;this&lt;/a&gt; is a handy &amp;amp; short explanation of Python scoping rules; and &lt;a href="http://adv-r.had.co.nz/"&gt;that&lt;/a&gt; might be worth reading as well.&lt;/p&gt;</summary><category term="Python"></category><category term="R"></category><category term="Programming"></category></entry><entry><title>Twitter "Diversity" Dataset and Python's Pandas Time Series Introduction</title><link href="http://tillkeyling.com/twitter-diversity-dataset-and-pythons-pandas-time-series-introduction.html" rel="alternate"></link><updated>2014-05-06T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:tillkeyling.com,2014-05-06:twitter-diversity-dataset-and-pythons-pandas-time-series-introduction.html</id><summary type="html">&lt;p&gt;This is just a short introduction/how-to to time-series analysis with open-data. The &lt;em&gt;twitter-diversity&lt;/em&gt; dataset is available  &lt;a href="https://github.com/trifle/twitter-diversity"&gt;here&lt;/a&gt;. Clone it into your folder, &lt;code&gt;cd&lt;/code&gt; into it and start this IPython notebook. Pytho's Pandas-Module, Matplotlib and NumPy are necessary imports. &lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Thanks to @pascal and @ajungherr making the data available. Read and replicate the corresponding &lt;a href="http://andreasjungherr.net/2013/08/22/new-publication-forecasting-the-pulse-how-deviations-from-regular-patterns-in-online-data-can-identify-offline-phenomena/"&gt;paper&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
 &lt;h2&gt;Imports&lt;/h2&gt;
 &lt;p&gt;First of all, import pandas and activate the &lt;code&gt;pylab&lt;/code&gt; mode in IPython. Graphics are displayed inside the IPython-Notebook itself .For an introduction to IPython in general, visit the &lt;a href="http://ipython.org/"&gt;website&lt;/a&gt;. (R-Users: IPython is like a boosted, fast version of RStudio/knittr ;)) &lt;/p&gt;
@@ -305,7 +305,7 @@ total.plot(marker=&amp;quot;o&amp;quot;,markerfacecolor=&amp;quot;red&amp;quot;)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="/images/Twitter_Diversity_14_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="http://tillkeyling.com/images/Twitter_Diversity_14_1.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Resample the data&lt;/h2&gt;
 &lt;p&gt;To resample the time-series data, f.e. summing up weekly each monday, use the pandas excellent resampling methods. Plot the results to inspect the data. Change titles, axis labels etc. via pylab-methods&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;perday = total.resample(&amp;quot;W-Mon&amp;quot;,how=&amp;quot;sum&amp;quot;).plot(kind=&amp;quot;bar&amp;quot;)
@@ -319,7 +319,7 @@ xlabel(&amp;quot;Sum of Tweets per Week&amp;quot;)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="/images/Twitter_Diversity_16_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="http://tillkeyling.com/images/Twitter_Diversity_16_1.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Regress the data&lt;/h2&gt;
 &lt;p&gt;A simple (and a bit useless, but it's just for the sake of example) OLS-Regression with the shifted tweets (lag: 1 Day) can be done quite easy. Users familiar with R will note the differences (&lt;em&gt;writing&lt;/em&gt; models in Python like &lt;em&gt;y~x+whatever&lt;/em&gt; is &lt;a href="http://mpastell.com/2013/04/19/python_regression/"&gt;possible&lt;/a&gt; as well). Specify the model and print a short summary:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;model = pd.ols(y=log(total.tweets[:400]), x=total.tweets[:400].shift(-1), intercept=True)
@@ -366,7 +366,7 @@ plot(log(total.tweets[:400]),color=&amp;quot;red&amp;quot;,marker=&amp;quot;o&am
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="/images/Twitter_Diversity_20_1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="http://tillkeyling.com/images/Twitter_Diversity_20_1.png" /&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;t=total.tweets.tolist()
 t1=total.tweets.shift(-1).tolist()
 &lt;/pre&gt;&lt;/div&gt;
@@ -411,7 +411,7 @@ t1=total.tweets.shift(-1).tolist()
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="/images/Twitter_Diversity_24_1.png" /&gt;&lt;/p&gt;</summary><category term="Python"></category><category term="Pandas"></category><category term="Twitter"></category><category term="Reproducible"></category></entry><entry><title>User-Agents and URL-Resolvers</title><link href="/user-agents-and-url-resolvers.html" rel="alternate"></link><updated>2013-12-03T00:00:00+01:00</updated><author><name>Till Keyling</name></author><id>tag:,2013-12-03:user-agents-and-url-resolvers.html</id><summary type="html">&lt;p&gt;While resolving the (usually shortened) URL's from Tweets, I noticed some
+&lt;p&gt;&lt;img alt="png" src="http://tillkeyling.com/images/Twitter_Diversity_24_1.png" /&gt;&lt;/p&gt;</summary><category term="Python"></category><category term="Pandas"></category><category term="Twitter"></category><category term="Reproducible"></category></entry><entry><title>User-Agents and URL-Resolvers</title><link href="http://tillkeyling.com/user-agents-and-url-resolvers.html" rel="alternate"></link><updated>2013-12-03T00:00:00+01:00</updated><author><name>Till Keyling</name></author><id>tag:tillkeyling.com,2013-12-03:user-agents-and-url-resolvers.html</id><summary type="html">&lt;p&gt;While resolving the (usually shortened) URL's from Tweets, I noticed some
 errors using Python &lt;a href="" title="http://docs.python-requests.org/en/latest/"&gt;Requests&lt;/a&gt;.
 Actually, it's not a Requests "Error", but a 403 ("Forbidden")-Response from
 some Webservers, who don't like user-agents like Apache or the standard
@@ -448,7 +448,7 @@ methods allows to resolve most of the shortened URL's posted on Twitter.&lt;/p&g
 &lt;p&gt;To reduce the number of redirects when consuming Tweets from the Streaming API,
 one should use the "expanded_url"-Value of the delivered JSON. Beware of the
 fact that these "expansion" is not complete: Redirects, shortened Short-URL's
-and alike are not expanded by that method!&lt;/p&gt;</summary></entry><entry><title>YouTube-Kanäle von deutschen Parteien</title><link href="/youtube-kanale-von-deutschen-parteien.html" rel="alternate"></link><updated>2013-11-27T00:00:00+01:00</updated><author><name>Till Keyling</name></author><id>tag:,2013-11-27:youtube-kanale-von-deutschen-parteien.html</id><summary type="html">&lt;p&gt;Im Rahmen der Erfassung der Bundestagswahlen auf YouTube durch das &lt;a href="http://www.fgpk.de/teilprojekte/#Teilprojekt1"&gt;Teilprojekt1&lt;/a&gt; speichern wir auch die Kanäle der 38 zur Bundestagswahl zugelassen Parteien, wovon ja letztlich nur &lt;a href="http://www.bundeswahlleiter.de/de/bundestagswahlen/BTW_BUND_13/presse/W13011_Wahlteilnahme_Parteien.html"&gt;34 Parteien&lt;/a&gt; teilnehmen werden. &lt;/p&gt;
+and alike are not expanded by that method!&lt;/p&gt;</summary></entry><entry><title>YouTube-Kanäle von deutschen Parteien</title><link href="http://tillkeyling.com/youtube-kanale-von-deutschen-parteien.html" rel="alternate"></link><updated>2013-11-27T00:00:00+01:00</updated><author><name>Till Keyling</name></author><id>tag:tillkeyling.com,2013-11-27:youtube-kanale-von-deutschen-parteien.html</id><summary type="html">&lt;p&gt;Im Rahmen der Erfassung der Bundestagswahlen auf YouTube durch das &lt;a href="http://www.fgpk.de/teilprojekte/#Teilprojekt1"&gt;Teilprojekt1&lt;/a&gt; speichern wir auch die Kanäle der 38 zur Bundestagswahl zugelassen Parteien, wovon ja letztlich nur &lt;a href="http://www.bundeswahlleiter.de/de/bundestagswahlen/BTW_BUND_13/presse/W13011_Wahlteilnahme_Parteien.html"&gt;34 Parteien&lt;/a&gt; teilnehmen werden. &lt;/p&gt;
 &lt;p&gt;Zum Teil schwierig gestaltet sich dabei eine genaue Zuordnung der Kanäle von Parteien, insbesondere der Kleinparteien. Hier existieren unzählige Kanäle von Parteiverbänden auf Landesebene, von einzelnen Politikern (wobei wir ebenfalls die YouTube-Kanäle aller MdB abfragen). Bei den Volksparteien haben wir zudem noch die Kanäle der jeweiligen Fraktion im Bundestag aufgenommen. Gerade die Plattform &lt;a href="http://www.pluragraph.de"&gt;pluragraph.de&lt;/a&gt; ist bei der Erhebung solcher Daten sehr hilfreich (auch wenn eine eigene API a'la OffenesParlament hilfreich wäre), eine eigene Recherche auf dein jeweiligen Homepages von Parteien und Politiker aber leider unumgänglich. &lt;/p&gt;
 &lt;h3&gt;Klickzahlen von YouTube-Kanälen&lt;/h3&gt;
 &lt;p&gt;Eine Auflistung der YouTube-Nutzung nach Fraktionen findet sich ja bereits unter &lt;a href="http://www.hamburger-wahlbeobachter.de/2013/07/social-media-in-der-politik-90-prozent.html"&gt;hamburg-wahlbeobachter.de&lt;/a&gt;, wobei hier die Existenz eines eigenen Kanals noch längst keine Nutzung, geschweige denn Reichweite garantiert. Daher haben wir uns zunächst die Kanäle der Volksparteien auf YouTube (und deren Fraktionen) näher angeschaut und deren Entwicklung im letzten Monat visualisiert.&lt;/p&gt;
@@ -456,47 +456,47 @@ and alike are not expanded by that method!&lt;/p&gt;</summary></entry><entry><ti
 &lt;p&gt;Der Kanal &lt;em&gt;cducsu&lt;/em&gt; besteht seit 2006-10-30 und erreicht mit seinen &lt;strong&gt;169 Videos&lt;/strong&gt; insgesamt &lt;strong&gt;145.724 Klicks&lt;/strong&gt;. 
 Die Kanalhomepage selbst wurde bisher 52.887-mal besucht, 378 User haben den Kanal abonniert und 2-mal favorisiert. 
 Das letzte Update fand am 2013-07-30 statt.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Kanal der CDU/CSU-Fraktion im Bundestag" src="/images/cducsu.svg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Kanal der CDU/CSU-Fraktion im Bundestag" src="http://tillkeyling.com/images/cducsu.svg" /&gt;&lt;/p&gt;
 &lt;h4&gt;CSUMedia (CSU)&lt;/h4&gt;
 &lt;p&gt;Der Kanal &lt;em&gt;csumedia&lt;/em&gt; besteht seit 2008-02-11 und erreicht mit seinen &lt;strong&gt;274 Videos&lt;/strong&gt; insgesamt &lt;strong&gt;919.616 Klicks&lt;/strong&gt;. 
 Die Kanalhomepage selbst wurde bisher 157.006-mal besucht, 559 User haben den Kanal abonniert und 1-mal favorisiert. 
 Das letzte Update fand am 2013-08-08 statt.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Kanal der CSU" src="/images/csumedia.svg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Kanal der CSU" src="http://tillkeyling.com/images/csumedia.svg" /&gt;&lt;/p&gt;
 &lt;h4&gt;CDU-TV (CDU)&lt;/h4&gt;
 &lt;p&gt;Der Kanal &lt;em&gt;cdutv&lt;/em&gt; besteht seit 2008-08-05 und erreicht mit seinen &lt;strong&gt;662 Videos&lt;/strong&gt; insgesamt &lt;strong&gt;2.403.688 Klicks&lt;/strong&gt;. 
 Die Kanalhomepage selbst wurde bisher 796.529-mal besucht, 3205 User haben den Kanal abonniert und 4-mal favorisiert. 
 Das letzte Update fand am 2013-08-07 statt.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Kanal der CDU" src="/images/cdutv.svg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Kanal der CDU" src="http://tillkeyling.com/images/cdutv.svg" /&gt;&lt;/p&gt;
 &lt;h4&gt;Linksfraktion (Die Linke)&lt;/h4&gt;
 &lt;p&gt;Der Kanal &lt;em&gt;linksfraktion&lt;/em&gt; besteht seit 2008-01-05 und erreicht mit seinen &lt;strong&gt;2.250 Videos&lt;/strong&gt; insgesamt &lt;strong&gt;6.705.403 Klicks&lt;/strong&gt;. 
 Die Kanalhomepage selbst wurde bisher 1.510.743-mal besucht, 9.352 User haben den Kanal abonniert und 13-mal favorisiert. 
 Das letzte Update fand am 2013-08-07 statt&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Kanal der Linksfraktion" src="/images/linksfraktion.svg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Kanal der Linksfraktion" src="http://tillkeyling.com/images/linksfraktion.svg" /&gt;&lt;/p&gt;
 &lt;h4&gt;Die Linke&lt;/h4&gt;
 &lt;p&gt;Der Kanal &lt;em&gt;dielinke&lt;/em&gt; besteht seit 2006-09-20 und erreicht mit seinen &lt;strong&gt;533 Videos&lt;/strong&gt; insgesamt &lt;strong&gt;1.352.618 Klicks&lt;/strong&gt;. 
 Die Kanalhomepage selbst wurde bisher 284.492-mal besucht, 4.437 User haben den Kanal abonniert und 20-mal favorisiert. 
 Das letzte Update fand am 2013-08-05 statt&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Kanal der Linken" src="/images/dielinke.svg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Kanal der Linken" src="http://tillkeyling.com/images/dielinke.svg" /&gt;&lt;/p&gt;
 &lt;h4&gt;SPDVision (SPD)&lt;/h4&gt;
 &lt;p&gt;Der Kanal &lt;em&gt;spdvision&lt;/em&gt; besteht seit 2007-10-17 und erreicht mit seinen &lt;strong&gt;688 Videos&lt;/strong&gt; insgesamt &lt;strong&gt;2.414.547 Klicks&lt;/strong&gt;. 
  Die Kanalhomepage selbst wurde bisher 540.936-mal besucht, 3.836 User haben den Kanal abonniert und 7-mal favorisiert. 
  Das letzte Update fand am 2013-08-09 statt&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Kanal der SPDVisione" src="/images/spdvision.svg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Kanal der SPDVisione" src="http://tillkeyling.com/images/spdvision.svg" /&gt;&lt;/p&gt;
 &lt;h4&gt;SPDFraktion (SPD)&lt;/h4&gt;
 &lt;p&gt;Der Kanal &lt;em&gt;spdfraktion&lt;/em&gt; besteht seit 2009-09-17 und erreicht mit seinen &lt;strong&gt;263 Videos&lt;/strong&gt; insgesamt &lt;strong&gt;1.629.82 Klicks&lt;/strong&gt;. 
 Die Kanalhomepage selbst wurde bisher 28.827-mal besucht, 541 User haben den Kanal abonniert und 0-mal favorisiert. 
 Das letzte Update fand am 2013-07-30 statt&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Kanal der SPD-fraktion" src="/images/spdfraktion.svg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Kanal der SPD-fraktion" src="http://tillkeyling.com/images/spdfraktion.svg" /&gt;&lt;/p&gt;
 &lt;h4&gt;FDP&lt;/h4&gt;
 &lt;p&gt;Der Kanal &lt;em&gt;fdp&lt;/em&gt; besteht seit 2006-02-16 und erreicht mit seinen &lt;strong&gt;1186 Videos&lt;/strong&gt; insgesamt &lt;strong&gt;2.877.713 Klicks&lt;/strong&gt;. 
 Die Kanalhomepage selbst wurde bisher 1.374.048-mal besucht, 2.628 User haben den Kanal abonniert und 11-mal favorisiert. 
 Das letzte Update fand am 2013-08-04 statt&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Kanal der FDP-Fraktion" src="/images/fdp.svg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Kanal der FDP-Fraktion" src="http://tillkeyling.com/images/fdp.svg" /&gt;&lt;/p&gt;
 &lt;h4&gt;FDPPArtei (FDP)&lt;/h4&gt;
 &lt;p&gt;Der Kanal &lt;em&gt;fdppartei&lt;/em&gt; besteht seit 2009-09-02 und erreicht mit seinen &lt;strong&gt;4 Videos&lt;/strong&gt; insgesamt &lt;strong&gt;1243 Klicks&lt;/strong&gt;. 
 Die Kanalhomepage selbst wurde bisher 14.074-mal besucht, 190 User haben den Kanal abonniert und 1-mal favorisiert. 
 Das letzte Update fand am 2013-07-30 statt&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Kanal der FDP" src="/images/fdppartei.svg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Kanal der FDP" src="http://tillkeyling.com/images/fdppartei.svg" /&gt;&lt;/p&gt;
 &lt;h3&gt;Übersicht über die Parteikanäle aller zur Bundestagswahl zugelassenen Parteien&lt;/h3&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
@@ -882,7 +882,7 @@ Das letzte Update fand am 2013-07-30 statt&lt;/p&gt;
 &lt;td&gt;3039&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</summary><category term="YouTube"></category><category term="Bundestagswahl"></category><category term="DFG"></category></entry><entry><title>Sampling YouTube-Clips from Twitter</title><link href="/sampling-youtube-clips-from-twitter.html" rel="alternate"></link><updated>2012-11-27T00:00:00+01:00</updated><author><name>Till Keyling</name></author><id>tag:,2012-11-27:sampling-youtube-clips-from-twitter.html</id><summary type="html">&lt;p&gt;During the  electoral campaigning for the recent german federal elections in
+&lt;/table&gt;</summary><category term="YouTube"></category><category term="Bundestagswahl"></category><category term="DFG"></category></entry><entry><title>Sampling YouTube-Clips from Twitter</title><link href="http://tillkeyling.com/sampling-youtube-clips-from-twitter.html" rel="alternate"></link><updated>2012-11-27T00:00:00+01:00</updated><author><name>Till Keyling</name></author><id>tag:tillkeyling.com,2012-11-27:sampling-youtube-clips-from-twitter.html</id><summary type="html">&lt;p&gt;During the  electoral campaigning for the recent german federal elections in
 2013, we decided not just to monitor YouTube-Clips via &lt;em&gt;classical&lt;/em&gt; sampling
 techniques like keyword-searches on YouTube. Therefore, we took advantage of the
 &lt;a href="http://arxiv.org/abs/1301.6932"&gt;cross-pollinated&lt;/a&gt; diffusion processes between
@@ -924,7 +924,7 @@ YouTube tend to use Twitter and Facebook (Study) and therefore &lt;em&gt;pollute
 SNS intentionally (which links to the concept of virality ..). From a more
 abstract, system-theoretical viewpoint, social or communicative subsystems like
 Twitter and Facebook observe and react to each other (again, Twitter is more
-observable than Facebook, f.e.).&lt;/p&gt;</summary></entry><entry><title>YouTube Language-Detection</title><link href="/youtube-language-detection.html" rel="alternate"></link><updated>2012-11-27T00:00:00+01:00</updated><author><name>Till Keyling</name></author><id>tag:,2012-11-27:youtube-language-detection.html</id><summary type="html">&lt;p&gt;Due to the lack of a language-tag in the YouTube-API, which would be
+observable than Facebook, f.e.).&lt;/p&gt;</summary></entry><entry><title>YouTube Language-Detection</title><link href="http://tillkeyling.com/youtube-language-detection.html" rel="alternate"></link><updated>2012-11-27T00:00:00+01:00</updated><author><name>Till Keyling</name></author><id>tag:tillkeyling.com,2012-11-27:youtube-language-detection.html</id><summary type="html">&lt;p&gt;Due to the lack of a language-tag in the YouTube-API, which would be
 extremely helpful determining the language of a videoclip (precisely:
 the language of the title and description; language detection in
 audiovisual content requires much more effort and cpu-power), i ran a
@@ -956,7 +956,7 @@ moment, i´m validating the classification results with a manual coding
 of the titles and descriptions, but this approach might be a starting
 point to reduce/filter the sample-size of audiovisual material, esp. in
 preparation of a manual content analysis or simply to get an overview of
-a huge amount of user-generated-content).&lt;/p&gt;</summary><category term="YouTube"></category><category term="R"></category><category term="Python"></category></entry><entry><title>Crowdsourcing und Sampling auf Twitter</title><link href="/crowdsourcing-und-sampling-auf-twitter.html" rel="alternate"></link><updated>2012-07-23T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:,2012-07-23:crowdsourcing-und-sampling-auf-twitter.html</id><summary type="html">&lt;p&gt;Im Rahmen unseres Forschungsprojekts “Politische Kommunikation auf
+a huge amount of user-generated-content).&lt;/p&gt;</summary><category term="YouTube"></category><category term="R"></category><category term="Python"></category></entry><entry><title>Crowdsourcing und Sampling auf Twitter</title><link href="http://tillkeyling.com/crowdsourcing-und-sampling-auf-twitter.html" rel="alternate"></link><updated>2012-07-23T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:tillkeyling.com,2012-07-23:crowdsourcing-und-sampling-auf-twitter.html</id><summary type="html">&lt;p&gt;Im Rahmen unseres Forschungsprojekts “Politische Kommunikation auf
 Videoplattformen” erfassen wir auch Videos zur Bundestagswahl 2013.
 Nicht jetzt erst merken wir, dass die Stichprobenbildung auf
 “Folksonomy”-strukturierten Angeboten wie YouTube ein zentrales Problem
