@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Till Keyling's Homepage</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2015-11-27T00:00:00+01:00</updated><entry><title>A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager</title><link href="/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html" rel="alternate"></link><updated>2015-11-27T00:00:00+01:00</updated><author><name>Till Keyling</name></author><id>tag:,2015-11-27:a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html</id><summary type="html">&lt;p&gt;While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
+well), these structured and well-defined data access-points have some drawbacks. One of them is the access to 'historical' data, that might be 
+restricted, as in the case of the Twitter restful Search-API. The &lt;a href="https://dev.twitter.com/rest/public/search"&gt;documentation&lt;/a&gt; states: &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;"Also note that the search results at twitter.com may return historical results while the Search API usually only serves tweets from 
+the past week."&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Thus, most sample-strategies that rest upon hash tag-querries are restricted (assuming no other (paid) data provider like GNIP etc. is used) 
+to contemporary Tweets no older than ~1 week. Especially student's research projects without any  financial resources at hand might fail due to these restrictions, 
+because these projects do often rely on historical hash tags analysis (wildly inferred from the incoming questions regarding the Facpager-Tool).&lt;/p&gt;
+&lt;p&gt;There is, however, a simple method to access Tweets older than 1 Week (Note: this limitation concerns only the #-Search via the REST-API!):
+The &lt;a href="https://twitter.com/search-advanced"&gt;Twitter-Websearch&lt;/a&gt; does not underlie these restriction and provides access to older/historical Tweets.
+Especially the "Advanced-Search" has some nice options to specify the time-frame etc., so that it's a really helpfull interface for (scientific) analyses.
+While there are lesser restrictions upon the Websearch, it lacks the option to save the Tweet-data in a structured form like the API-variant (using Facepager or whatever tool) provides.
+Due to the fact that the target audience for the Facepager has little or no programming knowledge, programming a WebScraper is usually not an option. 
+There might be some Scraper out there (see &lt;a href="http://idatassist.com/20-minutes-to-scraping-twitter-for-building-target-lists-no-coding/"&gt;1&lt;/a&gt;,&lt;a href="http://sysnucleus-blog.com/2014/07/15/how-to-scrape-tweets-twitter-data-scraping-using-webharvy/"&gt;2&lt;/a&gt;,&lt;a href="http://sysnucleus-blog.com/2014/07/15/how-to-scrape-tweets-twitter-data-scraping-using-webharvy/"&gt;3&lt;/a&gt;)
+, but the easiest way to combine the power of the Websearch and well-defined data-structure of the API is the following:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Define your Websearch.&lt;/strong&gt; &lt;br /&gt;
+    I'd suggest using the "Advanced" Option.  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;![Advanced Search Twitter](./images/AdvSearch.png)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;2. Restrict:&lt;/strong&gt;&lt;br /&gt;
+Select "Live" or restrict the Search-Output to Tweets, assuming that you're only interested in Tweets (and not Accounts or Photos etc.)  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. Paginate:&lt;/strong&gt;&lt;br /&gt;
+You can scroll through these results. Depending on the amount of Tweets, new ones will load once you reach the end of the page.  &lt;/p&gt;
+&lt;p&gt;To facilitate the tedious task of scrolling through the result, use this bookmarklet (drag &amp;amp; drop to your bookmark-bar, click on it while on the
+   results-page and repeat the process)  &lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class='bml' href='javascript: $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });')&gt; Paginate Results Bookmarklet&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. Collect ID's:&lt;/strong&gt; &lt;br /&gt;
+If you are done collecting results, use the second bookmarklet. This one will open a new window (be sure to enable pop-ups!) that contains the ID of the Tweets.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class 'bml' href='javascript: window.open("data:data:attachment/csv," + encodeURIComponent($.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); }).join("\n")),"neu.csv");'&gt; Extract Tweets &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Copy &amp;amp; paste these ID's. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5. Facepager:&lt;/strong&gt;&lt;br /&gt;
+   In this step, add the ID's by clicking the "Add nodes"-button and paste the ID's into the window.
+   You should see the ID's as new nodes in the main window of the Facepager. 
+   Up to this point, no Tweet data (except the ID's itself, of course) has been collected.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6. Collect data:&lt;/strong&gt; &lt;br /&gt;
+   Use a Facepager-Setup to collect Tweets. It's quite likely that you want to use the following settings:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Facepager Settings" src="../images/Facepager_Settings.png" /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Collect the data (you can select multiple or all ID's at once)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;Some notes and further details:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This is tested in Chrome (46.0.2490.8), but it should work in Firefox as well&lt;/li&gt;
+&lt;li&gt;Yes, one can automate the pagination process without clicking the Bookmarklet a couple of times. I do not consider this a good practice&lt;/li&gt;
+&lt;li&gt;This type of data collection (the Websearch-Scraping part in steps 1-3) might not be supported/intended by Twitter.
+  Be sure to reduce your results using the search features and do not simply collect a vast amount of data.&lt;/li&gt;
+&lt;li&gt;This is a quick&amp;amp;dirty solution to the problem - feel free to improve it!&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Facepager"></category><category term="Twitter"></category><category term="JavaScript"></category></entry><entry><title>Twitter "Diversity" Dataset and Python's Pandas Time Series Introduction</title><link href="/twitter-diversity-dataset-and-pythons-pandas-time-series-introduction.html" rel="alternate"></link><updated>2014-05-06T00:00:00+02:00</updated><author><name>Till Keyling</name></author><id>tag:,2014-05-06:twitter-diversity-dataset-and-pythons-pandas-time-series-introduction.html</id><summary type="html">&lt;p&gt;This is just a short introduction/how-to to time-series analysis with open-data. The &lt;em&gt;twitter-diversity&lt;/em&gt; dataset is available  &lt;a href="https://github.com/trifle/twitter-diversity"&gt;here&lt;/a&gt;. Clone it into your folder, &lt;code&gt;cd&lt;/code&gt; into it and start this IPython notebook. Pytho's Pandas-Module, Matplotlib and NumPy are necessary imports. &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks to @pascal and @ajungherr making the data available. Read and replicate the corresponding &lt;a href="http://andreasjungherr.net/2013/08/22/new-publication-forecasting-the-pulse-how-deviations-from-regular-patterns-in-online-data-can-identify-offline-phenomena/"&gt;paper&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Imports&lt;/h2&gt;
+&lt;p&gt;First of all, import pandas and activate the &lt;code&gt;pylab&lt;/code&gt; mode in IPython. Graphics are displayed inside the IPython-Notebook itself .For an introduction to IPython in general, visit the &lt;a href="http://ipython.org/"&gt;website&lt;/a&gt;. (R-Users: IPython is like a boosted, fast version of RStudio/knittr ;)) &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;pylab&lt;/span&gt; &lt;span class="n"&gt;inline&lt;/span&gt;
+
+&lt;span class="n"&gt;Populating&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;interactive&lt;/span&gt; &lt;span class="n"&gt;namespace&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="nn"&gt;and&lt;/span&gt; &lt;span class="nn"&gt;matplotlib&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Datetime parsing&lt;/h2&gt;
+&lt;p&gt;To parse the datestrings in the csv-file, we need to write a little parser, using the standardlib's &lt;code&gt;datetime&lt;/code&gt; module. To inspect the documentation within the Notebook, use IPythons &lt;em&gt;?&lt;/em&gt;oOperator:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;datetime?
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is the parser-function. It takes a string representation of a datetime and applies the conversion specified via the conversion string ` '%Y%m%d%H'.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;def dateparser(datestring):
+    return datetime.datetime.strptime(datestring,&amp;#39;%Y%m%d%H&amp;#39;)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Read the data&lt;/h2&gt;
+&lt;p&gt;Using pandas excellent &lt;code&gt;read_&lt;/code&gt;-functions in combination with our parser, we can load the dataset within a single line of code. Furthermore, we should rename the columns (the original column-names include whitespace, and whitespace is sort of evil, when working with attributes in pandas).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;total= pd.read_csv(&amp;#39;total-volume.csv&amp;#39;,parse_dates=[0],date_parser=dateparser)
+total.columns=[&amp;quot;date&amp;quot;,&amp;quot;tweets&amp;quot;]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Let's have a look at the dataset:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;total.head()
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;date&lt;/th&gt;
+      &lt;th&gt;tweets&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;2012-01-31 22:00:00&lt;/td&gt;
+      &lt;td&gt;   33835&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;2012-01-31 23:00:00&lt;/td&gt;
+      &lt;td&gt; 1090096&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;2012-02-01 00:00:00&lt;/td&gt;
+      &lt;td&gt; 1096715&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;2012-02-01 01:00:00&lt;/td&gt;
+      &lt;td&gt; 1145446&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;2012-02-01 02:00:00&lt;/td&gt;
+      &lt;td&gt; 1114102&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To work with the time-series, it's useful to set the &lt;em&gt;index&lt;/em&gt; (an index is, roughly spoken, the row-number in an Excel-Sheet) to the date-variable (One could have done this in the read_csv section):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;total.index = total.date
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Plot the data&lt;/h2&gt;
+&lt;p&gt;Finally, plot the whole stuff with matplotlib. Adjust the size with the &lt;em&gt;rcParams&lt;/em&gt; or delete the &lt;em&gt;inline&lt;/em&gt; in the import section to plot outside of the IPython Notebook.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pylab.rcParams[&amp;#39;figure.figsize&amp;#39;] = (16.0, 8.0)
+total.plot(marker=&amp;quot;o&amp;quot;,markerfacecolor=&amp;quot;red&amp;quot;)
+
+
+
+
+&amp;lt;matplotlib.axes.AxesSubplot at 0x104151550&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="png" src="/images/Twitter_Diversity_14_1.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Resample the data&lt;/h2&gt;
+&lt;p&gt;To resample the time-series data, f.e. summing up weekly each monday, use the pandas excellent resampling methods. Plot the results to inspect the data. Change titles, axis labels etc. via pylab-methods&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;perday = total.resample(&amp;quot;W-Mon&amp;quot;,how=&amp;quot;sum&amp;quot;).plot(kind=&amp;quot;bar&amp;quot;)
+title(&amp;quot;Tweets per Week&amp;quot;)
+xlabel(&amp;quot;Sum of Tweets per Week&amp;quot;)
+
+
+
+
+&amp;lt;matplotlib.text.Text at 0x104205350&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="png" src="/images/Twitter_Diversity_16_1.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Regress the data&lt;/h2&gt;
+&lt;p&gt;A simple (and a bit useless, but it's just for the sake of example) OLS-Regression with the shifted tweets (lag: 1 Day) can be done quite easy. Users familiar with R will note the differences (&lt;em&gt;writing&lt;/em&gt; models in Python like &lt;em&gt;y~x+whatever&lt;/em&gt; is &lt;a href="http://mpastell.com/2013/04/19/python_regression/"&gt;possible&lt;/a&gt; as well). Specify the model and print a short summary:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;model = pd.ols(y=log(total.tweets[:400]), x=total.tweets[:400].shift(-1), intercept=True)
+
+print model.summary
+
+
+
+-------------------------Summary of Regression Analysis-------------------------
+
+Formula: Y ~ &amp;lt;x&amp;gt; + &amp;lt;intercept&amp;gt;
+
+Number of Observations:         399
+Number of Degrees of Freedom:   2
+
+R-squared:         0.3118
+Adj R-squared:     0.3101
+
+Rmse:              0.4055
+
+F-stat (1, 397):   179.8771, p-value:     0.0000
+
+Degrees of Freedom: model 1, resid 397
+
+-----------------------Summary of Estimated Coefficients------------------------
+      Variable       Coef    Std Err     t-stat    p-value    CI 2.5%   CI 97.5%
+--------------------------------------------------------------------------------
+             x     0.0000     0.0000      13.41     0.0000     0.0000     0.0000
+     intercept    12.6846     0.0876     144.72     0.0000    12.5128    12.8564
+---------------------------------End of Summary---------------------------------
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And plot the fitted values (&lt;em&gt;blue&lt;/em&gt;) for the first 400 cases afterwards against the empirical observations from the dataset (&lt;em&gt;red&lt;/em&gt;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;fig=figure()
+sub=fig.add_subplot(111)
+plot(model.sm_ols.model.fit().fittedvalues,linewidth=0,marker=&amp;quot;o&amp;quot;)
+plot(log(total.tweets[:400]),color=&amp;quot;red&amp;quot;,marker=&amp;quot;o&amp;quot;,linewidth=0)
+
+
+
+
+[&amp;lt;matplotlib.lines.Line2D at 0x105ebea10&amp;gt;]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="png" src="/images/Twitter_Diversity_20_1.png" /&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;t=total.tweets.tolist()
+t1=total.tweets.shift(-1).tolist()
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Push the data to R&lt;/h2&gt;
+&lt;p&gt;While IPython becomes more and more language-independent, the rmagic and cell-magic functions are absolutely terrific! Using the rpy2 interface (I hope seamless conversion from numpy to R will improve further), it's almost too easy to pass data to R an use R's huge statistical  library . Of course, &lt;em&gt;ggplot&lt;/em&gt; excels &lt;em&gt;matplotlib&lt;/em&gt; in many, many ways. Let' plot the Tweets vs "lagged" Tweets and fit a simple OLS-Regression (see example above): &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nf"&gt;%load_ext&lt;/span&gt; &lt;span class="n"&gt;rmagic&lt;/span&gt;
+&lt;span class="n"&gt;tweettoday&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;total&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tweets&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;tweetyesterday&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="n"&gt;total&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tweets&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shift&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;rmagic&lt;/span&gt; &lt;span class="n"&gt;extension&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;already&lt;/span&gt; &lt;span class="n"&gt;loaded&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;To&lt;/span&gt; &lt;span class="n"&gt;reload&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nl"&gt;use&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="nf"&gt;%reload_ext&lt;/span&gt; &lt;span class="n"&gt;rmagic&lt;/span&gt;
+
+
+
+&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;tweettoday&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;tweetyesterday&lt;/span&gt;
+&lt;span class="n"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ggplot2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;qplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;tweettoday&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;tweetyesterday&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;alpha&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;.5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lm&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tweettoday&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;tweetyesterday&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+
+
+&lt;span class="nl"&gt;Call&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;lm&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;formula&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tweettoday&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="n"&gt;tweetyesterday&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nl"&gt;Residuals&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+     &lt;span class="n"&gt;Min&lt;/span&gt;       &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;Q&lt;/span&gt;   &lt;span class="n"&gt;Median&lt;/span&gt;       &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;Q&lt;/span&gt;      &lt;span class="n"&gt;Max&lt;/span&gt; 
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1314088&lt;/span&gt;   &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;68943&lt;/span&gt;     &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;131&lt;/span&gt;    &lt;span class="mi"&gt;61755&lt;/span&gt;  &lt;span class="mi"&gt;1018282&lt;/span&gt;
+
+&lt;span class="nl"&gt;Coefficients&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;Estimate&lt;/span&gt; &lt;span class="n"&gt;Std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Error&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="n"&gt;Pr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;|&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Intercept&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="mf"&gt;8.663e+04&lt;/span&gt;  &lt;span class="mf"&gt;7.490e+03&lt;/span&gt;   &lt;span class="mf"&gt;11.57&lt;/span&gt;   &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mf"&gt;2e-16&lt;/span&gt; &lt;span class="o"&gt;***&lt;/span&gt;
+&lt;span class="n"&gt;tweetyesterday&lt;/span&gt; &lt;span class="mf"&gt;9.211e-01&lt;/span&gt;  &lt;span class="mf"&gt;6.566e-03&lt;/span&gt;  &lt;span class="mf"&gt;140.28&lt;/span&gt;   &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mf"&gt;2e-16&lt;/span&gt; &lt;span class="o"&gt;***&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt;
+&lt;span class="n"&gt;Signif&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="nl"&gt;codes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="o"&gt;***&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt; &lt;span class="mf"&gt;0.001&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt; &lt;span class="mf"&gt;0.01&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt; &lt;span class="mf"&gt;0.05&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt; &lt;span class="err"&gt;’&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+
+&lt;span class="n"&gt;Residual&lt;/span&gt; &lt;span class="n"&gt;standard&lt;/span&gt; &lt;span class="nl"&gt;error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;127600&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="mi"&gt;3466&lt;/span&gt; &lt;span class="n"&gt;degrees&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;freedom&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;observation&lt;/span&gt; &lt;span class="n"&gt;deleted&lt;/span&gt; &lt;span class="n"&gt;due&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;missingness&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Multiple&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nl"&gt;squared&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;  &lt;span class="mf"&gt;0.8503&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;    &lt;span class="n"&gt;Adjusted&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nl"&gt;squared&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;  &lt;span class="mf"&gt;0.8502&lt;/span&gt; 
+&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nl"&gt;statistic&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;1.968e+04&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="mi"&gt;3466&lt;/span&gt; &lt;span class="n"&gt;DF&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nl"&gt;value&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mf"&gt;2.2e-16&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="png" src="/images/Twitter_Diversity_24_1.png" /&gt;&lt;/p&gt;</summary><category term="Python"></category><category term="Pandas"></category><category term="Twitter"></category><category term="Reproducible"></category></entry></feed>
