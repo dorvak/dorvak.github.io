@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="http://tillkeyling.com/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="http://tillkeyling.com/theme/css/pygments.min.css">
-  <link rel="stylesheet" type="text/css" href="http://tillkeyling.com/theme/css/font-awesome.min.css">
-  <link href="http://tillkeyling.com/feeds/all.xml" type="application/atom+xml" rel="alternate" title="Till Keyling's Homepage Atom">
-  <link href="http://tillkeyling.com/feeds/all.rss" type="application/rss+xml" rel="alternate" title="Till Keyling's Homepage RSS">
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+  <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Till Keyling's Homepage Atom">
+  <link href="/feeds/all.rss" type="application/rss+xml" rel="alternate" title="Till Keyling's Homepage RSS">
   <link rel="shortcut icon" href="http://tillkeyling.com/images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="http://tillkeyling.com/images/favicon.ico" type="image/x-icon">
 
@@ -20,11 +20,11 @@
 <meta property="og:title" content="A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager"/>
 <meta property="og:description" content="Twitter Websearch and Facepager"/>
 <meta property="og:locale" content="de_DE"/>
-<meta property="og:url" content="http://tillkeyling.com/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html"/>
+<meta property="og:url" content="/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2015-11-27 00:00:00+01:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="http://tillkeyling.com/author/till-keyling.html">
+<meta property="article:author" content="/author/till-keyling.html">
 <meta property="article:section" content="misc"/>
 <meta property="article:tag" content="Facepager"/>
 <meta property="article:tag" content="Twitter"/>
@@ -34,14 +34,14 @@
 <body>
   <aside>
     <div>
-      <a href="http://tillkeyling.com">
+      <a href="">
         <img src="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg" alt="Till Keyling" title="Till Keyling">
       </a>
-      <h1><a href="http://tillkeyling.com">Till Keyling</a></h1>
+      <h1><a href="">Till Keyling</a></h1>
       <p></p>
       <nav>
         <ul class="list">
-          <li><a href="http://tillkeyling.com/pages/about.html#about">About</a></li>
+          <li><a href="/pages/about.html#about">About</a></li>
           <li><a href="http://www.ls1.ifkw.uni-muenchen.de/personen/wiss_ma/keyling_till/index.html" target="_blank">Me @LMU München</a></li>
         </ul>
       </nav>
@@ -54,15 +54,15 @@
   </aside>
   <main>
     <nav>
-      <a href="http://tillkeyling.com">Home</a>
-      <a href="http://tillkeyling.com/feeds/all.xml">Atom</a>
-      <a href="http://tillkeyling.com/feeds/all.rss">RSS</a>
+      <a href="">Home</a>
+      <a href="/feeds/all.atom.xml">Atom</a>
+      <a href="/feeds/all.rss">RSS</a>
     </nav>
 
 <article>
   <header>
     <h1 id="a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager">A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager</h1>
-    <p>Posted on Fr 27 November 2015 in <a href="http://tillkeyling.com/category/misc.html">misc</a></p>
+    <p>Posted on Fr 27 November 2015 in <a href="/category/misc.html">misc</a></p>
   </header>
   <div>
     <p>While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
@@ -82,7 +82,7 @@ There might be some Scraper out there (see <a href="http://idatassist.com/20-min
 , but the easiest way to combine the power of the Websearch and well-defined data-structure of the API is the following:</p>
 <p><strong>1. Define your Websearch.</strong> <br />
     I'd suggest using the "Advanced" Option.  </p>
-<p><img alt="Advanced Search Twitter" src="./images/AdvSearch.png" /></p>
+<p><img alt="Advanced Search Twitter" src="[{filename}]/images/AdvSearch.png" /></p>
 <p><strong>2. Restrict:</strong><br />
 Select "Live" or restrict the Search-Output to Tweets, assuming that you're only interested in Tweets (and not Accounts or Photos etc.)  </p>
 <p><strong>3. Paginate:</strong><br />
@@ -100,7 +100,7 @@ If you are done collecting results, use the second bookmarklet. This one will op
    Up to this point, no Tweet data (except the ID's itself, of course) has been collected.</p>
 <p><strong>6. Collect data:</strong> <br />
    Use a Facepager-Setup to collect Tweets. It's quite likely that you want to use the following settings:</p>
-<p><img alt="Facepager Settings" src="../images/Facepager_Settings.png" /></p>
+<p><img alt="Facepager Settings" src="/images/Facepager_Settings.png" /></p>
 <ol>
 <li>Collect the data (you can select multiple or all ID's at once)</li>
 </ol>
@@ -115,9 +115,9 @@ If you are done collecting results, use the second bookmarklet. This one will op
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="http://tillkeyling.com/tag/facepager.html">Facepager</a>
-      <a href="http://tillkeyling.com/tag/twitter.html">Twitter</a>
-      <a href="http://tillkeyling.com/tag/javascript.html">JavaScript</a>
+      <a href="/tag/facepager.html">Facepager</a>
+      <a href="/tag/twitter.html">Twitter</a>
+      <a href="/tag/javascript.html">JavaScript</a>
     </p>
   </div>
 </article>
@@ -147,10 +147,10 @@ ga('create', 'UA-32588729-2', 'auto');
   "author": {
     "@type": "Person",
     "name": "Till Keyling",
-    "url": "http://tillkeyling.com/author/till-keyling.html"
+    "url": "/author/till-keyling.html"
   },
   "image": "https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg",
-  "url": "http://tillkeyling.com/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html",
+  "url": "/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html",
   "description": "Twitter Websearch and Facepager"
 }
 </script></body>

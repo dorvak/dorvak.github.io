@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="http://tillkeyling.com/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="http://tillkeyling.com/theme/css/pygments.min.css">
-  <link rel="stylesheet" type="text/css" href="http://tillkeyling.com/theme/css/font-awesome.min.css">
-  <link href="http://tillkeyling.com/feeds/all.xml" type="application/atom+xml" rel="alternate" title="Till Keyling's Homepage Atom">
-  <link href="http://tillkeyling.com/feeds/all.rss" type="application/rss+xml" rel="alternate" title="Till Keyling's Homepage RSS">
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+  <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Till Keyling's Homepage Atom">
+  <link href="/feeds/all.rss" type="application/rss+xml" rel="alternate" title="Till Keyling's Homepage RSS">
   <link rel="shortcut icon" href="http://tillkeyling.com/images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="http://tillkeyling.com/images/favicon.ico" type="image/x-icon">
 
@@ -20,25 +20,25 @@
 <meta property="og:title" content="Facepager and the YouTube API v3 - a quick tutorial"/>
 <meta property="og:description" content="Quick tutorial for the YouTube APIv3 using Facepager"/>
 <meta property="og:locale" content="de_DE"/>
-<meta property="og:url" content="http://tillkeyling.com/facepager-and-the-youtube-api-v3-a-quick-tutorial.html"/>
+<meta property="og:url" content="/facepager-and-the-youtube-api-v3-a-quick-tutorial.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2015-06-01 00:00:00+02:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="http://tillkeyling.com/author/till-keyling.html">
+<meta property="article:author" content="/author/till-keyling.html">
 <meta property="article:section" content="Blog"/>
 <meta property="og:image" content="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg">  <title>Till Keyling's Homepage &ndash; Facepager and the YouTube API v3 - a quick tutorial</title>
 </head>
 <body>
   <aside>
     <div>
-      <a href="http://tillkeyling.com">
+      <a href="">
         <img src="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg" alt="Till Keyling" title="Till Keyling">
       </a>
-      <h1><a href="http://tillkeyling.com">Till Keyling</a></h1>
+      <h1><a href="">Till Keyling</a></h1>
       <p></p>
       <nav>
         <ul class="list">
-          <li><a href="http://tillkeyling.com/pages/about.html#about">About</a></li>
+          <li><a href="/pages/about.html#about">About</a></li>
           <li><a href="http://www.ls1.ifkw.uni-muenchen.de/personen/wiss_ma/keyling_till/index.html" target="_blank">Me @LMU München</a></li>
         </ul>
       </nav>
@@ -51,15 +51,15 @@
   </aside>
   <main>
     <nav>
-      <a href="http://tillkeyling.com">Home</a>
-      <a href="http://tillkeyling.com/feeds/all.xml">Atom</a>
-      <a href="http://tillkeyling.com/feeds/all.rss">RSS</a>
+      <a href="">Home</a>
+      <a href="/feeds/all.atom.xml">Atom</a>
+      <a href="/feeds/all.rss">RSS</a>
     </nav>
 
 <article>
   <header>
     <h1 id="facepager-and-the-youtube-api-v3-a-quick-tutorial">Facepager and the YouTube API v3 - a quick tutorial</h1>
-    <p>Posted on Mo 01 Juni 2015 in <a href="http://tillkeyling.com/category/blog.html">Blog</a></p>
+    <p>Posted on Mo 01 Juni 2015 in <a href="/category/blog.html">Blog</a></p>
   </header>
   <div>
     <p>Almost two years ago, I collected lots of information from the YouTube-API (+scraping Referrer-Data) for my PhD-Thesis (basically mapping the view-dynamic for political videos on YouTube on an individual basis over time). While the scale and design of this data-collection was beyond Facapagers capability, the tools itself is well suited for generic API-requests, such as to the YouTube-API (or reddit, f.e.). 
@@ -72,12 +72,12 @@ In the meantime, the YouTube-API underwent significant changes: Besides a necess
 </li>
 <li>
 <p>To get such a key, you must register as a <a href="https://developers.google.com/">Google Developer</a> and create an app/project that uses the YouTube-API. See the <a href="https://console.developers.google.com/">Developer Console</a> for more information about how to create an project, it's simple and straightforward. <em>Note</em>: You need to activate/enable the YouTube-API before you generate a browser key (a server key would work as well and is more appropriate, leave referrers/allowed IP-adresses blank)
-<img alt="Enable YouTube-API" src="http://tillkeyling.com/images/enable_youtube_api.PNG" /> 
-<img alt="Generate Server/Browser Key" src="http://tillkeyling.com/images/create_key.PNG" /></p>
+<img alt="Enable YouTube-API" src="/images/enable_youtube_api.PNG" /> 
+<img alt="Generate Server/Browser Key" src="/images/create_key.PNG" /></p>
 </li>
 <li>
 <p>Once you created an app and activated the YouTube-API for that app, you have to obtain the public API-access key to authenticate your requests with the Facepager (as you would do if you login with your Facebook or Twitter-credentials). The key is located in the "credentials"-section:
-<img alt="API Key location" src="http://tillkeyling.com/images/api_key.jpg" /></p>
+<img alt="API Key location" src="/images/api_key.jpg" /></p>
 </li>
 <li>
 <p>Copy the public API access key</p>
@@ -93,9 +93,9 @@ In the meantime, the YouTube-API underwent significant changes: Besides a necess
 </li>
 </ol>
 <p>There is much more information available via the API - check out either the <a href="https://developers.google.com/apis-explorer/#p/youtube/v3/">API-Explorer</a> or the Reference-Guide in the documentation of the v3-API. For example, you could retrieve comments via the "commentThreads"-endpoint (in this case, specify a "videoId"-parameter!). 
-<img alt="Statistics and Comments" src="http://tillkeyling.com/images/comments_youtube.PNG" />. </p>
+<img alt="Statistics and Comments" src="/images/comments_youtube.PNG" />. </p>
 <p>The API provides really interesting information, f.e. one might map the location of a video (or the recording, usually tagged via GPS). Although such metadata is only available for a small share of YouTube-clips, it provides additional insights on how users use YouTube - f.e. clips uploaded in the german "news &amp; politics"-section of the platform deal with the conflicts in the middle east quite often, which can be seen not only by analyzing the clips itself, but also by mapping their geolocation. </p>
-<p><img alt="Geolocation YouTube" src="http://tillkeyling.com/images/geolocation_germany.jpg" /></p>
+<p><img alt="Geolocation YouTube" src="/images/geolocation_germany.jpg" /></p>
 <p>Have fun playing with the API!</p>
 <p><strong>DOWNLOAD</strong> <a href="https://gist.githubusercontent.com/dorvak/fb5b54296084512684f6/raw/d78bc5bb75f86a4867459e135d33b7466e710681/YouTube_API_v3_Get_Video_Statistics-3_4">YouTube API v3 Preset</a> (see Help-Section 5 for more information about the presets)</p>
   </div>
@@ -130,10 +130,10 @@ ga('create', 'UA-32588729-2', 'auto');
   "author": {
     "@type": "Person",
     "name": "Till Keyling",
-    "url": "http://tillkeyling.com/author/till-keyling.html"
+    "url": "/author/till-keyling.html"
   },
   "image": "https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg",
-  "url": "http://tillkeyling.com/facepager-and-the-youtube-api-v3-a-quick-tutorial.html",
+  "url": "/facepager-and-the-youtube-api-v3-a-quick-tutorial.html",
   "description": "Quick tutorial for the YouTube APIv3 using Facepager"
 }
 </script></body>

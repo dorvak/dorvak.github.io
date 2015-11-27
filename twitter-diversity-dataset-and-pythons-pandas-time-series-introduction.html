@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="http://tillkeyling.com/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="http://tillkeyling.com/theme/css/pygments.min.css">
-  <link rel="stylesheet" type="text/css" href="http://tillkeyling.com/theme/css/font-awesome.min.css">
-  <link href="http://tillkeyling.com/feeds/all.xml" type="application/atom+xml" rel="alternate" title="Till Keyling's Homepage Atom">
-  <link href="http://tillkeyling.com/feeds/all.rss" type="application/rss+xml" rel="alternate" title="Till Keyling's Homepage RSS">
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+  <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Till Keyling's Homepage Atom">
+  <link href="/feeds/all.rss" type="application/rss+xml" rel="alternate" title="Till Keyling's Homepage RSS">
   <link rel="shortcut icon" href="http://tillkeyling.com/images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="http://tillkeyling.com/images/favicon.ico" type="image/x-icon">
 
@@ -20,11 +20,11 @@
 <meta property="og:title" content="Twitter "Diversity" Dataset and Python's Pandas Time Series Introduction"/>
 <meta property="og:description" content="Open-Data Analysis with Pandas"/>
 <meta property="og:locale" content="de_DE"/>
-<meta property="og:url" content="http://tillkeyling.com/twitter-diversity-dataset-and-pythons-pandas-time-series-introduction.html"/>
+<meta property="og:url" content="/twitter-diversity-dataset-and-pythons-pandas-time-series-introduction.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2014-05-06 00:00:00+02:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="http://tillkeyling.com/author/till-keyling.html">
+<meta property="article:author" content="/author/till-keyling.html">
 <meta property="article:section" content="misc"/>
 <meta property="article:tag" content="Python"/>
 <meta property="article:tag" content="Pandas"/>
@@ -35,14 +35,14 @@
 <body>
   <aside>
     <div>
-      <a href="http://tillkeyling.com">
+      <a href="">
         <img src="https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg" alt="Till Keyling" title="Till Keyling">
       </a>
-      <h1><a href="http://tillkeyling.com">Till Keyling</a></h1>
+      <h1><a href="">Till Keyling</a></h1>
       <p></p>
       <nav>
         <ul class="list">
-          <li><a href="http://tillkeyling.com/pages/about.html#about">About</a></li>
+          <li><a href="/pages/about.html#about">About</a></li>
           <li><a href="http://www.ls1.ifkw.uni-muenchen.de/personen/wiss_ma/keyling_till/index.html" target="_blank">Me @LMU München</a></li>
         </ul>
       </nav>
@@ -55,15 +55,15 @@
   </aside>
   <main>
     <nav>
-      <a href="http://tillkeyling.com">Home</a>
-      <a href="http://tillkeyling.com/feeds/all.xml">Atom</a>
-      <a href="http://tillkeyling.com/feeds/all.rss">RSS</a>
+      <a href="">Home</a>
+      <a href="/feeds/all.atom.xml">Atom</a>
+      <a href="/feeds/all.rss">RSS</a>
     </nav>
 
 <article>
   <header>
     <h1 id="twitter-diversity-dataset-and-pythons-pandas-time-series-introduction">Twitter "Diversity" Dataset and Python's Pandas Time Series Introduction</h1>
-    <p>Posted on Di 06 Mai 2014 in <a href="http://tillkeyling.com/category/misc.html">misc</a></p>
+    <p>Posted on Di 06 Mai 2014 in <a href="/category/misc.html">misc</a></p>
   </header>
   <div>
     <p>This is just a short introduction/how-to to time-series analysis with open-data. The <em>twitter-diversity</em> dataset is available  <a href="https://github.com/trifle/twitter-diversity">here</a>. Clone it into your folder, <code>cd</code> into it and start this IPython notebook. Pytho's Pandas-Module, Matplotlib and NumPy are necessary imports. </p>
@@ -157,7 +157,7 @@ total.plot(marker=&quot;o&quot;,markerfacecolor=&quot;red&quot;)
 </pre></div>
 
 
-<p><img alt="png" src="http://tillkeyling.com/images/Twitter_Diversity_14_1.png" /></p>
+<p><img alt="png" src="/images/Twitter_Diversity_14_1.png" /></p>
 <h2>Resample the data</h2>
 <p>To resample the time-series data, f.e. summing up weekly each monday, use the pandas excellent resampling methods. Plot the results to inspect the data. Change titles, axis labels etc. via pylab-methods</p>
 <div class="highlight"><pre>perday = total.resample(&quot;W-Mon&quot;,how=&quot;sum&quot;).plot(kind=&quot;bar&quot;)
@@ -171,7 +171,7 @@ xlabel(&quot;Sum of Tweets per Week&quot;)
 </pre></div>
 
 
-<p><img alt="png" src="http://tillkeyling.com/images/Twitter_Diversity_16_1.png" /></p>
+<p><img alt="png" src="/images/Twitter_Diversity_16_1.png" /></p>
 <h2>Regress the data</h2>
 <p>A simple (and a bit useless, but it's just for the sake of example) OLS-Regression with the shifted tweets (lag: 1 Day) can be done quite easy. Users familiar with R will note the differences (<em>writing</em> models in Python like <em>y~x+whatever</em> is <a href="http://mpastell.com/2013/04/19/python_regression/">possible</a> as well). Specify the model and print a short summary:</p>
 <div class="highlight"><pre>model = pd.ols(y=log(total.tweets[:400]), x=total.tweets[:400].shift(-1), intercept=True)
@@ -218,7 +218,7 @@ plot(log(total.tweets[:400]),color=&quot;red&quot;,marker=&quot;o&quot;,linewidt
 </pre></div>
 
 
-<p><img alt="png" src="http://tillkeyling.com/images/Twitter_Diversity_20_1.png" /></p>
+<p><img alt="png" src="/images/Twitter_Diversity_20_1.png" /></p>
 <div class="highlight"><pre>t=total.tweets.tolist()
 t1=total.tweets.shift(-1).tolist()
 </pre></div>
@@ -263,14 +263,14 @@ t1=total.tweets.shift(-1).tolist()
 </pre></div>
 
 
-<p><img alt="png" src="http://tillkeyling.com/images/Twitter_Diversity_24_1.png" /></p>
+<p><img alt="png" src="/images/Twitter_Diversity_24_1.png" /></p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="http://tillkeyling.com/tag/python.html">Python</a>
-      <a href="http://tillkeyling.com/tag/pandas.html">Pandas</a>
-      <a href="http://tillkeyling.com/tag/twitter.html">Twitter</a>
-      <a href="http://tillkeyling.com/tag/reproducible.html">Reproducible</a>
+      <a href="/tag/python.html">Python</a>
+      <a href="/tag/pandas.html">Pandas</a>
+      <a href="/tag/twitter.html">Twitter</a>
+      <a href="/tag/reproducible.html">Reproducible</a>
     </p>
   </div>
 </article>
@@ -300,10 +300,10 @@ ga('create', 'UA-32588729-2', 'auto');
   "author": {
     "@type": "Person",
     "name": "Till Keyling",
-    "url": "http://tillkeyling.com/author/till-keyling.html"
+    "url": "/author/till-keyling.html"
   },
   "image": "https://pbs.twimg.com/profile_images/646087603415072768/H821Gw0Q.jpg",
-  "url": "http://tillkeyling.com/twitter-diversity-dataset-and-pythons-pandas-time-series-introduction.html",
+  "url": "/twitter-diversity-dataset-and-pythons-pandas-time-series-introduction.html",
   "description": "Open-Data Analysis with Pandas"
 }
 </script></body>

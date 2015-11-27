@@ -16,10 +16,7 @@ There might be some Scraper out there (see &lt;a href="http://idatassist.com/20-
 , but the easiest way to combine the power of the Websearch and well-defined data-structure of the API is the following:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. Define your Websearch.&lt;/strong&gt; &lt;br /&gt;
     I'd suggest using the "Advanced" Option.  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;![Advanced Search Twitter](./images/AdvSearch.png)
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;p&gt;&lt;img alt="Advanced Search Twitter" src="[{filename}]/images/AdvSearch.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. Restrict:&lt;/strong&gt;&lt;br /&gt;
 Select "Live" or restrict the Search-Output to Tweets, assuming that you're only interested in Tweets (and not Accounts or Photos etc.)  &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;3. Paginate:&lt;/strong&gt;&lt;br /&gt;
@@ -37,7 +34,7 @@ If you are done collecting results, use the second bookmarklet. This one will op
    Up to this point, no Tweet data (except the ID's itself, of course) has been collected.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;6. Collect data:&lt;/strong&gt; &lt;br /&gt;
    Use a Facepager-Setup to collect Tweets. It's quite likely that you want to use the following settings:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Facepager Settings" src="../images/Facepager_Settings.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Facepager Settings" src="/images/Facepager_Settings.png" /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Collect the data (you can select multiple or all ID's at once)&lt;/li&gt;
 &lt;/ol&gt;
