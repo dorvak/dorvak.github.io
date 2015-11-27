@@ -72,11 +72,11 @@ restricted, as in the case of the Twitter restful Search-API. The <a href="https
 the past week."</em></p>
 <p>Thus, most sample-strategies that rest upon hash tag-querries are restricted (assuming no other (paid) data provider like GNIP etc. is used) 
 to contemporary Tweets no older than ~1 week. Especially student's research projects without any  financial resources at hand might fail due to these restrictions, 
-because these projects do often rely on historical hash tags analysis (wildly inferred from the incoming questions regarding the Facpager-Tool).</p>
+because these projects do often rely on historical hash tags analyses (wildly inferred from the incoming questions regarding the Facpager-Tool).</p>
 <p>There is, however, a simple method to access Tweets older than 1 Week (Note: this limitation concerns only the #-Search via the REST-API!):
 The <a href="https://twitter.com/search-advanced">Twitter-Websearch</a> does not underlie these restriction and provides access to older/historical Tweets.
-Especially the "Advanced-Search" has some nice options to specify the time-frame etc., so that it's a really helpfull interface for (scientific) analyses.
-While there are lesser restrictions upon the Websearch, it lacks the option to save the Tweet-data in a structured form like the API-variant (using Facepager or whatever tool) provides.
+Especially the "Advanced-Search" has some nice options to specify the time-frame etc., so it's a really helpfull interface for (scientific) analyses.
+While there are lesser restrictions upon the Websearch, it lacks the option to save the Tweet-data in a structured form like the API-variant (using Facepager or whatever tool) does.
 Due to the fact that the target audience for the Facepager has little or no programming knowledge, programming a WebScraper is usually not an option. 
 There might be some Scraper out there (see <a href="http://idatassist.com/20-minutes-to-scraping-twitter-for-building-target-lists-no-coding/">1</a>,<a href="http://sysnucleus-blog.com/2014/07/15/how-to-scrape-tweets-twitter-data-scraping-using-webharvy/">2</a>,<a href="http://sysnucleus-blog.com/2014/07/15/how-to-scrape-tweets-twitter-data-scraping-using-webharvy/">3</a>)
 , but the easiest way to combine the power of the Websearch and well-defined data-structure of the API is the following:</p>
@@ -95,7 +95,7 @@ If you are done collecting results, use the second bookmarklet. This one will op
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class 'bml' href='javascript: window.open("data:data:attachment/csv," + encodeURIComponent($.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); }).join("\n")),"neu.csv");'> Extract Tweets </a></p>
 <p>Copy &amp; paste these ID's. </p>
 <p><strong>5. Facepager:</strong><br />
-   In this step, add the ID's by clicking the "Add nodes"-button and paste the ID's into the window.
+   Open Facepager. Add the ID's from step 5 by clicking the "Add nodes"-button and paste the ID's into the window.
    You should see the ID's as new nodes in the main window of the Facepager. 
    Up to this point, no Tweet data (except the ID's itself, of course) has been collected.</p>
 <p><strong>6. Collect data:</strong> <br />
