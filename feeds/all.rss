@@ -1,63 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Till Keyling's Homepage</title><link>http://tillkeyling.com/</link><description></description><atom:link href="http://tillkeyling.com/feeds/all.rss" rel="self"></atom:link><lastBuildDate>Fri, 27 Nov 2015 00:00:00 +0100</lastBuildDate><item><title>A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager</title><link>http://tillkeyling.com/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html</link><description>&lt;style&gt;
-.bookmarklet {
-    color: #d9411e;
-    text-decoration: none;
-    background: darkgrey;
-    border-radius: 15px;
-    padding: 3px;
-}
-
-&lt;/style&gt;
-
-&lt;p&gt;While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Till Keyling's Homepage</title><link>http://tillkeyling.com/</link><description></description><atom:link href="http://tillkeyling.com/feeds/all.rss" rel="self"></atom:link><lastBuildDate>Fri, 27 Nov 2015 00:00:00 +0100</lastBuildDate><item><title>A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager</title><link>http://tillkeyling.com/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html</link><description>&lt;p&gt;While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
 well), these structured and well-defined data access-points have some drawbacks. One of them is the access to 'historical' data, that might be 
 restricted, as in the case of the Twitter restful Search-API. The &lt;a href="https://dev.twitter.com/rest/public/search"&gt;documentation&lt;/a&gt; states: &lt;/p&gt;
 &lt;p&gt;&lt;em&gt;"Also note that the search results at twitter.com may return historical results while the Search API usually only serves tweets from 
 the past week."&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Thus, most sample-strategies that rest upon hash tag-querries are restricted (assuming no other (paid) data provider like GNIP etc. is used) 
 to contemporary Tweets no older than ~1 week. Especially student's research projects without any  financial resources at hand might fail due to these restrictions, 
-because these projects do often rely on historical hash tags analyses (wildly inferred from the incoming questions regarding the Facpager-Tool).&lt;/p&gt;
+because these projects do often rely on historical hash tags analysis (wildly inferred from the incoming questions regarding the Facpager-Tool).&lt;/p&gt;
 &lt;p&gt;There is, however, a simple method to access Tweets older than 1 Week (Note: this limitation concerns only the #-Search via the REST-API!):
 The &lt;a href="https://twitter.com/search-advanced"&gt;Twitter-Websearch&lt;/a&gt; does not underlie these restriction and provides access to older/historical Tweets.
-Especially the "Advanced-Search" has some nice options to specify the time-frame etc., so it's a really helpful interface for (scientific) analyses.
-While there are lesser restrictions upon the Websearch, it lacks the option to save the Tweet-data in a structured form like the API-variant (using Facepager or whatever tool) does.
+Especially the "Advanced-Search" has some nice options to specify the time-frame etc., so that it's a really helpfull interface for (scientific) analyses.
+While there are lesser restrictions upon the Websearch, it lacks the option to save the Tweet-data in a structured form like the API-variant (using Facepager or whatever tool) provides.
 Due to the fact that the target audience for the Facepager has little or no programming knowledge, programming a WebScraper is usually not an option. 
 There might be some Scraper out there (see &lt;a href="http://idatassist.com/20-minutes-to-scraping-twitter-for-building-target-lists-no-coding/"&gt;1&lt;/a&gt;,&lt;a href="http://sysnucleus-blog.com/2014/07/15/how-to-scrape-tweets-twitter-data-scraping-using-webharvy/"&gt;2&lt;/a&gt;,&lt;a href="http://sysnucleus-blog.com/2014/07/15/how-to-scrape-tweets-twitter-data-scraping-using-webharvy/"&gt;3&lt;/a&gt;)
 , but the easiest way to combine the power of the Websearch and well-defined data-structure of the API is the following:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. Define your Websearch.&lt;/strong&gt; &lt;br /&gt;
     I'd suggest using the "Advanced" Option.  &lt;/p&gt;
-&lt;p&gt;&lt;img alt="Advanced Search Twitter" src="http://tillkeyling.com/images/AdvSearch.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Advanced Search Twitter" src="./images/AdvSearch.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. Restrict:&lt;/strong&gt;&lt;br /&gt;
 Select "Live" or restrict the Search-Output to Tweets, assuming that you're only interested in Tweets (and not Accounts or Photos etc.)  &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;3. Paginate:&lt;/strong&gt;&lt;br /&gt;
 You can scroll through these results. Depending on the amount of Tweets, new ones will load once you reach the end of the page.  &lt;/p&gt;
 &lt;p&gt;To facilitate the tedious task of scrolling through the result, use this bookmarklet (drag &amp;amp; drop to your bookmark-bar, click on it while on the
    results-page and repeat the process)  &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class='bookmarklet' href='javascript: $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });')&gt; Paginate Results Bookmarklet&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class='bml' href='javascript: $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });')&gt; Paginate Results Bookmarklet&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;4. Collect ID's:&lt;/strong&gt; &lt;br /&gt;
 If you are done collecting results, use the second bookmarklet. This one will open a new window (be sure to enable pop-ups!) that contains the ID of the Tweets.&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class='bookmarklet' href='javascript: window.open("data:data:attachment/csv," + encodeURIComponent($.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); }).join("\n")),"neu.csv");'&gt; Extract Tweets &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class 'bml' href='javascript: window.open("data:data:attachment/csv," + encodeURIComponent($.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); }).join("\n")),"neu.csv");'&gt; Extract Tweets &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Copy &amp;amp; paste these ID's. &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;5. Facepager:&lt;/strong&gt;&lt;br /&gt;
-   Open Facepager. Add the ID's from step 5 by clicking the "Add nodes"-button and paste the ID's into the window.
+   In this step, add the ID's by clicking the "Add nodes"-button and paste the ID's into the window.
    You should see the ID's as new nodes in the main window of the Facepager. 
    Up to this point, no Tweet data (except the ID's itself, of course) has been collected.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;6. Collect data:&lt;/strong&gt; &lt;br /&gt;
    Use a Facepager-Setup to collect Tweets. It's quite likely that you want to use the following settings:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Facepager Settings" src="http://tillkeyling.com/images/Facepager_Settings.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Facepager Settings" src="../images/Facepager_Settings.png" /&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Collect the data (you can select multiple or all ID's at once)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;hr /&gt;
-&lt;h3&gt;Alternative Approach&lt;/h3&gt;
-&lt;p&gt;If you want to retrieve many Tweets at once, steps 5-7 might result in an API-error due to the massive amount of requests generated. However, there is a method to collect multiple (up to 100) Tweets at once: Copy the ID's from step 4, but use this bookmarklet:&lt;br /&gt;
- &lt;a class="bookmarklet" href='javascript: function chunk (arr, len) { var chunks = [],i = 0,n = arr.length; while (i &lt; n) {chunks.push(arr.slice(i, i += len));} return chunks;};var data = $.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); });var chunked = chunk(data,100);window.open("data:data:attachment/csv," + encodeURIComponent(chunked.join("\n")),"neu.csv");'&gt; Chunked Twitter ID &lt;/a&gt; &lt;/p&gt;
-&lt;p&gt;&lt;em&gt;8.1&lt;/em&gt; This will produce a comma-separated list of the ID in blocks of 100 (the maximum limit for the following steps).  &lt;/p&gt;
-&lt;p&gt;&lt;em&gt;8.2&lt;/em&gt; Create a new node in Facepager with an arbitrary name, for example "block1" for the first 100 Tweets that you will collect.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;8.3&lt;/em&gt; Copy the first 100 comma-separated ID's and paste the into the "id"-field (highlighted yellow). Be sure to use the other settings depicted here ("lookup etc").&lt;br /&gt;
-&lt;img alt="Lookup" src="http://tillkeyling.com/images/Lookup.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;8.4&lt;/em&gt; Press "Fetch Data" &amp;amp; 100 new Tweets should appear after a few seconds. Repeat these steps with the next 100 ID's. &lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Some notes and further details:&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;This is tested in Chrome (46.0.2490.8), but it should work in Firefox as well&lt;/li&gt;
