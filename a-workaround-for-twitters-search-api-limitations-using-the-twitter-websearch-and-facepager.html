@@ -65,7 +65,18 @@
     <p>Posted on Fr 27 November 2015 in <a href="http://tillkeyling.com/category/misc.html">misc</a></p>
   </header>
   <div>
-    <p>While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
+    <style>
+.bookmarklet {
+    color: #d9411e;
+    text-decoration: none;
+    background: darkgrey;
+    border-radius: 15px;
+    padding: 3px;
+}
+
+</style>
+
+<p>While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
 well), these structured and well-defined data access-points have some drawbacks. One of them is the access to 'historical' data, that might be 
 restricted, as in the case of the Twitter restful Search-API. The <a href="https://dev.twitter.com/rest/public/search">documentation</a> states: </p>
 <p><em>"Also note that the search results at twitter.com may return historical results while the Search API usually only serves tweets from 
@@ -89,10 +100,10 @@ Select "Live" or restrict the Search-Output to Tweets, assuming that you're only
 You can scroll through these results. Depending on the amount of Tweets, new ones will load once you reach the end of the page.  </p>
 <p>To facilitate the tedious task of scrolling through the result, use this bookmarklet (drag &amp; drop to your bookmark-bar, click on it while on the
    results-page and repeat the process)  </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class='bml' href='javascript: $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });')> Paginate Results Bookmarklet</a></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class='bookmarklet' href='javascript: $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });')> Paginate Results Bookmarklet</a></p>
 <p><strong>4. Collect ID's:</strong> <br />
 If you are done collecting results, use the second bookmarklet. This one will open a new window (be sure to enable pop-ups!) that contains the ID of the Tweets.</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class 'bml' href='javascript: window.open("data:data:attachment/csv," + encodeURIComponent($.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); }).join("\n")),"neu.csv");'> Extract Tweets </a></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class='bookmarklet' href='javascript: window.open("data:data:attachment/csv," + encodeURIComponent($.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); }).join("\n")),"neu.csv");'> Extract Tweets </a></p>
 <p>Copy &amp; paste these ID's. </p>
 <p><strong>5. Facepager:</strong><br />
    Open Facepager. Add the ID's from step 5 by clicking the "Add nodes"-button and paste the ID's into the window.
@@ -107,7 +118,7 @@ If you are done collecting results, use the second bookmarklet. This one will op
 <hr />
 <h3>Alternative Approach</h3>
 <p>If you want to retrieve many Tweets at once, steps 5-7 might result in an API-error due to the massive amount of requests generated. However, there is a method to collect multiple (up to 100) Tweets at once: Copy the ID's from step 4, but use this bookmarklet:<br />
- <a class="bml" href='javascript: function chunk (arr, len) { var chunks = [],i = 0,n = arr.length; while (i < n) {chunks.push(arr.slice(i, i += len));} return chunks;};var data = $.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); });var chunked = chunk(data,100);window.open("data:data:attachment/csv," + encodeURIComponent(chunked.join("\n")),"neu.csv");'> Chunked Twitter ID </a> </p>
+ <a class="bookmarklet" href='javascript: function chunk (arr, len) { var chunks = [],i = 0,n = arr.length; while (i < n) {chunks.push(arr.slice(i, i += len));} return chunks;};var data = $.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); });var chunked = chunk(data,100);window.open("data:data:attachment/csv," + encodeURIComponent(chunked.join("\n")),"neu.csv");'> Chunked Twitter ID </a> </p>
 <p><em>8.1</em> This will produce a comma-separated list of the ID in blocks of 100 (the maximum limit for the following steps).  </p>
 <p><em>8.2</em> Create a new node in Facepager with an arbitrary name, for example "block1" for the first 100 Tweets that you will collect.</p>
 <p><em>8.3</em> Copy the first 100 comma-separated ID's and paste the into the "id"-field (highlighted yellow). Be sure to use the other settings depicted here ("lookup etc").<br />

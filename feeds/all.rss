@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Till Keyling's Homepage</title><link>http://tillkeyling.com/</link><description></description><atom:link href="http://tillkeyling.com/feeds/all.rss" rel="self"></atom:link><lastBuildDate>Fri, 27 Nov 2015 00:00:00 +0100</lastBuildDate><item><title>A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager</title><link>http://tillkeyling.com/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html</link><description>&lt;p&gt;While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Till Keyling's Homepage</title><link>http://tillkeyling.com/</link><description></description><atom:link href="http://tillkeyling.com/feeds/all.rss" rel="self"></atom:link><lastBuildDate>Fri, 27 Nov 2015 00:00:00 +0100</lastBuildDate><item><title>A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager</title><link>http://tillkeyling.com/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html</link><description>&lt;style&gt;
+.bookmarklet {
+    color: #d9411e;
+    text-decoration: none;
+    background: darkgrey;
+    border-radius: 15px;
+    padding: 3px;
+}
+
+&lt;/style&gt;
+
+&lt;p&gt;While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
 well), these structured and well-defined data access-points have some drawbacks. One of them is the access to 'historical' data, that might be 
 restricted, as in the case of the Twitter restful Search-API. The &lt;a href="https://dev.twitter.com/rest/public/search"&gt;documentation&lt;/a&gt; states: &lt;/p&gt;
 &lt;p&gt;&lt;em&gt;"Also note that the search results at twitter.com may return historical results while the Search API usually only serves tweets from 
@@ -23,10 +34,10 @@ Select "Live" or restrict the Search-Output to Tweets, assuming that you're only
 You can scroll through these results. Depending on the amount of Tweets, new ones will load once you reach the end of the page.  &lt;/p&gt;
 &lt;p&gt;To facilitate the tedious task of scrolling through the result, use this bookmarklet (drag &amp;amp; drop to your bookmark-bar, click on it while on the
    results-page and repeat the process)  &lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class='bml' href='javascript: $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });')&gt; Paginate Results Bookmarklet&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class='bookmarklet' href='javascript: $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });')&gt; Paginate Results Bookmarklet&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;4. Collect ID's:&lt;/strong&gt; &lt;br /&gt;
 If you are done collecting results, use the second bookmarklet. This one will open a new window (be sure to enable pop-ups!) that contains the ID of the Tweets.&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class 'bml' href='javascript: window.open("data:data:attachment/csv," + encodeURIComponent($.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); }).join("\n")),"neu.csv");'&gt; Extract Tweets &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class='bookmarklet' href='javascript: window.open("data:data:attachment/csv," + encodeURIComponent($.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); }).join("\n")),"neu.csv");'&gt; Extract Tweets &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Copy &amp;amp; paste these ID's. &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;5. Facepager:&lt;/strong&gt;&lt;br /&gt;
    Open Facepager. Add the ID's from step 5 by clicking the "Add nodes"-button and paste the ID's into the window.
@@ -41,7 +52,7 @@ If you are done collecting results, use the second bookmarklet. This one will op
 &lt;hr /&gt;
 &lt;h3&gt;Alternative Approach&lt;/h3&gt;
 &lt;p&gt;If you want to retrieve many Tweets at once, steps 5-7 might result in an API-error due to the massive amount of requests generated. However, there is a method to collect multiple (up to 100) Tweets at once: Copy the ID's from step 4, but use this bookmarklet:&lt;br /&gt;
- &lt;a class="bml" href='javascript: function chunk (arr, len) { var chunks = [],i = 0,n = arr.length; while (i &lt; n) {chunks.push(arr.slice(i, i += len));} return chunks;};var data = $.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); });var chunked = chunk(data,100);window.open("data:data:attachment/csv," + encodeURIComponent(chunked.join("\n")),"neu.csv");'&gt; Chunked Twitter ID &lt;/a&gt; &lt;/p&gt;
+ &lt;a class="bookmarklet" href='javascript: function chunk (arr, len) { var chunks = [],i = 0,n = arr.length; while (i &lt; n) {chunks.push(arr.slice(i, i += len));} return chunks;};var data = $.map($(".js-stream-item"), function (i) {     return $(i).attr("data-item-id"); });var chunked = chunk(data,100);window.open("data:data:attachment/csv," + encodeURIComponent(chunked.join("\n")),"neu.csv");'&gt; Chunked Twitter ID &lt;/a&gt; &lt;/p&gt;
 &lt;p&gt;&lt;em&gt;8.1&lt;/em&gt; This will produce a comma-separated list of the ID in blocks of 100 (the maximum limit for the following steps).  &lt;/p&gt;
 &lt;p&gt;&lt;em&gt;8.2&lt;/em&gt; Create a new node in Facepager with an arbitrary name, for example "block1" for the first 100 Tweets that you will collect.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;8.3&lt;/em&gt; Copy the first 100 comma-separated ID's and paste the into the "id"-field (highlighted yellow). Be sure to use the other settings depicted here ("lookup etc").&lt;br /&gt;
