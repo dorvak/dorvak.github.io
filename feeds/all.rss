@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Till Keyling's Homepage</title><link>http://tillkeyling.com/</link><description></description><atom:link href="http://tillkeyling.com/feeds/all.rss" rel="self"></atom:link><lastBuildDate>Fri, 27 Nov 2015 00:00:00 +0100</lastBuildDate><item><title>A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager</title><link>http://tillkeyling.com/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html</link><description>&lt;p&gt;While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Till Keyling's Homepage</title><link>http://tillkeyling.com/</link><description></description><atom:link href="http://tillkeyling.com/feeds/all.rss" rel="self"></atom:link><lastBuildDate>Fri, 27 Nov 2015 00:00:00 +0100</lastBuildDate><item><title>A workaround for Twitter's Search-API limitations: Using the Twitter Websearch and Facepager</title><link>http://tillkeyling.com/a-workaround-for-twitters-search-api-limitations-using-the-twitter-websearch-and-facepager.html</link><description>&lt;style&gt;
+
+.bml{background-color:darkgrey;
+    padding:2px:
+    border-radius:10px;}
+&lt;/style&gt;
+
+&lt;p&gt;While API's in general enrich and simplify the process of (automated) data collection (not just for business cases, but for scientific purposes as
 well), these structured and well-defined data access-points have some drawbacks. One of them is the access to 'historical' data, that might be 
 restricted, as in the case of the Twitter restful Search-API. The &lt;a href="https://dev.twitter.com/rest/public/search"&gt;documentation&lt;/a&gt; states: &lt;/p&gt;
 &lt;p&gt;&lt;em&gt;"Also note that the search results at twitter.com may return historical results while the Search API usually only serves tweets from 
