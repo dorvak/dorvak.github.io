@@ -910,81 +910,7 @@ Das letzte Update fand am 2013-07-30 statt&lt;/p&gt;
 &lt;td&gt;3039&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Till Keyling</dc:creator><pubDate>Sun, 01 Dec 2013 00:00:00 +0100</pubDate><guid>tag:tillkeyling.com,2013-12-01:youtube-kanale-von-deutschen-parteien.html</guid><category>YouTube</category><category>Bundestagswahl</category><category>DFG</category></item><item><title>Sampling YouTube-Clips from Twitter</title><link>http://tillkeyling.com/sampling-youtube-clips-from-twitter.html</link><description>&lt;p&gt;During the  electoral campaigning for the recent german federal elections in
-2013, we decided not just to monitor YouTube-Clips via &lt;em&gt;classical&lt;/em&gt; sampling
-techniques like keyword-searches on YouTube. Therefore, we took advantage of the
-&lt;a href="http://arxiv.org/abs/1301.6932"&gt;cross-pollinated&lt;/a&gt; diffusion processes between
-Social Network Sites (SNS) like Facebook or - in this case - Twitter:&lt;/p&gt;
-&lt;p&gt;To gain an understanding of which YouTube-Clips are relevant in terms of
-political participation and discussion on Twitter, we collected Tweets which are
-related to the federal elections, resolved the URLS within those Tweets and - if
-an URL linked to a YouTube-Clip - included these Clips in our YouTube-Election
-sample. This method enables the &lt;em&gt;early-bird&lt;/em&gt; detection of (likely) political
-YouTube-Clips and supplements the more traditional data-collection process via
-YouTube search terms, channel monitoring or crawling the YouTube-Network of
-related videoclips&lt;/p&gt;
-&lt;h2&gt;Collecting political Tweets via Streaming-API&lt;/h2&gt;
-&lt;p&gt;Twitter, as opposed to Facebook as a less accessible SNS in terms of crawling
-topics, posts and alike, became sort of a favourite toy for the social
-science/information science etc. To a very large extend, Twitter (comparetivly)
-open API's and a vast collection of tool/websites to get data out of the system
-may account for this affinity towards the quite small SNS - when compared to
-Facebook. However, although Twitter-Users might be completely un-representative,
-there is a potential of Twitter as an early-warning system, ifnluential intra-
-media-agenda-setting authority. When dealing with the dissemination of
-(political) content,
-&lt;a href="https://speakerdeck.com/dorvak/news-diffusion-ecrea-2012"&gt;we&lt;/a&gt; can
-show that news-articles disseminate lamost an order of magnitude faster on
-Twitter than on Facebook.&lt;/p&gt;
-&lt;script async class="speakerdeck-embed" data-id="3e041690b8e401310db522637f6c77d3" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
-
-&lt;p&gt;Therefore, we conclude that Twitter is sort of a news-ticker, while Facebook is
-used for the discussion of links and content within smaller &lt;a href="http://www.schmidtmitdete.de/english-content"&gt;'personal
-publics'&lt;/a&gt;. This holds true for the
-diffusion of audiovisual-content as well: Tweets for YouTube-Clips usually
-precede the Shares, Likes and Comments on Facebook (see one example above).&lt;/p&gt;
-&lt;p&gt;What´s crucial here and should not be underestimated is the &lt;em&gt;flow of content&lt;/em&gt;
-not only &lt;em&gt;within&lt;/em&gt; SNS, but &lt;em&gt;across&lt;/em&gt; different online-outlets. These &lt;em&gt;cross-
-pollination&lt;/em&gt; process might be triggered by users who uses both multiple networks
-and once (Studies?) and disseminate content/links  - like bee's transport pollen
-- into other networks. Of course, users who do create content on platforms like
-YouTube tend to use Twitter and Facebook (Study) and therefore &lt;em&gt;pollute&lt;/em&gt; other
-SNS intentionally (which links to the concept of virality ..). From a more
-abstract, system-theoretical viewpoint, social or communicative subsystems like
-Twitter and Facebook observe and react to each other (again, Twitter is more
-observable than Facebook, f.e.).&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Till Keyling</dc:creator><pubDate>Sat, 01 Dec 2012 00:00:00 +0100</pubDate><guid>tag:tillkeyling.com,2012-12-01:sampling-youtube-clips-from-twitter.html</guid></item><item><title>YouTube Language-Detection</title><link>http://tillkeyling.com/youtube-language-detection.html</link><description>&lt;p&gt;Due to the lack of a language-tag in the YouTube-API, which would be
-extremely helpful determining the language of a videoclip (precisely:
-the language of the title and description; language detection in
-audiovisual content requires much more effort and cpu-power), i ran a
-quick test with python´s &lt;a href="https://bitbucket.org/spirit/guess_language/"&gt;guess-language&lt;/a&gt; module
-I think it´s a simple but pretty reliable algorithm for language
-detection tasks, based on a trigram detection and the enchant-library
-for over 60 languages.&lt;/p&gt;
-&lt;p&gt;In our project about political communication on &lt;a href="http://www.fgpk.de/en/teilprojekte/#Teilprojekt1"&gt;YouTube&lt;/a&gt;
-we stumbled upon a large amount of non-german videoclips (sampling from
-the feed for the most-viewed videos in the “news &amp;amp; politics” - category
-in germany). To get an overview of the linguistic diversity on the
-german version on YouTube, I conducted a language-detection test on a
-small subsample of our data (350 videoclips).&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://dl.dropbox.com/u/20490817/lang_barplot.png"&gt;&lt;img alt="image" src="https://dl.dropbox.com/u/20490817/lang_barplot.png" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;First of all, just about 50% of the recent videos (“top viewed in
-news..”) have a german description (30 of them have a title in another
-language; a detection solely based on the (usually short) titles seems
-to be unreliable), followed by clips with an english-speaking
-description. The amount of an unsuccessful classification task
-(“UNKNOWN”) is noteworthy, but may be reduced by a combination with the
-title-classification. In line with the results of our manual-coding
-approach, a significant amount of descriptions and titles are in an
-arabic language. Furthermore, the results of the automatic
-language-detection could be combined with videoclip-metadata.
-&lt;a href="https://dl.dropbox.com/u/20490817/lang_jitter.png"&gt;&lt;img alt="image" src="https://dl.dropbox.com/u/20490817/lang_jitter.png" /&gt;&lt;/a&gt;
-For example, videoclips with a german description are obviously less
-successful than those with an arabic or english description. At the
-moment, i´m validating the classification results with a manual coding
-of the titles and descriptions, but this approach might be a starting
-point to reduce/filter the sample-size of audiovisual material, esp. in
-preparation of a manual content analysis or simply to get an overview of
-a huge amount of user-generated-content).&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Till Keyling</dc:creator><pubDate>Sat, 01 Dec 2012 00:00:00 +0100</pubDate><guid>tag:tillkeyling.com,2012-12-01:youtube-language-detection.html</guid><category>YouTube</category><category>R</category><category>Python</category></item><item><title>Crowdsourcing und Sampling auf Twitter</title><link>http://tillkeyling.com/crowdsourcing-und-sampling-auf-twitter.html</link><description>&lt;p&gt;Im Rahmen unseres Forschungsprojekts “Politische Kommunikation auf
+&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Till Keyling</dc:creator><pubDate>Sat, 12 Jan 2013 00:00:00 +0100</pubDate><guid>tag:tillkeyling.com,2013-01-12:youtube-kanale-von-deutschen-parteien.html</guid><category>YouTube</category><category>Bundestagswahl</category><category>DFG</category></item><item><title>Crowdsourcing und Sampling auf Twitter</title><link>http://tillkeyling.com/crowdsourcing-und-sampling-auf-twitter.html</link><description>&lt;p&gt;Im Rahmen unseres Forschungsprojekts “Politische Kommunikation auf
 Videoplattformen” erfassen wir auch Videos zur Bundestagswahl 2013.
 Nicht jetzt erst merken wir, dass die Stichprobenbildung auf
 “Folksonomy”-strukturierten Angeboten wie YouTube ein zentrales Problem
@@ -1039,4 +965,78 @@ Anwendungsbereiche vor, in denen sich eine solche Art der
 Stichprobenbildung sinnvoller einsetzen lässt, um jegliche Anmerkungen
 bin ich aber auch dankbar. Im übrigen werden ich die Ergebnisse und die
 aktuellen Trends zur Bundestagswahl auf YouTube auch möglichst zeitnah
-auf einer Live-Website zur Verfügung stellen, wenn dafür noch Zeit ist.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Till Keyling</dc:creator><pubDate>Mon, 23 Jul 2012 00:00:00 +0200</pubDate><guid>tag:tillkeyling.com,2012-07-23:crowdsourcing-und-sampling-auf-twitter.html</guid><category>YouTube</category><category>Twitter</category><category>Bots</category></item></channel></rss>
+auf einer Live-Website zur Verfügung stellen, wenn dafür noch Zeit ist.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Till Keyling</dc:creator><pubDate>Mon, 23 Jul 2012 00:00:00 +0200</pubDate><guid>tag:tillkeyling.com,2012-07-23:crowdsourcing-und-sampling-auf-twitter.html</guid><category>YouTube</category><category>Twitter</category><category>Bots</category></item><item><title>Sampling YouTube-Clips from Twitter</title><link>http://tillkeyling.com/sampling-youtube-clips-from-twitter.html</link><description>&lt;p&gt;During the  electoral campaigning for the recent german federal elections in
+2013, we decided not just to monitor YouTube-Clips via &lt;em&gt;classical&lt;/em&gt; sampling
+techniques like keyword-searches on YouTube. Therefore, we took advantage of the
+&lt;a href="http://arxiv.org/abs/1301.6932"&gt;cross-pollinated&lt;/a&gt; diffusion processes between
+Social Network Sites (SNS) like Facebook or - in this case - Twitter:&lt;/p&gt;
+&lt;p&gt;To gain an understanding of which YouTube-Clips are relevant in terms of
+political participation and discussion on Twitter, we collected Tweets which are
+related to the federal elections, resolved the URLS within those Tweets and - if
+an URL linked to a YouTube-Clip - included these Clips in our YouTube-Election
+sample. This method enables the &lt;em&gt;early-bird&lt;/em&gt; detection of (likely) political
+YouTube-Clips and supplements the more traditional data-collection process via
+YouTube search terms, channel monitoring or crawling the YouTube-Network of
+related videoclips&lt;/p&gt;
+&lt;h2&gt;Collecting political Tweets via Streaming-API&lt;/h2&gt;
+&lt;p&gt;Twitter, as opposed to Facebook as a less accessible SNS in terms of crawling
+topics, posts and alike, became sort of a favourite toy for the social
+science/information science etc. To a very large extend, Twitter (comparetivly)
+open API's and a vast collection of tool/websites to get data out of the system
+may account for this affinity towards the quite small SNS - when compared to
+Facebook. However, although Twitter-Users might be completely un-representative,
+there is a potential of Twitter as an early-warning system, ifnluential intra-
+media-agenda-setting authority. When dealing with the dissemination of
+(political) content,
+&lt;a href="https://speakerdeck.com/dorvak/news-diffusion-ecrea-2012"&gt;we&lt;/a&gt; can
+show that news-articles disseminate lamost an order of magnitude faster on
+Twitter than on Facebook.&lt;/p&gt;
+&lt;script async class="speakerdeck-embed" data-id="3e041690b8e401310db522637f6c77d3" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;Therefore, we conclude that Twitter is sort of a news-ticker, while Facebook is
+used for the discussion of links and content within smaller &lt;a href="http://www.schmidtmitdete.de/english-content"&gt;'personal
+publics'&lt;/a&gt;. This holds true for the
+diffusion of audiovisual-content as well: Tweets for YouTube-Clips usually
+precede the Shares, Likes and Comments on Facebook (see one example above).&lt;/p&gt;
+&lt;p&gt;What´s crucial here and should not be underestimated is the &lt;em&gt;flow of content&lt;/em&gt;
+not only &lt;em&gt;within&lt;/em&gt; SNS, but &lt;em&gt;across&lt;/em&gt; different online-outlets. These &lt;em&gt;cross-
+pollination&lt;/em&gt; process might be triggered by users who uses both multiple networks
+and once (Studies?) and disseminate content/links  - like bee's transport pollen
+- into other networks. Of course, users who do create content on platforms like
+YouTube tend to use Twitter and Facebook (Study) and therefore &lt;em&gt;pollute&lt;/em&gt; other
+SNS intentionally (which links to the concept of virality ..). From a more
+abstract, system-theoretical viewpoint, social or communicative subsystems like
+Twitter and Facebook observe and react to each other (again, Twitter is more
+observable than Facebook, f.e.).&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Till Keyling</dc:creator><pubDate>Thu, 12 Jan 2012 00:00:00 +0100</pubDate><guid>tag:tillkeyling.com,2012-01-12:sampling-youtube-clips-from-twitter.html</guid></item><item><title>YouTube Language-Detection</title><link>http://tillkeyling.com/youtube-language-detection.html</link><description>&lt;p&gt;Due to the lack of a language-tag in the YouTube-API, which would be
+extremely helpful determining the language of a videoclip (precisely:
+the language of the title and description; language detection in
+audiovisual content requires much more effort and cpu-power), i ran a
+quick test with python´s &lt;a href="https://bitbucket.org/spirit/guess_language/"&gt;guess-language&lt;/a&gt; module
+I think it´s a simple but pretty reliable algorithm for language
+detection tasks, based on a trigram detection and the enchant-library
+for over 60 languages.&lt;/p&gt;
+&lt;p&gt;In our project about political communication on &lt;a href="http://www.fgpk.de/en/teilprojekte/#Teilprojekt1"&gt;YouTube&lt;/a&gt;
+we stumbled upon a large amount of non-german videoclips (sampling from
+the feed for the most-viewed videos in the “news &amp;amp; politics” - category
+in germany). To get an overview of the linguistic diversity on the
+german version on YouTube, I conducted a language-detection test on a
+small subsample of our data (350 videoclips).&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dl.dropbox.com/u/20490817/lang_barplot.png"&gt;&lt;img alt="image" src="https://dl.dropbox.com/u/20490817/lang_barplot.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;First of all, just about 50% of the recent videos (“top viewed in
+news..”) have a german description (30 of them have a title in another
+language; a detection solely based on the (usually short) titles seems
+to be unreliable), followed by clips with an english-speaking
+description. The amount of an unsuccessful classification task
+(“UNKNOWN”) is noteworthy, but may be reduced by a combination with the
+title-classification. In line with the results of our manual-coding
+approach, a significant amount of descriptions and titles are in an
+arabic language. Furthermore, the results of the automatic
+language-detection could be combined with videoclip-metadata.
+&lt;a href="https://dl.dropbox.com/u/20490817/lang_jitter.png"&gt;&lt;img alt="image" src="https://dl.dropbox.com/u/20490817/lang_jitter.png" /&gt;&lt;/a&gt;
+For example, videoclips with a german description are obviously less
+successful than those with an arabic or english description. At the
+moment, i´m validating the classification results with a manual coding
+of the titles and descriptions, but this approach might be a starting
+point to reduce/filter the sample-size of audiovisual material, esp. in
+preparation of a manual content analysis or simply to get an overview of
+a huge amount of user-generated-content).&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Till Keyling</dc:creator><pubDate>Thu, 12 Jan 2012 00:00:00 +0100</pubDate><guid>tag:tillkeyling.com,2012-01-12:youtube-language-detection.html</guid><category>YouTube</category><category>R</category><category>Python</category></item></channel></rss>
