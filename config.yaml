@@ -59,7 +59,7 @@ params:
   darkMode:
     provider: darkreader
     enable: true
-    default: dark
+    default: system
 
   # Configure various features of this theme
   features:
