@@ -1,0 +1,97 @@
+# section information
+section:
+  name: Publications (selected)
+  id: publications
+  enable: true
+  weight: 6
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# filter buttons
+buttons:
+- name: All
+  filter: "all"
+- name: "Computational Social Science"
+  filter: "scientific"
+
+# your publications
+publications:
+
+- title: Kollektives Gatekeeping. Die Herstellung von Publizität in Social Media [Collective Gatekeeping]
+  publishedIn:
+    name: Springer VS
+    date: 2017
+    url: https://www.springer.com/de/book/9783658166854
+  authors:
+  - name: Till Keyling
+    url: https://tillkeyling.com
+  paper:
+    summary: By developing a theoretical model of collective gatekeeping and supported by the empirical study of political video clips on YouTube, the author describes the production of public attention in social media and shows fundamental differences to traditional mass media. He shows that publicity in social media is a continuous struggle for attention, which leads to its strong unequal distribution and contradicts the ideal of democratization of political communication in and through social media.
+  categories: ["scientific"]
+  tags: ["Machine Learning", 'Computational Social Science']
+
+- title: "News sharing in social media: A review of current research on news sharing users, content and networks"
+  publishedIn:
+    name: Social Media + Society
+    date: 2015
+    url: https://doi.org/10.1177/2056305115610141
+  authors:
+  - name: Anna Kümpel
+    url: https://anna-kuempel.de/
+  - name: Veronika Karnowski
+  - name: Till Keyling
+  paper:
+    summary: This article provides a review of scientific, peer-reviewed articles that examine the relationship between news sharing and social media in the period from 2004 to 2014. A total of 461 articles were obtained following a literature search in two databases (Communication & Mass Media Complete [CMMC] and ACM), out of which 109 were deemed relevant based on the study’s inclusion criteria. In order to identify general tendencies and to uncover nuanced findings, news sharing research was analyzed both quantitatively and qualitatively. Three central areas of research—news sharing users, content, and networks—were identified and systematically reviewed. In the central concluding section, the results of the review are used to provide a critical diagnosis of current research and suggestions on how to move forward in news sharing research.
+  categories: ["scientific"]
+  tags: ['Computational Social Science']
+
+
+- title: "Exemplification 2.0? The Roles of Direct and Indirect Social Information in Conveying Health Messages through Social Network Sites"
+  publishedIn:
+    name: Journal of Media Psychology
+    date: 2014
+    url: https://doi.org/10.1027/1864-1105/a000103
+  authors:
+  - name: Christina Peter
+    url: https://christina-peter.jimdosite.com
+  - name: Constanze Rossmann
+    url: https://www.ifkw.uni-muenchen.de/organisation/personen/professoren/rossmann_constanze/index.html
+  - name: Till Keyling
+  paper:
+    summary: The Internet in general, and social network sites in particular, provide great potential for communicating health issues. Different forms of online social information, such as user comments and likes, might foster the effectiveness of these communication channels. However, it is unclear whether these types of information affect people’s perceptions and judgments of health issues. Combining exemplification theory with research into online social information, we conducted a 2 × 3 × 2 experiment to address this question. We presented our participants (N = 577) with a discussion of influenza vaccination on mock-up of a Facebook page and varied the direct social information (user comments) and additional indirect social information (comment likes and post likes) given, to assess the impact on individuals’ perceptions of public behavior and risk, and on their personal attitudes and behavioral intentions. Our results showed that the participants relied on direct but not indirect social information when forming judgments.
+  categories: ["scientific"]
+  tags: ['Computational Social Science']
+
+- title: "Die Darstellung von Politikern auf YouTube: Die Rolle von Humor in der Politikvermittlung"
+  publishedIn:
+    name: "In K. Imhof, R. Blum, H. Bonfadelli, O. Jarren, & V. Wyss (Eds.), Demokratisierung durch Social Media? (pp. 113–132). Wiesbaden: Springer VS."
+    date: 2015
+  authors:
+  - name: Till Keyling
+  - name: Anna Kümpel
+    url: https://anna-kuempel.de/
+  - name: Hans-Bernd Brosius
+    url: https://www.ls1.ifkw.uni-muenchen.de/personen/professoren/brosius_hansbernd/index.html
+  paper:
+    url: https://doi.org/10.1007/978-3-658-10140-4_8
+  categories: ["scientific"]
+  tags: ["Computational Social Science"]
+
+- title: "Automatisierte Inhaltsanalyse [Automated Content Analysis]"
+  publishedIn:
+    name: "In M. Welker, M. Taddicken, J.-H. Schmidt & N. Jackob (Hrsg.), Handbuch Online-Forschung. Sozialwissenschaftliche Datengewinnung und -auswertung in digitalen Netzen (pp. 233-254). Köln: Herbert von Halem Verlag"
+    date: 2015
+  authors:
+  - name: Till Keyling
+  paper:
+    url: https://www.halem-verlag.de/handbuch-online-forschung/
+    summary: Categorization and evaluation of different types of automated content-anlysis methodologies (NLP) and their applications within the social sciences.
+  categories: ["scientific"]
+  tags: ["Computational Social Science"]
+
+
+
+
+
+

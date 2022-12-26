@@ -1,0 +1,15 @@
+# some information about you
+name: "Till Keyling"
+# greeting message before your name. it will default to "Hi! I am" if not provided
+greeting: "Hi, I am"
+image: "images/author/till.jpeg"
+# give your some contact information. they will be used in the footer
+contactInfo:
+  github: dorvak
+  linkedin: tkeyling
+
+# some summary about what you do
+#summary:
+#  - I´m a Data Architect & Software Engineer
+#  - I love building data-intensive applications
+#  - I provide hands-on support & consulting on Data Science, Data Engineering and Data Architecture

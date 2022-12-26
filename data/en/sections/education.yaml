@@ -1,0 +1,56 @@
+# section information
+section:
+  name: Education
+  id: education
+  template: sections/education.html # Use "sections/education-alt.html for alternate template.
+  enable: true
+  weight: 4
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+degrees:
+- name: Ph.D. in Communication Science
+  icon: fa-microscope
+  timeframe: 2010-2015
+  publications:
+    - title: "Kollektives Gatekeeping.Die Herstellung von Publizität in Social Media"
+      url: https://www.springer.com/de/book/9783658166854
+    - title: "Automatisierte Inhaltsanalyse. In: Handbuch Online-Forschung. Sozialwissenschaftliche Datengewinnung und -auswertung in digitalen Netzen."
+      url: https://www.halem-verlag.de/handbuch-online-forschung/
+    - title: "Observing online content. In: Political Communication in the Online World: Theoretical Approaches and Research Designs"
+      url: http://ndl.ethernet.edu.et/bitstream/123456789/48695/1/40.pdf#page=200
+    - title: "News Sharing in Social Media: A Review of Current Research on News Sharing Users, Content, and Networks"
+      url: http://journals.sagepub.com/doi/10.1177/2056305115610141
+    - title: "Exemplification 2.0: Roles of direct and indirect social information in conveying health messages through social network sites."
+      url: https://psycnet.apa.org/record/2014-10231-004
+  institution:
+    name: Ludwig Maximilian University of Munich
+    url: "#"
+  extracurricularActivities:
+     - Realizing two empirical research projects on political communication in the social web within a publicly funded, international research group
+     - Developing a toolkit for the automatization of social media data-collection via API’s [Facepager](https://github.com/strohne/Facepager)
+     - Teaching activity and supervision of multiple theses in BA/MA programs
+
+  description: "Developed a theoretical framework to model attention dynamics in the realm of social media; designed new methodological approaches to gather data from social media (unobstrusive, observational methods such as massive data crawling from websites, API‘s), which evolved into what is now known as 'computational social science'."
+- name: B.A & M.A in Communication Science
+  icon: fa-graduation-cap
+  timeframe: 2005-2010
+  description: "Thesis on Automated Content Analysis/Natural Language Processing (Applications of machine learning algorithms such as support-vector-machines on textual data, i.e. topic detection, sentiment analysis and named-entity recognition)"
+  institution:
+    name: Ludwig Maximilian University of Munich
+    url: "#"
+  publications:
+    - title: "Die Analyse von Texten mittels automatisierter Inhaltsanalyse. Verfahren und Anwendungen. (Master-Thesis)"
+    - title: "Online-Diskussionsforen als Indikator für interpersonale (Offline-) Kommunikation? Methodische Ansätze und Probleme. In: Das Internet als Forschungsinstrument und Gegenstand in der Kommunikationswissenschaft"
+      url: https://www.halem-verlag.de/das-internet-als-forschungsinstrument-und-gegenstand-in-der-kommunikationswissenschaft/
+    - title: "Mediennutzung als funktionale Alternative zur Realität: Theorien, Modelle und Befunde zum Verhältnis virtueller und realer interpersonaler Beziehungen (Bachelor-Thesis)"
+  grade: #(optional)
+    scale: GPA
+    achieved: 1.2 (Dean´s List)
+    outOf: 5
+  extracurricularActivities: #(optional)
+  - Graduate assistant (IfKW, LMU) in a DfG-funded reasearch project
+  - Realized the technical implementation of data collection in online bulletin-boards for a multi-national research project
+    Quality control and evaluation of (manual) content analysis in the realm of online-communication/social media
+  - Held multiple presentations on international conferences

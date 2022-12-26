@@ -1,0 +1,71 @@
+# section information
+section:
+  name: Skills
+  id: skills
+  enable: true
+  weight: 2
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# Your Skills.
+# Give a summary of you each skill in the summary section.
+skills:
+
+- name: Python Development
+  logo: /images/sections/skills/python.png
+  summary: "One of my main languages for professional software-development. Capable of designing & writing scalable, testable, and maintainable software."
+  url: "https://python.org/"
+
+- name: Spark
+  logo: /images/sections/skills/spark.png
+  summary: "Solid experience with Spark for batch-processing (ETL, Machine-Learning) as well as (structured) streaming together with technologies such as Hive and Kafka."
+  url: "https://spark.apache.org"
+
+- name: Kubernetes
+  logo: /images/sections/skills/kubernetes.png
+  summary: "Sound understanding of deploying and managing application on Kubernetes and OpenShift. Worked on cloud-based and on-premise K8s-Clusters and deployed applications using Helm."
+  url: "https://kubernetes.io/"
+
+- name: Airflow
+  logo: /images/sections/skills/airflow.png
+  summary: "Early adopter since v1.8.x. Capable of deploying Airflow using different Executors, developing complex DAGs and custom Operators and extending Airflow (f.e. the UI) to the customers need. Sound understanding of the Do´s and Dont´s for Airflow."
+  url: "https://kubernetes.io/"
+
+- name: Kafka
+  logo: /images/sections/skills/kafka.png
+  summary: "Using Kafka to process large realtime-streaming datasets and to build event-driven applications. Capable of managing the underlying infrastructure and intermediate understanding of different formats and the usage of schemas & schema evolution (Avro, Protobuf)."
+  url: "https://kafka.apache.org"
+
+- name: Cloud Technologies
+  logo: /images/sections/skills/cloud.png
+  summary: "Experience with major cloud-vendors (PaaS,SaaS,IaaS) such as AWS and GCP."
+
+- name: ELK
+  logo: /images/sections/skills/elk.png
+  summary: "Capable of logging and monitoring applications with Elasticsearch, Logstash/Filebeat and Kibana. Basic knowledge in the setup of the infrastructure."
+  url: "https://www.elastic.co/"
+
+- name: Prometheus
+  logo: /images/sections/skills/prometheus.png
+  summary: "Basic exposure and capable of configuring Prometheus metrics"
+  url: "https://prometheus.io/"
+
+- name: Docker
+  logo: /images/sections/skills/docker.svg
+  summary: "Writing programs as dockerized container(s). Experienced with build-processes, core concept of containerization and optimization techniques (f.e. reducing images sizes)."
+  url: "https://www.docker.com/"
+
+- name: Web-Technologies
+  logo: /images/sections/skills/html.png
+  summary: "I´ve worked with frameworks such as Django and Flask to build APIs and Websites, worked in projects using TS/JS-Frameworks such as Angular and Webservers such as Gunicorn, Nginx and Apache HTTP."
+
+- name: Linux
+  logo: /images/sections/skills/linux.png
+  summary: "Day-to-day operating-system. Capable of writing shell scripts, Init-Scripts and analyzing logs & essential system-metrics. Basic understanding of the Linux Internals."
+
+- name: Git
+  logo: /images/sections/skills/git.png
+  summary: "Experienced with git-based development (GitHub/GitLab/Gitlab CI/CD, Bitbucket)"
+  url: "https://git-scm.com/"
+

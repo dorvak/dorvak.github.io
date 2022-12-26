@@ -1,0 +1,27 @@
+# Copyright Notice
+copyright: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>'
+
+# A disclaimer notice for the footer. Make sure you have set "params.footer.disclaimer.enable: true" in your `config.yaml` file.
+disclaimer: 'Disclaimer'
+
+# Meta description for your site.  This will help the search engines to find your site.
+description: Portfolio and personal blog of Till Keyling
+
+# specify the list of custom menus that you want to show in the top navbar.
+# they will be separated by a divider from the main menus.
+customMenus:
+#- name: Docs
+#  url: https://toha-guides.netlify.app/posts/
+#  # specify whether to hide the menu item from top navbar or not.
+#  hideFromNavbar: false
+#  # specify whether to show the menu item in footer or not.
+#  # if you set it to true, make sure you have set `footer.navigation.customMenus: true` in your config.yaml
+#  showOnFooter: false
+
+# Specify OpenGraph Headers
+openGraph:
+  title: Till Keyling - Data Architect
+  type: website
+  description: Portfolio and personal blog of Till Keyling
+  image: images/author/till.jpeg
+  url: https://tillkeyling.com

@@ -1,0 +1,41 @@
+# section information
+section:
+  name: Accomplishments
+  id: accomplishments
+  enable: true
+  weight: 8
+  showOnNavbar: true
+
+  # Can optionally hide the title in sections
+  hideTitle: false
+
+
+# Your accomplishments
+accomplishments:
+
+- name: iSAQB® CPSA-F
+  timeline: "December 2022"
+  organization:
+    name: Certible
+  courseOverview: The CPSA Foundation Level (CPSA‑F®) conveys the ability in a team to design and document an appropriate software architecture, to assure and evaluate quality, and to know the necessary tools, all that for properly described requirements and systems up to a medium size.
+  certificateURL: https://www.certible.com/de/verify/f4ebc76e1b8cffa03d7b6624b38fa86b/
+
+- name: Apache Hadoop Basics
+  timeline: "January 2018"
+  organization:
+    name: Linux Hotel
+    url: https://www.linuxhotel.de
+  courseOverview: Introduction to Apache Hadopp, the MapReduce Framework, Apache Spark and Apache Hive.
+  certificateURL: "https://linuxhotel.de"
+
+- name: Scrum Master (PSM I)
+  timeline: "January 2017"
+  organization:
+    name: Scrum.org
+    url: https://scrum.org
+  courseOverview: Introduction to the foundations of Scrum & Agile Practices. Certification from Scrum.org as a Scrum Master (PSM I)
+  certificateURL: "https://scrum.org"
+
+
+ 
+

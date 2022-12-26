@@ -1,0 +1,68 @@
+# section information
+section:
+  name: About
+  id: about
+  enable: true
+  weight: 1
+  showOnNavbar: true
+  template: sections/about.html
+
+# your designation
+designation: Software Engineering Team-Lead
+# your company information
+company:
+  name: Payback GmbH
+  url: "https://www.payback.de"
+
+# your resume. this file path should be relative to you "static" directory
+# Deprecated. Use resourceLinks instead.
+# resume: "files/resume.pdf"
+
+# a summary about you
+summary: 'I am a passionate Software Engineering Team-Lead and Data Architect who loves planning and building data-intensive applications.
+ <br> Coming from a computational social-science background (PhD), I studied large-scale information systems using machine-learning approaches for content analysis, built large-scale (web)-scrapers and created an OSS-Tool (Facepager).
+'
+
+# your social links
+# give as many as you want. use font-awesome for the icons.
+socialLinks:
+- name: Github
+  icon: "fab fa-github"
+  url: "https://www.github.com/example"
+
+- name: Stackoverflow
+  icon: "fab fa-stack-overflow"
+  url: "https://stackoverflow.com/users/872535/dorvak"
+
+- name: LinkedIn
+  icon: "fab fa-linkedin"
+  url: "https://www.linkedin.com/in/tkeyling"
+
+
+
+# You can put custom buttons to link your relevant resources.
+# For example, you can put link for your resume.
+#resourceLinks:
+#- title: "My Resume"
+#  url: "files/resume.pdf"
+
+# Show your badges
+# You can show your verifiable certificates from https://www.credly.com.
+# You can also show a circular bar indicating the level of expertise on a certain skill
+badges:
+#- type: certification
+#  name: Apache Hadoop Basics
+#  url: "https://linuxhotel.de"
+#  badge: "https://www.linuxhotel.de/wp-content/themes/liho/img/linuxhotel.svg"
+#
+#- type: certification
+#  name: Scrum Master (PSM I)
+#  url: "https://www.scrum.org/certification-list"
+#  badge: "https://images.credly.com/size/220x220/images/a2790314-008a-4c3d-9553-f5e84eb359ba/image.png"
+
+
+## you can also provide color code instead of the color name
+# - type: soft-skill-indicator
+#   name: Example 1
+#   percentage: 75
+#   color: "#00adb5"

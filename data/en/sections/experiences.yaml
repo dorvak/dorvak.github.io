@@ -1,0 +1,93 @@
+# section information
+section:
+  name: Experiences
+  id: experiences
+  enable: true
+  weight: 3
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true 
+
+# Your experiences
+experiences:
+- company:
+    name: Payback GmbH
+    url: "https://www.payback.group"
+    location: Munich, DE
+    # company overview
+    overview: Payback is a multi-national, data-driven marketing & loyalty-program that delivers marketing & loyalty-services to over 31 Million customers (in DE only) and hundreds of partners (POS-Partners, Online-Shops etc.) worldwide.
+
+  positions:
+  - designation: Team Lead Software Engineering Data Science
+    start: Feb 2020
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Leading, supporting and scaling two SE-Teams which build data-intensive applications (SAS, Python, Oracle) central to Paybacks operating model and delivering value to millions of customers on a daily basis
+    - Responsible for a large software migration-project, shaping technological as well as organisational decisions for the future marketing-platform (Python, Containerization and Cloud-Services)
+    - Conceptualization and Modernization of a new Data-Landscape within Payback (involving topics & concepts such as Data-Mesh & Domain-Driven-Design, Data Quality and Observability)
+
+
+- company:
+    name: ProSiebenSat.1 TV Deutschland GmbH Co.
+    url: "https://www.prosiebensat1.com"
+    location: Munich, DE
+    overview: As a digital group, ProSiebenSat.1 combines leading Entertainment brands with a with a strong Dating & Video and Commerce & Ventures portfolio under one roof.
+  positions:
+  - designation: Senior Data Scientist
+    start: May 2016
+    end: Jan 2020
+    responsibilities:
+    - Prototyping & development of a web-application for the R&D division (Django, Java Spring, Elasticsearch), Steering & Monitoring an agile team (up to 6 developers) as a product owner to build an enterprise-level application for > 200 stakeholders within the company along the whole lifecycle
+    - Trend detection, prediction and topic modelling on TV-usage/time-series & unstructured data in Python and R (LDA, Word2Vec, HLM)
+    - Risk-assessment modeling for a Game-Show (loss prediction & insurance consulting)
+    - Real-time analytics on large-scale HBBTV tracking-data in order to predict future market-shares of TV-programs (Webtrekk, Spark Streaming, Tableau)
+    - Design and implementation of ETL-processes, constructing a DWH and building APIs for multiple divisions (Pentaho Kettle, Apache Airflow, Postgres, Django REST-Framework, Hive/Spark)
+    - Architecture & development of a group-wide Data Science Workbench based on existing Hadoop infrastructure (CDH, JupyterHub, Yarn)
+    - Technology consulting for the executive level (f.e. applications of blockchain-technologies in the area of license-management)
+
+
+- company:
+    name: Department of Communication Studies and Media Research (IfKW)
+    url: "https://www.en.ifkw.uni-muenchen.de/index.html"
+    location: Munich, DE
+    overview: The IfKW is internationally recognized for its excellence in research in a broad variety of areas including media and politics; the transformation of mediascapes; journalism, public relations and organizational communication; media use, reception and effects; as well as conflict, risk and health communication.
+  positions:
+  - designation: Research Assistant
+    start: Oct 2010
+    end: Apr 2016
+    responsibilities:
+      - Worked in a multi-national DFG-research project in the field of political communication in the online world, with special focus on developing methods for the large-scale data collection and data analysis in social media such as YouTube, Twitter and Facebook.
+      - Developing a toolkit for the automatization of social media data-collection via API’s (Facepager)
+      - Supervised several bachelor- and master theses
+      - Teaching activities such as lecturing a master seminar with a focus on digital methods.
+
+- company:
+    name: Department of Communication Studies and Media Research (IfKW)
+    url: "https://www.en.ifkw.uni-muenchen.de/index.html"
+    location: Munich, DE
+    overview: The IfKW is internationally recognized for its excellence in research in a broad variety of areas including media and politics; the transformation of mediascapes; journalism, public relations and organizational communication; media use, reception and effects; as well as conflict, risk and health communication.
+  positions:
+  - designation: Graduate Assistant
+    start: Jun 2007
+    end: Jul 2009
+    responsibilities:
+    - Realized the technical implementation of data collection in online bulletin-boards for a multi-national research project
+    - Quality control and evaluation of (manual) content analysis in the realm of online-communication/social media
+
+- company:
+    name: solute GmbH
+    url: "https://www.en.ifkw.uni-muenchen.de/index.html"
+    location: Munich, DE
+    overview: The solute GmbH offered a leading price-comparison platform (billiger.de)
+  positions:
+  - designation: Working Student/Intern
+    start: Mai 2007
+    end: August 2008
+    responsibilities:
+      - Conducted and evaluated user surveys; executive summaries of usage data
+      - Analysis of ad-campaigns (Google DFP)
+
+
+
