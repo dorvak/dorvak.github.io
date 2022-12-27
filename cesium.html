@@ -4,7 +4,7 @@
 <div id="cesiumContainer" style="width:100%; height:100%;"></div>
 <script type="text/javascript">
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmMDM2N2E1ZC1iYTg4LTRkMTUtYTczYi02OGNmOTBjMzJmZDQiLCJpZCI6NTAxMTEsImlhdCI6MTYxNzYyOTczN30.6Sxab515UcbdwQKdd8uHdj3VQFXYFXZZhNi4DiAUrL8'
-    var widget = new Cesium.Viewer("cesiumContainer", {animation : false, baseLayerPicker : false, fullscreenButton : false, geocoder : false, homeButton : true, infoBox : true, sceneModePicker : false, selectionIndicator : false, timeline : false, navigationHelpButton : true, navigationInstructionsInitiallyVisible : false, imageryProvider: new Cesium.MapboxStyleImageryProvider({
+    var widget = new Cesium.Viewer("cesiumContainer", {animation : false, baseLayerPicker : false, fullscreenButton : false, geocoder : false, homeButton : true, infoBox : true, orderIndependentTranslucency : false, sceneModePicker : false, selectionIndicator : false, timeline : false, navigationHelpButton : true, navigationInstructionsInitiallyVisible : false, imageryProvider: new Cesium.MapboxStyleImageryProvider({
     styleId: 'outdoors-v12',
     accessToken: 'pk.eyJ1IjoidGtleWxpbmciLCJhIjoiY2xieXRvMm9pMHdjZDNxcW9seDRobzl2eSJ9.jOAFlmJaSLjscSivTnmZcA'}),
         terrainProvider : Cesium.createWorldTerrain({requestVertexNormals: true})});
