@@ -1,35 +1,10 @@
-<meta charset="utf-8">
+<meta charset="utf-8" content="width=device-width, initial-scale=1">
 <head>
     <script src="https://cesium.com/downloads/cesiumjs/releases/1.100/Build/Cesium/Cesium.js"></script>
     <link href="https://cesium.com/downloads/cesiumjs/releases/1.100/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <div id="cesiumContainer" style="width:100%; height:100%;"></div>
     <style type="text/css">
-        #toggle-peaks {
-            z-index: 1;
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            border-radius: 4px;
-            background-color: cornflowerblue
-        }
-
-        #toggle-labels {
-            z-index: 1;
-            position: absolute;
-            top: 60px;
-            left: 30px;
-            border-radius: 4px;
-            background-color: cornflowerblue
-        }
-
-        #toggle-starts {
-            z-index: 1;
-            position: absolute;
-            top: 90px;
-            left: 30px;
-            border-radius: 4px;
-            background-color: cornflowerblue
-        }
 
         #toolbar-left {
             display: block;
@@ -37,13 +12,41 @@
             top: 5px;
             left: 5px;
         }
+
+        .icon-bar {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: auto;
+            width: 60px;
+            background-color: rgba(85, 85, 85, 0.1);
+        }
+
+        .icon-bar a {
+            display: block;
+            text-align: center;
+            padding: 16px;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 30px;
+        }
+
+        .icon-bar a:hover {
+            background-color: rgba(0, 0, 0, 0.94);
+        }
+
+        .active {
+            background-color: #04AA6D;
+        }
     </style>
 </head>
 <body>
-<button id="toggle-peaks">Show SummIt Cylinders</button>
-<button id="toggle-labels">Show SummIt Labels</button>
-<button id="toggle-starts">Show SummIt Take-Offs</button>
 <div id="toolbar-left"></div>
+<div class="icon-bar">
+  <a id='toggle-labels'  href="#"><i class="fa fa-tag"></i></a>
+  <a id="toggle-peaks" href="#"><i class="fa fa-mountain"></i></a>
+  <a id="toggle-starts" href="#"><i class="fa-solid fa-plane-departure"></i></a>
+</div>
 <script type="text/javascript">
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmMDM2N2E1ZC1iYTg4LTRkM' +
         'TUtYTczYi02OGNmOTBjMzJmZDQiLCJpZCI6NTAxMTEsImlhdCI6MTYxNzYyOT' +
@@ -133,7 +136,7 @@
                     label: {
                         translucencyByDistance: new Cesium.NearFarScalar(20000, 1.0, 95000, 0.0),
                         text: entity.properties.peakname.valueOf().split(',').shift(),
-                        fillColor: Cesium.Color.fromCssColorString("#41413DFF"),
+                        fillColor: Cesium.Color.fromCssColorString("#ffc80f"),
                         show: true,
                         horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
                         verticalOrigin: Cesium.VerticalOrigin.CENTER,
