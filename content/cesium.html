@@ -36,17 +36,16 @@
                 }*/
 
         .active {
-            background-color: #04AA6D;
+            background-color: rgba(23, 149, 239, 0.4);
         }
     </style>
 </head>
 <body>
 <div id="toolbar-left"></div>
 <div class="icon-bar">
-    <a class='active' id='toggle-labels'><i class="fa fa-tag"></i></a>
-    <a class='active' id='toggle-peaks'><i class="fa fa-mountain"></i></a>
+    <a class='active' id="toggle-peak"><i class="fa fa-mountain"></i></a>
     <a class='active' id="toggle-starts"><i class="fa-solid fa-plane-departure"></i></a>
-
+    <a id="toggle-anim"><i class="fa-solid fa-pause"></i></a>
 </div>
 <div id="baseLayerPickerContainer" style="position:absolute;top:24px;right:24px;"></div>
 <script type="text/javascript">
@@ -108,7 +107,7 @@
     var extent = Cesium.Rectangle.fromDegrees(12.594092, 47.798854, 12.694092, 47.898854);
 
     Cesium.Camera.DEFAULT_VIEW_RECTANGLE = extent;
-    Cesium.Camera.DEFAULT_VIEW_FACTOR = 1;
+    Cesium.Camera.DEFAULT_VIEW_FACTOR = 0.2;
 
     const viewer = new Cesium.Viewer("cesiumContainer", {
         animation: false,
@@ -143,9 +142,11 @@
     viewer.scene.skyAtmosphere.atmosphereMieScaleHeigh = 3200;
     viewer.scene.globe.enableLighting = false;
     viewer.scene.highDynamicRange = false;
-    /*viewer.scene.light = new Cesium.DirectionalLight({
-        direction: viewer.scene.camera.directionWC, intensity: 100
-    });*/
+
+
+    /*    viewer.scene.light = new Cesium.DirectionalLight({
+            direction: viewer.scene.camera.directionWC, intensity: 100
+        });*/
 
 
     (async () => {
@@ -161,6 +162,7 @@
 
             const logo = viewer.entities.add({
                 position: bergen,
+                id: 'Logo',
                 orientation: orientation,
                 model: {
                     uri: resource,
@@ -169,21 +171,19 @@
 
                 },
             });
-            await viewer.flyTo(logo);
         } catch (error) {
             console.log(error);
         }
     })();
 
     const peaks = viewer.entities.add(new Cesium.Entity());
-    const labels = viewer.entities.add(new Cesium.Entity());
     const startpl = viewer.entities.add(new Cesium.Entity());
 
     (async () => {
         try {
             let peak_color = Cesium.Color.fromCssColorString('#830fff').withAlpha(0.4)
             const resource = await Cesium.IonResource.fromAssetId(1471201);
-            const cylinder_model = await Cesium.IonResource.fromAssetId(1475397);
+            const cylinder_model = await Cesium.IonResource.fromAssetId(1475586);
             const dataSource = await Cesium.GeoJsonDataSource.load(resource, {clampToGround: true});
             for (const entity of dataSource.entities.values) {
                 entity.billboard = undefined;
@@ -196,13 +196,14 @@
                 entity_deg = Cesium.Cartesian3.fromDegrees(
                     Cesium.Math.toDegrees(entity_deg.longitude),
                     Cesium.Math.toDegrees(entity_deg.latitude),
-                    entity.properties.elevation.getValue() * 0.3048 + 2200
+                    entity.properties.elevation.getValue() * 0.3048 + 1600
                 );
                 await viewer.entities.add({
                     position: entity_deg,
-                    parent: labels,
+                    parent: peaks,
                     label: {
-                        translucencyByDistance: new Cesium.NearFarScalar(20000, 1.0, 95000, 0.0),
+                        font: '30px Helvetica, sans serif',
+                        translucencyByDistance: new Cesium.NearFarScalar(80000, 1.0, 300000, 0.0),
                         text: entity.properties.peakname.valueOf().split(',').shift(),
                         fillColor: Cesium.Color.fromCssColorString("#ffffff"),
                         show: true,
@@ -213,13 +214,11 @@
                     model: {
                         uri: cylinder_model,
                         scale: 100,
-                        color: Cesium.Color.fromCssColorString("#fabc00").withAlpha(0.7), //otherwithe see backFaceCulling
                         heightReference: Cesium.HeightReference.CLAMP_TO_GROUND
                     }
                 })
             }
             await viewer.dataSources.add(dataSource);
-            //await viewer.flyTo(logo);
         } catch (error) {
             console.log(error);
         }
@@ -253,6 +252,7 @@
                 });
             }
             await viewer.dataSources.add(dataSource);
+             viewer.flyTo(viewer.entities.getById('Logo'));
 
         } catch (error) {
             console.log(error);
@@ -266,25 +266,15 @@
         }
     }
 
-    document.querySelector('#toggle-peaks').addEventListener('click', showntoggle(peaks))
-    document.querySelector('#toggle-labels').addEventListener('click', showntoggle(labels))
+    function pauseAnimation() {
+        viewer._clockViewModel.shouldAnimate = !viewer._clockViewModel.shouldAnimate
+        document.querySelector('#toggle-anim').classList.toggle('active')
+    }
+
+    document.querySelector('#toggle-peak').addEventListener('click', showntoggle(peaks))
     document.querySelector('#toggle-starts').addEventListener('click', showntoggle(startpl))
+    document.querySelector('#toggle-anim').addEventListener('click', pauseAnimation)
 
-    let editHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
 
-    /*    editHandler.setInputAction(function (e) {
-            var shapeEditMenu = document.getElementById("toolbar-left");
-            shapeEditMenu.textContent = 'Testing';
-            shapeEditMenu.style.display = "block";
-            shapeEditMenu.style.left = e.position.x + 'px';
-            shapeEditMenu.style.top = e.position.y + 'px';
-            shapeEditMenu.style.background = 'rgba(42, 42, 42, 0.8)';
-            shapeEditMenu.style.border = '1px solid #888';
-        }, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
-
-        editHandler.setInputAction(function (e) {
-            var shapeEditMenu = document.getElementById("toolbar-left");
-            shapeEditMenu.style.display = "none";
-        }, Cesium.ScreenSpaceEventType.LEFT_DOWN);*/
 </script>
 </body>
