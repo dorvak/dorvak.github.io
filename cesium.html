@@ -112,6 +112,7 @@
 
     const viewer = new Cesium.Viewer("cesiumContainer", {
         animation: false,
+        shouldAnimate: true,
         fullscreenButton: false,
         geocoder: false,
         baseLayerPicker: false,
@@ -119,7 +120,7 @@
         infoBox: true,
         orderIndependentTranslucency: false,
         sceneModePicker: false,
-        shadows: true,
+        shadows: false,
         selectionIndicator: false,
         timeline: false,
         navigationHelpButton: false,
@@ -141,12 +142,17 @@
     viewer.scene.screenSpaceCameraController.enableCollisionDetection = true;
     viewer.scene.skyAtmosphere.atmosphereMieScaleHeigh = 3200;
     viewer.scene.globe.enableLighting = false;
+    viewer.scene.highDynamicRange = false;
+    /*viewer.scene.light = new Cesium.DirectionalLight({
+        direction: viewer.scene.camera.directionWC, intensity: 100
+    });*/
+
 
     (async () => {
         "use strict";
         try {
-            const resource = await Cesium.IonResource.fromAssetId(1471213);
-            const bergen = Cesium.Cartesian3.fromDegrees(12.594092, 47.798854, 1400)
+            const resource = await Cesium.IonResource.fromAssetId(1475316);
+            const bergen = Cesium.Cartesian3.fromDegrees(12.594092, 47.798854, 2000)
             const hpr = new Cesium.HeadingPitchRoll(Cesium.Math.toRadians(90), 0, 0);
             const orientation = Cesium.Transforms.headingPitchRollQuaternion(
                 bergen,
@@ -158,7 +164,8 @@
                 orientation: orientation,
                 model: {
                     uri: resource,
-                    scale: 9000,
+                    scale: 900,
+                    runAnimations: true
 
                 },
             });
@@ -176,15 +183,12 @@
         try {
             let peak_color = Cesium.Color.fromCssColorString('#830fff').withAlpha(0.4)
             const resource = await Cesium.IonResource.fromAssetId(1471201);
+            const cylinder_model = await Cesium.IonResource.fromAssetId(1475397);
             const dataSource = await Cesium.GeoJsonDataSource.load(resource, {clampToGround: true});
             for (const entity of dataSource.entities.values) {
                 entity.billboard = undefined;
                 entity.parent = peaks;
-                entity.cylinder = new Cesium.CylinderGraphics({
-                    show: true, bottomRadius: 200, topRadius: 200,
-                    length: 2000, heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
-                    material: peak_color
-                });
+
                 let entity_pos = entity.position.getValue();
                 let entity_cart = new Cesium.Cartesian3(entity_pos['x'], entity_pos['y'], entity_pos['z'])
                 var entity_deg = Cesium.Ellipsoid.WGS84.cartesianToCartographic(entity_cart);
@@ -205,6 +209,12 @@
                         horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
                         verticalOrigin: Cesium.VerticalOrigin.CENTER,
                         heightReference: Cesium.HeightReference.NONE
+                    },
+                    model: {
+                        uri: cylinder_model,
+                        scale: 100,
+                        color: Cesium.Color.fromCssColorString("#fabc00").withAlpha(0.7), //otherwithe see backFaceCulling
+                        heightReference: Cesium.HeightReference.CLAMP_TO_GROUND
                     }
                 })
             }
