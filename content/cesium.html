@@ -249,14 +249,16 @@
         }
     })();
 
-    function showntoggle(event) {
-        this.show = !this.show
-        this.classList.toggle('active')
+    function showntoggle(layer) {
+        return function () {
+            layer.show = !layer.show
+            this.classList.toggle('active')
+        }
     }
 
-    document.querySelector('#toggle-peaks').addEventListener('click', showntoggle)
-    document.querySelector('#toggle-labels').addEventListener('click', showntoggle)
-    document.querySelector('#toggle-starts').addEventListener('click', showntoggle)
+    document.querySelector('#toggle-peaks').addEventListener('click', showntoggle(peaks))
+    document.querySelector('#toggle-labels').addEventListener('click', showntoggle(labels))
+    document.querySelector('#toggle-starts').addEventListener('click', showntoggle(startpl))
 
     let editHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
 
