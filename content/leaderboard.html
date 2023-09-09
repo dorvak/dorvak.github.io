@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summit Race Bergen 2023 Leaderboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #7dcbb3;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            color: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #619e8e;
+        }
+
+        tr:nth-child(even) {
+            background-color: #6fa69a;
+        }
+
+        tr:hover {
+            background-color: #5c8d80;
+        }
+
+        .peaks-cell {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .expandable {
+            cursor: pointer;
+            color: #007BFF;
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Summit Race Bergen 2023 Leaderboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Pilot</th>
+                <th>Punktestand (vorläufig)</th>
+                <th>Erreichte Gipfel</th>
+            </tr>
+        </thead>
+        <tbody id="leaderboard">
+            <!-- Data will be loaded here using JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // URL of the JSON data
+        const jsonUrl = 'https://europe-west3-summit-race.cloudfunctions.net/scoring_table';
+
+        // Function to fetch and display data
+        async function fetchData() {
+            try {
+                const response = await fetch(jsonUrl);
+                const data = await response.json();
+                const leaderboard = document.getElementById('leaderboard');
+
+                data.forEach(pilotData => {
+                    // Skip rows with null pilot names
+                    if (pilotData.pilot === null) {
+                        return;
+                    }
+
+                    const row = document.createElement('tr');
+                    const pilotCell = document.createElement('td');
+                    const scoreCell = document.createElement('td');
+                    const peaksCell = document.createElement('td');
+
+                    pilotCell.textContent = pilotData.pilot;
+                    scoreCell.textContent = pilotData.score || 0;
+                    peaksCell.textContent = pilotData.peaks.join(', ');
+                    peaksCell.classList.add('peaks-cell');
+
+                    if (pilotData.peaks.length > 3) {
+                        const expandableDiv = document.createElement('div');
+                        expandableDiv.classList.add('expandable');
+
+                        const peaksList = document.createElement('div');
+                        peaksList.textContent = pilotData.peaks.join(', ');
+                        peaksList.classList.add('hidden');
+
+                        expandableDiv.appendChild(peaksList);
+                        peaksCell.appendChild(expandableDiv);
+
+                        expandableDiv.addEventListener('click', () => {
+                            peaksList.classList.toggle('hidden');
+                        });
+                    }
+
+                    row.appendChild(pilotCell);
+                    row.appendChild(scoreCell);
+                    row.appendChild(peaksCell);
+                    leaderboard.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Call the fetchData function to load data
+        fetchData();
+    </script>
+</body>
+</html>
