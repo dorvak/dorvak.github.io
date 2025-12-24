@@ -18,10 +18,15 @@ experiences:
     overview: Payback is a multi-national, data-driven marketing & loyalty-program that delivers marketing & loyalty-services to over 31 Million customers (in DE only) and hundreds of partners (POS-Partners, Online-Shops etc.) worldwide.
 
   positions:
+  - designation: Principle Software Architect
+    start: Feb 2023
+    responsibilities:
+    - Shaping the technological vision and architectural strategy for the company's Data- & AI-platform and various backend-systems.
+    - Helping the company to adopt a Data Product/Data Mesh-thinking in a major organisational as well as a technological shift.
+    - Assessing & driving the utilities and capabilities of AI-augmented software development practises.
   - designation: Team Lead Software Engineering Data Science
     start: Feb 2020
-    # don't provide end date if you are currently working there. It will be replaced by "Present"
-    # end: Dec 2020
+    end: Jan 2023
     # give some points about what was your responsibilities at the company.
     responsibilities:
     - Leading, supporting and scaling two SE-Teams which build data-intensive applications (SAS, Python, Oracle) central to Paybacks operating model and delivering value to millions of customers on a daily basis

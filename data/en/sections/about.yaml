@@ -8,7 +8,7 @@ section:
   template: sections/about.html
 
 # your designation
-designation: Software Engineering Team-Lead
+designation: Principle Software Architect
 # your company information
 company:
   name: Payback GmbH
@@ -19,8 +19,10 @@ company:
 # resume: "files/resume.pdf"
 
 # a summary about you
-summary: 'I am a passionate Software Engineering Team-Lead and Data Architect who loves planning and building data-intensive applications.
+summary: 'I am a passionate Software & Data Architect who loves planning and building data-intensive applications. 
  <br> Coming from a computational social-science background (PhD), I studied large-scale information systems using machine-learning approaches for content analysis, built large-scale (web)-scrapers and created an OSS-Tool (Facepager).
+ 
+ <br><br> In my free time I explore the mountains with my paraglider.
 '
 
 # your social links

@@ -39,7 +39,7 @@ skills:
 
 - name: Cloud Technologies
   logo: /images/sections/skills/cloud.png
-  summary: "Experience with major cloud-vendors (PaaS,SaaS,IaaS) such as AWS and GCP."
+  summary: "Experience with major cloud-vendors such as AWS and (mostly) GCP."
 
 - name: ELK
   logo: /images/sections/skills/elk.png

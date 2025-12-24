@@ -1,6 +1,6 @@
 # section information
 section:
-  name: Publications (selected)
+  name: Publications & Talks
   id: publications
   enable: true
   weight: 6
@@ -8,15 +8,37 @@ section:
   # Can optionally hide the title in sections
   # hideTitle: true
 
-# filter buttons
-buttons:
-- name: All
-  filter: "all"
-- name: "Computational Social Science"
-  filter: "scientific"
-
 # your publications
 publications:
+- title: "Lesson learned implementing a large-scale data mesh transformation at PAYBACK"
+  publishedIn:
+    name: "Thoughtworks X-Conf 2019, Barcelona"
+    date: 2024-09-19
+    url: "https://www.youtube.com/watch?v=gXvnyYop2qs"
+  authors:
+  - name: Till Keyling
+    url: https://tillkeyling.com
+  - name: Alessandro Confetti
+  paper:
+    summary: "Sharing lessons learned from PAYBACK's early Data Mesh journey: where to start (tech, data, teams), how to build ownership without overhead, preventing fragmentation, and migrating from legacy warehouses to data products."
+  categories: ["talks"]
+  tags: ["Data Mesh", "Conference", "Architecture"]
+
+- title: "Lessons learned implementing a large-scale Data Mesh transformation"
+  publishedIn:
+    name: "Thoughtworks Webinar"
+    date: 2024-07-29
+    url: "https://www.thoughtworks.com/about-us/events/webinars/lesson-learned-implementing-a-large-scale-data-mesh-transformation"
+  authors:
+  - name: Alessandro Confetti
+  - name: Till Keyling
+    url: https://tillkeyling.com
+  - name: Alexandra Lovin
+  paper:
+    summary: "A practical discussion on PAYBACK's Data Mesh journey, moving beyond theoretical concepts to real-world implementation challenges and successes in a large-scale transformation."
+  categories: ["talks"]
+  tags: ["Data Mesh", "Architecture", "Data Strategy"]
+
 
 - title: Kollektives Gatekeeping. Die Herstellung von Publizität in Social Media [Collective Gatekeeping]
   publishedIn:
