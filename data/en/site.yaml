@@ -1,7 +1,7 @@
 # Copyright Notice
 copyright: <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>'
 
-# A disclaimer notice for the footer. Make sure you have set "params.footer.disclaimer.enable: true" in your `config.yaml` file.
+# A disclaimer notice for the footer. Make sure you have set "params.footer.disclaimer.enable: true" in your `hugo.yaml` file.
 disclaimer: 'Disclaimer'
 
 # Meta description for your site.  This will help the search engines to find your site.
@@ -15,7 +15,7 @@ customMenus:
 #  # specify whether to hide the menu item from top navbar or not.
 #  hideFromNavbar: false
 #  # specify whether to show the menu item in footer or not.
-#  # if you set it to true, make sure you have set `footer.navigation.customMenus: true` in your config.yaml
+#  # if you set it to true, make sure you have set `footer.navigation.customMenus: true` in your hugo.yaml
 #  showOnFooter: false
 
 # Specify OpenGraph Headers
