@@ -1,5 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const justifiedLayout = require('justified-layout');
+    // --- Library Initialization ---
+    const justifiedLayout = window.justifiedLayout;
+    
+    if (!justifiedLayout) {
+        console.error("Justified Layout library not found. Please check if the script is loaded correctly.");
+        alert("Layout library failed to load. Please refresh the page.");
+        return;
+    }
+
     const board = document.getElementById('collage-board');
     const boardWrapper = document.getElementById('board-wrapper');
     const imageUpload = document.getElementById('image-upload');
@@ -29,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             emptyTitle: "No photos uploaded",
             emptyDesc: "Click the upload button or drop files here to begin.",
             loading: "Processing Photos...",
+            exporting: "Preparing export...",
             tourBtn: "Help / Tour",
             tourWelcomeTitle: "Welcome!",
             tourWelcomeDesc: "Let's create your perfect A4 collage in 30 seconds.",
@@ -65,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             emptyTitle: "Keine Fotos hochgeladen",
             emptyDesc: "Klicke auf Hochladen oder ziehe Dateien hierher.",
             loading: "Fotos werden verarbeitet...",
+            exporting: "Export wird vorbereitet...",
             tourBtn: "Hilfe / Tour",
             tourWelcomeTitle: "Willkommen!",
             tourWelcomeDesc: "Erstelle deine perfekte A4-Collage in nur 30 Sekunden.",
@@ -98,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (span) {
                         span.innerText = i18n[currentLang][key];
                     } else {
-                        // Directly update text if no children with data-i18n
                         const hasChildrenWithI18n = Array.from(el.children).some(c => c.hasAttribute('data-i18n'));
                         if (!hasChildrenWithI18n) {
                              const textNode = Array.from(el.childNodes).find(n => n.nodeType === 3 && n.textContent.trim().length > 0);
@@ -147,31 +156,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 steps: [
                     { 
                         element: 'h2[data-i18n="title"]', 
-                        popover: { title: i18n[currentLang].tourWelcomeTitle, description: i18n[currentLang].tourWelcomeDesc } 
+                        popover: { title: i18n[currentLang].tourWelcomeTitle, description: i18n[currentLang].tourWelcomeDesc, side: "bottom", align: 'start' } 
                     },
                     { 
                         element: '#drop-zone', 
-                        popover: { title: i18n[currentLang].tourStep1Title, description: i18n[currentLang].tourStep1Desc } 
+                        popover: { title: i18n[currentLang].tourStep1Title, description: i18n[currentLang].tourStep1Desc, side: "bottom", align: 'start' } 
                     },
                     { 
                         element: '#btn-cycle', 
-                        popover: { title: i18n[currentLang].tourCycleTitle, description: i18n[currentLang].tourCycleDesc } 
+                        popover: { title: i18n[currentLang].tourCycleTitle, description: i18n[currentLang].tourCycleDesc, side: "bottom", align: 'start' } 
                     },
                     { 
                         element: '#btn-stretch', 
-                        popover: { title: i18n[currentLang].tourStretchTitle, description: i18n[currentLang].tourStretchDesc } 
+                        popover: { title: i18n[currentLang].tourStretchTitle, description: i18n[currentLang].tourStretchDesc, side: "bottom", align: 'start' } 
                     },
                     { 
                         element: '#settings-group', 
-                        popover: { title: i18n[currentLang].tourStep2Title, description: i18n[currentLang].tourStep2Desc } 
+                        popover: { title: i18n[currentLang].tourStep2Title, description: i18n[currentLang].tourStep2Desc, side: "bottom", align: 'start' } 
                     },
                     { 
                         element: '.export-group', 
-                        popover: { title: i18n[currentLang].tourStep3Title, description: i18n[currentLang].tourStep3Desc } 
+                        popover: { title: i18n[currentLang].tourStep3Title, description: i18n[currentLang].tourStep3Desc, side: "top", align: 'start' } 
                     },
                     { 
-                        element: '#collage-board', 
-                        popover: { title: i18n[currentLang].tourBoardTitle, description: i18n[currentLang].tourBoardDesc } 
+                        element: '#board-wrapper', 
+                        popover: { title: i18n[currentLang].tourBoardTitle, description: i18n[currentLang].tourBoardDesc, side: "left", align: 'center' } 
                     }
                 ]
             });
@@ -180,12 +189,25 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function scaleBoardToFit() {
-        const A4_W = board.classList.contains('landscape') ? 1123 : 794;
-        const A4_H = board.classList.contains('landscape') ? 794 : 1123;
+        if (!board || !boardWrapper) return;
+        const scaleWrapper = document.getElementById('scale-wrapper');
+        const isLandscape = board.classList.contains('landscape');
+        const A4_W = isLandscape ? 1123 : 794;
+        const A4_H = isLandscape ? 794 : 1123;
         const wrapperW = boardWrapper.clientWidth - 60;
         const wrapperH = boardWrapper.clientHeight - 60;
         const scale = Math.min(wrapperW / A4_W, wrapperH / A4_H, 1);
-        board.style.transform = `scale(${scale})`;
+        
+        window.currentBoardScale = scale; // Expose for pan calculation
+        
+        if (scaleWrapper) {
+            scaleWrapper.style.width = `${A4_W * scale}px`;
+            scaleWrapper.style.height = `${A4_H * scale}px`;
+            board.style.transformOrigin = 'top left';
+            board.style.transform = `scale(${scale})`;
+        } else {
+            board.style.transform = `scale(${scale})`;
+        }
     }
 
     window.addEventListener('resize', scaleBoardToFit);
@@ -193,7 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const processFiles = async (files) => {
         if (!files || files.length === 0) return;
         const loadingOverlay = document.getElementById('loading-overlay');
-        if (loadingOverlay) loadingOverlay.style.display = 'flex';
+        const loadingText = document.getElementById('loading-text');
+        if (loadingOverlay) {
+            if (loadingText) loadingText.innerText = i18n[currentLang].loading;
+            loadingOverlay.style.display = 'flex';
+        }
 
         const newImages = [];
         try {
@@ -209,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                     const imgData = await new Promise((resolve, reject) => {
                         const tempImg = new Image();
-                        tempImg.onload = () => resolve({ src: dataUrl, ratio: tempImg.width / tempImg.height });
+                        tempImg.onload = () => resolve({ src: dataUrl, ratio: tempImg.width / tempImg.height, offsetX: 0, offsetY: 0 });
                         tempImg.onerror = () => reject(new Error("Image decoding failed"));
                         tempImg.src = dataUrl;
                     });
@@ -227,10 +253,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    imageUpload.addEventListener('change', function(e) {
-        processFiles(Array.from(e.target.files));
-        this.value = ''; 
-    });
+    if (imageUpload) {
+        imageUpload.addEventListener('change', function(e) {
+            processFiles(Array.from(e.target.files));
+            this.value = ''; 
+        });
+    }
 
     const dropZone = document.getElementById('drop-zone');
     if (dropZone) {
@@ -264,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculateBestGrids() {
-        if (uploadedImages.length === 0) return;
+        if (uploadedImages.length === 0 || !justifiedLayout) return;
         board.innerHTML = ''; 
         const isLandscape = board.classList.contains('landscape');
         const A4_W = isLandscape ? 1123 : 794;
@@ -288,7 +316,9 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (bestGeometry.containerHeight > targetH) {
             scaleX = scaleY = targetH / bestGeometry.containerHeight;
         }
-        const finalContainerW = targetW * scaleX, finalContainerH = bestGeometry.containerHeight * scaleY;
+        
+        const finalContainerW = Math.floor(targetW * scaleX);
+        const finalContainerH = Math.floor(bestGeometry.containerHeight * scaleY);
         const rowsContainer = document.createElement('div');
         rowsContainer.id = 'rows-container'; 
         rowsContainer.style.position = 'relative';
@@ -300,14 +330,96 @@ document.addEventListener('DOMContentLoaded', () => {
             const slot = document.createElement('div');
             slot.className = 'slot';
             slot.style.position = 'absolute';
-            slot.style.left = `${box.left * scaleX}px`;
-            slot.style.top = `${box.top * scaleY}px`;
-            slot.style.width = `${box.width * scaleX}px`;
-            slot.style.height = `${box.height * scaleY}px`;
-            const imgEl = document.createElement('img');
-            imgEl.src = uploadedImages[i].src;
-            imgEl.style.objectFit = 'cover'; 
-            slot.appendChild(imgEl);
+            slot.style.left = `${Math.round(box.left * scaleX)}px`;
+            slot.style.top = `${Math.round(box.top * scaleY)}px`;
+            slot.style.width = `${Math.round(box.width * scaleX)}px`;
+            slot.style.height = `${Math.round(box.height * scaleY)}px`;
+            
+            const bgEl = document.createElement('div');
+            bgEl.className = 'slot-bg';
+            bgEl.style.backgroundImage = `url("${uploadedImages[i].src}")`;
+            bgEl.style.backgroundSize = 'cover';
+            bgEl.style.backgroundRepeat = 'no-repeat';
+            
+            // Image panning logic
+            const finalSlotW = box.width * scaleX;
+            const finalSlotH = box.height * scaleY;
+            const imgRatio = uploadedImages[i].ratio;
+            const slotRatio = finalSlotW / finalSlotH;
+            
+            let maxOffsetX = 0;
+            let maxOffsetY = 0;
+            
+            if (imgRatio > slotRatio) {
+                // Image is wider than slot. Bounded by height.
+                const renderedWidth = finalSlotH * imgRatio;
+                maxOffsetX = (renderedWidth - finalSlotW) / 2;
+            } else {
+                // Image is taller than slot. Bounded by width.
+                const renderedHeight = finalSlotW / imgRatio;
+                maxOffsetY = (renderedHeight - finalSlotH) / 2;
+            }
+            
+            // Re-clamp current offsets just in case layout changed
+            uploadedImages[i].offsetX = Math.max(-maxOffsetX, Math.min(maxOffsetX, uploadedImages[i].offsetX || 0));
+            uploadedImages[i].offsetY = Math.max(-maxOffsetY, Math.min(maxOffsetY, uploadedImages[i].offsetY || 0));
+            
+            bgEl.style.backgroundPosition = `calc(50% + ${uploadedImages[i].offsetX}px) calc(50% + ${uploadedImages[i].offsetY}px)`;
+            
+            if (maxOffsetX > 0 || maxOffsetY > 0) {
+                bgEl.style.cursor = 'grab';
+                
+                let startX, startY, initialOffsetX, initialOffsetY;
+                
+                const onMouseMove = (e) => {
+                    const scale = window.currentBoardScale || 1;
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                    
+                    const deltaX = (clientX - startX) / scale;
+                    const deltaY = (clientY - startY) / scale;
+                    
+                    let newOffsetX = initialOffsetX + deltaX;
+                    let newOffsetY = initialOffsetY + deltaY;
+                    
+                    newOffsetX = Math.max(-maxOffsetX, Math.min(maxOffsetX, newOffsetX));
+                    newOffsetY = Math.max(-maxOffsetY, Math.min(maxOffsetY, newOffsetY));
+                    
+                    uploadedImages[i].offsetX = newOffsetX;
+                    uploadedImages[i].offsetY = newOffsetY;
+                    
+                    bgEl.style.backgroundPosition = `calc(50% + ${newOffsetX}px) calc(50% + ${newOffsetY}px)`;
+                };
+                
+                const onMouseUp = () => {
+                    bgEl.style.cursor = 'grab';
+                    window.removeEventListener('mousemove', onMouseMove);
+                    window.removeEventListener('mouseup', onMouseUp);
+                    window.removeEventListener('touchmove', onMouseMove);
+                    window.removeEventListener('touchend', onMouseUp);
+                };
+                
+                const onDragStart = (e) => {
+                    if (!e.touches) e.preventDefault(); // Prevent default text/image selection drag
+                    startX = e.touches ? e.touches[0].clientX : e.clientX;
+                    startY = e.touches ? e.touches[0].clientY : e.clientY;
+                    initialOffsetX = uploadedImages[i].offsetX;
+                    initialOffsetY = uploadedImages[i].offsetY;
+                    
+                    bgEl.style.cursor = 'grabbing';
+                    window.addEventListener('mousemove', onMouseMove);
+                    window.addEventListener('mouseup', onMouseUp);
+                    window.addEventListener('touchmove', onMouseMove, { passive: false });
+                    window.addEventListener('touchend', onMouseUp);
+                };
+                
+                bgEl.addEventListener('mousedown', onDragStart);
+                bgEl.addEventListener('touchstart', onDragStart, { passive: false });
+            } else {
+                bgEl.style.backgroundPosition = 'center';
+            }
+            
+            slot.appendChild(bgEl);
             rowsContainer.appendChild(slot);
         });
         board.appendChild(rowsContainer);
@@ -338,27 +450,51 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bgColorInput) bgColorInput.addEventListener('input', (e) => board.style.backgroundColor = e.target.value);
 
     const gridGapInput = document.getElementById('grid-gap');
-    if (gridGapInput) gridGapInput.addEventListener('input', (e) => {
-        board.style.padding = `${parseInt(e.target.value) || 0}px`;
-        calculateBestGrids();
-    });
+    if (gridGapInput) {
+        board.style.padding = `${parseInt(gridGapInput.value) || 0}px`;
+        gridGapInput.addEventListener('input', (e) => {
+            board.style.padding = `${parseInt(e.target.value) || 0}px`;
+            calculateBestGrids();
+        });
+    }
 
     const exportCanvas = (format) => {
-        html2canvas(board, { scale: 3, useCORS: true, backgroundColor: board.style.backgroundColor || '#ffffff' }).then(canvas => {
-            const dataURL = canvas.toDataURL(`image/${format}`, 1.0);
+        const isLandscape = board.classList.contains('landscape');
+        const A4_W = isLandscape ? 1123 : 794;
+        const A4_H = isLandscape ? 794 : 1123;
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const loadingText = document.getElementById('loading-text');
+        if (loadingOverlay) {
+            if (loadingText) loadingText.innerText = i18n[currentLang].exporting;
+            loadingOverlay.style.display = 'flex';
+        }
+        html2canvas(board, {
+            scale: 3, useCORS: true, backgroundColor: board.style.backgroundColor || '#ffffff',
+            width: A4_W, height: A4_H, windowWidth: A4_W, windowHeight: A4_H,
+            onclone: (clonedDoc) => {
+                const clonedBoard = clonedDoc.getElementById('collage-board');
+                if (clonedBoard) {
+                    clonedBoard.style.boxShadow = 'none';
+                    clonedBoard.style.position = 'relative';
+                    clonedBoard.style.transform = 'none';
+                }
+            }
+        }).then(canvas => {
             const link = document.createElement('a');
             link.download = `photo-collage-A4.${format === 'jpeg' ? 'jpg' : 'png'}`;
-            link.href = dataURL;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            link.href = canvas.toDataURL(`image/${format}`, 1.0);
+            document.body.appendChild(link); link.click(); document.body.removeChild(link);
+            if (loadingOverlay) loadingOverlay.style.display = 'none';
+        }).catch(err => {
+            console.error("Export failed:", err);
+            if (loadingOverlay) loadingOverlay.style.display = 'none';
         });
     };
 
-    const btnExportPng = document.getElementById('btn-export-png');
-    if (btnExportPng) btnExportPng.addEventListener('click', () => exportCanvas('png'));
-    const btnExportJpg = document.getElementById('btn-export-jpg');
-    if (btnExportJpg) btnExportJpg.addEventListener('click', () => exportCanvas('jpeg'));
+    const btnPng = document.getElementById('btn-export-png');
+    if (btnPng) btnPng.addEventListener('click', () => exportCanvas('png'));
+    const btnJpg = document.getElementById('btn-export-jpg');
+    if (btnJpg) btnJpg.addEventListener('click', () => exportCanvas('jpeg'));
 
     initTour();
     scaleBoardToFit();
