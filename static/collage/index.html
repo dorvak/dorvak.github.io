@@ -8,19 +8,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css">
-    <link rel="stylesheet" href="style.css?v=20">
+    <link rel="stylesheet" href="style.css?v=64">
     <!-- html2canvas for exporting the DOM to an image -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Flickr's justified-layout algorithm (client-side) -->
-    <script src="https://unpkg.com/justified-layout@4.1.0/dist/justified-layout.min.js" integrity="sha256-IowtTAx87Wk0XGD+1Tq47qs6HyM3jD7jhG3KNuCANns=" crossorigin="anonymous"></script>
+    <script src="justified-layout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
 </head>
 <body>
+    <div id="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p id="loading-text" data-i18n="loading">Processing Photos...</p>
+    </div>
     <div class="app-container">
-        <div id="loading-overlay">
-            <div class="spinner"></div>
-            <p id="loading-text" data-i18n="loading">Processing Photos...</p>
-        </div>
         <aside class="sidebar">
             <div class="lang-toggle">
                 <button id="btn-tour" class="lang-btn" style="margin-right: auto; padding-left: 0;" data-i18n="tourBtn">Help / Tour</button>
@@ -76,14 +76,17 @@
         </aside>
 
         <main class="board-container-wrapper" id="board-wrapper">
-            <div id="collage-board" class="portrait">
-                <div id="empty-state">
-                    <p data-i18n="emptyTitle">No photos uploaded</p>
-                    <p data-i18n="emptyDesc">Click the upload button or drop files here to begin.</p>
+            <!-- This is the DOM representation of the A4 page -->
+            <div id="scale-wrapper">
+                <div id="collage-board" class="portrait">
+                    <div id="empty-state">
+                        <p data-i18n="emptyTitle">No photos uploaded</p>
+                        <p data-i18n="emptyDesc">Click the upload button or drop files here to begin.</p>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
-    <script src="app.js?v=20"></script>
+    <script src="app.js?v=64"></script>
 </body>
 </html>
