@@ -8,82 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css">
-    <link rel="stylesheet" href="style.css?v=20">
-    <!-- html2canvas for exporting the DOM to an image -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Flickr's justified-layout algorithm (client-side) -->
-    <script src="https://unpkg.com/justified-layout@4.1.0/dist/justified-layout.min.js" integrity="sha256-IowtTAx87Wk0XGD+1Tq47qs6HyM3jD7jhG3KNuCANns=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
-</head>
-<body>
-    <div class="app-container">
-        <div id="loading-overlay">
-            <div class="spinner"></div>
-            <p id="loading-text" data-i18n="loading">Processing Photos...</p>
-        </div>
-        <aside class="sidebar">
-            <div class="lang-toggle">
-                <button id="btn-tour" class="lang-btn" style="margin-right: auto; padding-left: 0;" data-i18n="tourBtn">Help / Tour</button>
-                <button class="lang-btn active" data-lang="en">EN</button>
-                <span style="color: #9ca3af; font-size: 0.9rem; align-self: center;">|</span>
-                <button class="lang-btn" data-lang="de">DE</button>
-            </div>
-            
-            <h2 data-i18n="title">Collage Maker</h2>
-            
-            <div class="control-group">
-                <label data-i18n="step1">1. Add Your Photos:</label>
-                <label id="drop-zone" class="drop-zone">
-                    <span data-i18n="uploadBtn">📷 Upload or Drop Photos</span>
-                    <input type="file" id="image-upload" multiple accept="image/png, image/jpeg, image/jpg" style="display: none;">
-                </label>
-                <small style="font-size: 11px; color: #6b7280; text-align: center; margin-top: 5px;" data-i18n="uploadDesc">
-                    Upload any number of photos. The system will mathematically calculate the optimal grid to fit them perfectly on the page!
-                </small>
-            </div>
-
-            <div class="control-group" style="margin-top: 1rem;">
-                <button id="btn-cycle" class="primary" style="margin-bottom: 0.5rem;" data-i18n="cycleBtn">🔄 Cycle Grid Variants</button>
-                <button id="btn-stretch" class="primary" style="margin-bottom: 0.5rem; background-color: #10b981;" data-i18n="stretchBtn">↕️ Stretch to Fill A4</button>
-                <button id="btn-clear" class="danger" data-i18n="clearBtn">🗑️ Clear All Photos</button>
-            </div>
-
-            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1rem 0;">
-
-            <div id="settings-group" class="control-group">
-                <label data-i18n="step2">2. Page Settings:</label>
-                <select id="orientation-select" style="margin-bottom: 0.5rem;">
-                    <option value="portrait" data-i18n="portrait">A4 Portrait</option>
-                    <option value="landscape" data-i18n="landscape">A4 Landscape</option>
-                </select>
-                <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: space-between;">
-                    <div style="display: flex; align-items: center; gap: 0.5rem;">
-                        <input type="color" id="bg-color" value="#ffffff" style="width: 40px; height: 30px;">
-                        <span style="font-size: 0.8rem;" data-i18n="bgColor">Bg Color</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 0.5rem;">
-                        <input type="number" id="grid-gap" value="20" min="0" max="100" style="width: 50px; padding: 0.2rem;">
-                        <span style="font-size: 0.8rem;" data-i18n="gap">Gap (px)</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="control-group export-group">
-                <label data-i18n="step3">3. Export High-Res (300 DPI):</label>
-                <button id="btn-export-png" class="primary" data-i18n="exportPng">Download PNG</button>
-                <button id="btn-export-jpg" class="primary" data-i18n="exportJpg">Download JPEG</button>
-            </div>
-        </aside>
-
-        <main class="board-container-wrapper" id="board-wrapper">
-            <div id="collage-board" class="portrait">
-                <div id="empty-state">
-                    <p data-i18n="emptyTitle">No photos uploaded</p>
-                    <p data-i18n="emptyDesc">Click the upload button or drop files here to begin.</p>
-                </div>
-            </div>
-        </main>
-    </div>
-    <script src="app.js?v=20"></script>
+    <link rel="stylesheet" href="style.css?v=30">
+...
+    <script src="app.js?v=30"></script>
 </body>
 </html>
