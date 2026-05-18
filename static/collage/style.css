@@ -227,9 +227,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0; /* Removing padding from board, geometry handles gap */
-    transform-origin: center center;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
     position: relative;
     overflow: hidden;
 }
@@ -301,19 +299,57 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.3s ease;
 }
 
-.slot img {
+.slot-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     transition: transform 0.5s ease;
 }
 
-.slot:hover img {
+.slot:hover .slot-bg {
     transform: scale(1.05);
+}
+
+/* Slot interaction logic - Pan to swap/delete */
+.slot-ghost {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: transform 0.1s, opacity 0.1s, box-shadow 0.1s;
+}
+
+.slot-ghost.will-delete {
+    opacity: 0.6;
+    box-shadow: 0 0 0 4px #ef4444;
+    transform: scale(0.9);
+}
+
+.slot.is-swapping {
+    opacity: 0.3;
+    transform: scale(0.95);
+    transition: all 0.2s;
+}
+
+.slot.drag-over {
+    outline: 4px solid #10b981;
+    outline-offset: -4px;
+    transform: scale(1.02);
+    z-index: 50;
+    transition: all 0.2s;
 }
 
 hr {

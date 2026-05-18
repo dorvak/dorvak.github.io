@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
             tourStep2Desc: "Fine-tune orientation, colors, and margins.",
             tourStep3Title: "Ready for Print",
             tourStep3Desc: "Export at 300 DPI (high-resolution) for professional results.",
-            tourBoardTitle: "The Canvas",
-            tourBoardDesc: "Your photos will appear here, perfectly aligned without cropping."
+            tourBoardTitle: "The Canvas & Interactions",
+            tourBoardDesc: "Your photos appear here. Drag inside a photo to adjust its crop. Drag a photo onto another to swap them, or drag it outside the canvas to delete it."
         },
         de: {
             title: "Collage Ersteller",
@@ -88,8 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
             tourStep2Desc: "Passe Ausrichtung, Farben und Abstände an.",
             tourStep3Title: "Druckfertig",
             tourStep3Desc: "Exportiere in 300 DPI (hochauflösend) für perfekte Druckergebnisse.",
-            tourBoardTitle: "Deine Leinwand",
-            tourBoardDesc: "Deine Fotos erscheinen hier, mathematisch perfekt angeordnet."
+            tourBoardTitle: "Leinwand & Interaktionen",
+            tourBoardDesc: "Deine Fotos erscheinen hier. Ziehe in einem Foto, um den Bildausschnitt anzupassen. Ziehe ein Foto auf ein anderes, um sie zu tauschen, oder aus der Leinwand heraus, um es zu löschen."
         }
     };
 
@@ -341,7 +341,10 @@ document.addEventListener('DOMContentLoaded', () => {
             bgEl.style.backgroundSize = 'cover';
             bgEl.style.backgroundRepeat = 'no-repeat';
             
-            // Image panning logic
+            // Set index for targeting
+            slot.dataset.index = i;
+            
+            // Unified Pan-to-Swap/Delete Logic
             const finalSlotW = box.width * scaleX;
             const finalSlotH = box.height * scaleY;
             const imgRatio = uploadedImages[i].ratio;
@@ -351,73 +354,170 @@ document.addEventListener('DOMContentLoaded', () => {
             let maxOffsetY = 0;
             
             if (imgRatio > slotRatio) {
-                // Image is wider than slot. Bounded by height.
                 const renderedWidth = finalSlotH * imgRatio;
                 maxOffsetX = (renderedWidth - finalSlotW) / 2;
             } else {
-                // Image is taller than slot. Bounded by width.
                 const renderedHeight = finalSlotW / imgRatio;
                 maxOffsetY = (renderedHeight - finalSlotH) / 2;
             }
             
-            // Re-clamp current offsets just in case layout changed
             uploadedImages[i].offsetX = Math.max(-maxOffsetX, Math.min(maxOffsetX, uploadedImages[i].offsetX || 0));
             uploadedImages[i].offsetY = Math.max(-maxOffsetY, Math.min(maxOffsetY, uploadedImages[i].offsetY || 0));
-            
             bgEl.style.backgroundPosition = `calc(50% + ${uploadedImages[i].offsetX}px) calc(50% + ${uploadedImages[i].offsetY}px)`;
             
-            if (maxOffsetX > 0 || maxOffsetY > 0) {
-                bgEl.style.cursor = 'grab';
+            let startX, startY, initialOffsetX, initialOffsetY, slotRect;
+            let isDragging = false;
+            let isSwappingMode = false;
+            
+            // Reusable cleanup
+            const cleanupDrag = () => {
+                isDragging = false;
+                window.removeEventListener('mousemove', onMouseMove);
+                window.removeEventListener('mouseup', onMouseUp);
+                window.removeEventListener('touchmove', onMouseMove);
+                window.removeEventListener('touchend', onMouseUp);
+            };
+
+            const onMouseMove = (e) => {
+                if (!isDragging) return;
                 
-                let startX, startY, initialOffsetX, initialOffsetY;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
                 
-                const onMouseMove = (e) => {
-                    const scale = window.currentBoardScale || 1;
-                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                if (!isSwappingMode) {
+                    const deltaX = clientX - startX;
+                    const deltaY = clientY - startY;
                     
-                    const deltaX = (clientX - startX) / scale;
-                    const deltaY = (clientY - startY) / scale;
-                    
-                    let newOffsetX = initialOffsetX + deltaX;
-                    let newOffsetY = initialOffsetY + deltaY;
-                    
-                    newOffsetX = Math.max(-maxOffsetX, Math.min(maxOffsetX, newOffsetX));
-                    newOffsetY = Math.max(-maxOffsetY, Math.min(maxOffsetY, newOffsetY));
-                    
-                    uploadedImages[i].offsetX = newOffsetX;
-                    uploadedImages[i].offsetY = newOffsetY;
-                    
-                    bgEl.style.backgroundPosition = `calc(50% + ${newOffsetX}px) calc(50% + ${newOffsetY}px)`;
-                };
+                    // Threshold to transition from Panning to Swapping
+                    const threshold = 15;
+                    const isOutside = 
+                        clientX < slotRect.left - threshold || 
+                        clientX > slotRect.right + threshold ||
+                        clientY < slotRect.top - threshold || 
+                        clientY > slotRect.bottom + threshold;
+                        
+                    if (isOutside) {
+                        isSwappingMode = true;
+                        
+                        // Create Ghost Element
+                        window.activeGhost = document.createElement('div');
+                        window.activeGhost.className = 'slot-ghost';
+                        window.activeGhost.style.backgroundImage = bgEl.style.backgroundImage;
+                        window.activeGhost.style.width = slotRect.width + 'px';
+                        window.activeGhost.style.height = slotRect.height + 'px';
+                        window.activeGhost.style.left = (clientX - slotRect.width/2) + 'px';
+                        window.activeGhost.style.top = (clientY - slotRect.height/2) + 'px';
+                        document.body.appendChild(window.activeGhost);
+                        
+                        slot.classList.add('is-swapping');
+                    } else {
+                        // Pan logic
+                        if (maxOffsetX > 0 || maxOffsetY > 0) {
+                            const scale = window.currentBoardScale || 1;
+                            let newOffsetX = initialOffsetX + (deltaX / scale);
+                            let newOffsetY = initialOffsetY + (deltaY / scale);
+                            
+                            newOffsetX = Math.max(-maxOffsetX, Math.min(maxOffsetX, newOffsetX));
+                            newOffsetY = Math.max(-maxOffsetY, Math.min(maxOffsetY, newOffsetY));
+                            
+                            uploadedImages[i].offsetX = newOffsetX;
+                            uploadedImages[i].offsetY = newOffsetY;
+                            bgEl.style.backgroundPosition = `calc(50% + ${newOffsetX}px) calc(50% + ${newOffsetY}px)`;
+                        }
+                    }
+                }
                 
-                const onMouseUp = () => {
-                    bgEl.style.cursor = 'grab';
-                    window.removeEventListener('mousemove', onMouseMove);
-                    window.removeEventListener('mouseup', onMouseUp);
-                    window.removeEventListener('touchmove', onMouseMove);
-                    window.removeEventListener('touchend', onMouseUp);
-                };
-                
-                const onDragStart = (e) => {
-                    if (!e.touches) e.preventDefault(); // Prevent default text/image selection drag
-                    startX = e.touches ? e.touches[0].clientX : e.clientX;
-                    startY = e.touches ? e.touches[0].clientY : e.clientY;
-                    initialOffsetX = uploadedImages[i].offsetX;
-                    initialOffsetY = uploadedImages[i].offsetY;
+                if (isSwappingMode && window.activeGhost) {
+                    window.activeGhost.style.left = (clientX - slotRect.width/2) + 'px';
+                    window.activeGhost.style.top = (clientY - slotRect.height/2) + 'px';
                     
-                    bgEl.style.cursor = 'grabbing';
-                    window.addEventListener('mousemove', onMouseMove);
-                    window.addEventListener('mouseup', onMouseUp);
-                    window.addEventListener('touchmove', onMouseMove, { passive: false });
-                    window.addEventListener('touchend', onMouseUp);
-                };
+                    // Hide ghost from pointer events to find what is underneath
+                    const target = document.elementFromPoint(clientX, clientY);
+                    
+                    document.querySelectorAll('.slot.drag-over').forEach(el => el.classList.remove('drag-over'));
+                    
+                    const targetSlot = target ? target.closest('.slot') : null;
+                    if (targetSlot && targetSlot !== slot) {
+                        targetSlot.classList.add('drag-over');
+                        window.activeGhost.classList.remove('will-delete');
+                    } else if (!targetSlot) {
+                        const boardEl = document.getElementById('collage-board');
+                        if (!boardEl.contains(target)) {
+                            window.activeGhost.classList.add('will-delete');
+                        } else {
+                            window.activeGhost.classList.remove('will-delete');
+                        }
+                    }
+                }
+            };
+            
+            const onMouseUp = (e) => {
+                if (!isDragging) return;
+                cleanupDrag();
                 
-                bgEl.addEventListener('mousedown', onDragStart);
-                bgEl.addEventListener('touchstart', onDragStart, { passive: false });
-            } else {
-                bgEl.style.backgroundPosition = 'center';
-            }
+                const clientX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+                const clientY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+                
+                slot.classList.remove('is-swapping');
+                document.querySelectorAll('.slot.drag-over').forEach(el => el.classList.remove('drag-over'));
+                bgEl.style.cursor = (maxOffsetX > 0 || maxOffsetY > 0) ? 'grab' : 'default';
+                
+                if (isSwappingMode) {
+                    isSwappingMode = false;
+                    if (window.activeGhost) {
+                        window.activeGhost.remove();
+                        window.activeGhost = null;
+                    }
+                    
+                    const target = document.elementFromPoint(clientX, clientY);
+                    const targetSlot = target ? target.closest('.slot') : null;
+                    
+                    if (targetSlot && targetSlot !== slot) {
+                        // SWAP
+                        const toIndex = parseInt(targetSlot.dataset.index);
+                        if (!isNaN(toIndex)) {
+                            const temp = uploadedImages[i];
+                            uploadedImages[i] = uploadedImages[toIndex];
+                            uploadedImages[toIndex] = temp;
+                            calculateBestGrids();
+                        }
+                    } else if (!targetSlot) {
+                        const boardEl = document.getElementById('collage-board');
+                        if (!boardEl.contains(target)) {
+                            // DELETE
+                            uploadedImages.splice(i, 1);
+                            calculateBestGrids();
+                        }
+                    }
+                }
+            };
+            
+            const onDragStart = (e) => {
+                if (e.touches) {
+                    // Only prevent default if it's not a pinch zoom (1 finger)
+                    if (e.touches.length === 1) e.preventDefault();
+                } else {
+                    e.preventDefault();
+                }
+                
+                isDragging = true;
+                isSwappingMode = false;
+                startX = e.touches ? e.touches[0].clientX : e.clientX;
+                startY = e.touches ? e.touches[0].clientY : e.clientY;
+                initialOffsetX = uploadedImages[i].offsetX || 0;
+                initialOffsetY = uploadedImages[i].offsetY || 0;
+                slotRect = slot.getBoundingClientRect();
+                
+                bgEl.style.cursor = 'grabbing';
+                window.addEventListener('mousemove', onMouseMove, { passive: false });
+                window.addEventListener('mouseup', onMouseUp);
+                window.addEventListener('touchmove', onMouseMove, { passive: false });
+                window.addEventListener('touchend', onMouseUp);
+            };
+            
+            bgEl.addEventListener('mousedown', onDragStart);
+            bgEl.addEventListener('touchstart', onDragStart, { passive: false });
+            bgEl.style.cursor = (maxOffsetX > 0 || maxOffsetY > 0) ? 'grab' : 'pointer'; // pointer hints it's interactive for swap even if no pan
             
             slot.appendChild(bgEl);
             rowsContainer.appendChild(slot);
