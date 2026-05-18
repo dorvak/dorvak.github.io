@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
             exportPng: "Download PNG",
             exportJpg: "Download JPEG",
             emptyTitle: "No photos uploaded",
-            emptyDesc: "Click the upload button or drop files here to begin.",
             loading: "Processing Photos...",
             exporting: "Preparing export...",
             tourBtn: "Help / Tour",
@@ -72,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
             exportPng: "Als PNG speichern",
             exportJpg: "Als JPEG speichern",
             emptyTitle: "Keine Fotos hochgeladen",
-            emptyDesc: "Klicke auf Hochladen oder ziehe Dateien hierher.",
             loading: "Fotos werden verarbeitet...",
             exporting: "Export wird vorbereitet...",
             tourBtn: "Hilfe / Tour",
@@ -275,7 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
             board.innerHTML = `
                 <div id="empty-state">
                     <p data-i18n="emptyTitle">${i18n[currentLang].emptyTitle}</p>
-                    <p data-i18n="emptyDesc">${i18n[currentLang].emptyDesc}</p>
                 </div>
             `;
             scaleBoardToFit();
